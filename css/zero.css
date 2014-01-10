@@ -40,7 +40,7 @@ body {
     +display: inline;
     +zoom: 1;
     width: 500px;
-    line-height: 200px;
+    line-height: 300px;
     background: transparent url(../images/logo.png) no-repeat left top;
 }
 
@@ -56,6 +56,7 @@ body {
 }
 
 .blog-footer {
+    padding-top: 100px;
     color: #333;
     line-height: 30px;
     font-size: 15px;
@@ -64,16 +65,26 @@ body {
 
 .blog-footer .sns {
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 .blog-footer .sns a {
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
     margin: 0 10px;
     padding: 0 20px;
+    text-decoration: none;
 }
 
-.blog-footer .fa {
-    font-size: 24px;
-    vertical-align: middle;
+.blog-footer .sns a:hover {
+    color: #c00;
+}
+
+.blog-footer .sns .fa {
+    display: block;
+    line-height: 60px;  
+    font-size: 56px;
 }
 
 .blog-footer .copy {
