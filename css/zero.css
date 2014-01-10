@@ -136,6 +136,7 @@ body {
 }
 
 .about .inner {
+    margin: 0 auto; 
     width: 250px;
 }
 
