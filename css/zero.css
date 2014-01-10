@@ -41,12 +41,12 @@ body {
     +zoom: 1;
     width: 500px;
     line-height: 300px;
-    background: transparent url(../images/logo.png) no-repeat left top;
+    background: transparent url(../images/logo.png) no-repeat left center;
 }
 
 .blog-header h2 {
     position: relative;
-    margin-top: -64px;
+    margin-top: -100px;
     width: 100%;
     float: left;
     color: #333;
