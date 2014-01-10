@@ -62,6 +62,20 @@ body {
     text-align: center;
 }
 
+.blog-footer .sns {
+    font-weight: bold;
+}
+
+.blog-footer .sns a {
+    margin: 0 10px;
+    padding: 0 20px;
+}
+
+.blog-footer .fa {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
 .blog-footer .copy {
     color: #999;
     font-size: 12px;
