@@ -151,7 +151,23 @@ body {
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
+.post header {
+    margin-bottom: 30px;
+}
+
+.post h3 {
+    font-size: 28px;
+    line-height: 36px;
+}
+
+.post h4 {
+    margin: 20px 0;
+    font-size: 34px;
+    line-height: 46px;
+}
+
 .post p {
+    margin: 10px 0;
     text-indent: 2em;
 }
 
@@ -164,13 +180,20 @@ body {
     white-space: nowrap;
 }
 
+.post .date {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+}
+
 .post .highlight {
-    padding: 10px;
+    margin: 10px;
 }
 
 .post .highlight pre {
     display: block;
-    border-left: 2px solid #999;
+    border-left: 3px solid #999;
+    background-color: #eee;
 }
 
 .post .inner {
