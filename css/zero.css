@@ -166,6 +166,12 @@ body {
     line-height: 46px;
 }
 
+.post code {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+}
+
 .post p {
     margin: 10px 0;
     text-indent: 2em;
@@ -174,9 +180,6 @@ body {
 .post p code {
     margin: 0 2px;
     padding: 0px 5px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    background-color: #f8f8f8;
     white-space: nowrap;
 }
 
@@ -190,10 +193,8 @@ body {
     margin: 10px;
 }
 
-.post .highlight pre {
+.post .highlight code {
     display: block;
-    border-left: 3px solid #999;
-    background-color: #eee;
 }
 
 .post .inner {
