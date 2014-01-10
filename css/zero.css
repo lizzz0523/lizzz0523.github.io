@@ -99,17 +99,18 @@ body {
     +display: inline;
     +zoom: 1;
     padding: 0 10px;
+    width: 100px;
     text-decoration: none;
 }
 
 .blog-nav a:after {
     content: '';
     position: absolute;
-    left: -10px;
+    left: 10px;
     top: 50%;
     display: none;
-    margin-top: -5px;
-    border: 50px solid transparent;
+    margin-top: -6px;
+    border: 6px solid transparent;
     border-left-color: #c00;
     width: 0;
     height: 0;
