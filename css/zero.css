@@ -173,6 +173,14 @@ body {
     background-color: #f8f8f8;
 }
 
+.post a {
+    text-decoration: none;
+}
+
+.post a:hover {
+    color: #c00;
+}
+
 .post p {
     margin: 10px 0;
 }
@@ -183,8 +191,7 @@ body {
     white-space: nowrap;
 }
 
-.post p em,
-.post p strong {
+.post p em {
     font-style: italic;
 }
 
