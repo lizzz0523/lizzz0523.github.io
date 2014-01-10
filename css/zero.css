@@ -1,4 +1,5 @@
 body {
+    background: transparent url(../images/bg.png) repeat left top;
 	font-family: Arial, "Microsoft YaHei";
 	font-size: 16px;
 }
@@ -27,7 +28,6 @@ body {
 }
 
 .canvas {
-    background: transparent url(../images/bg.png) repeat left top;
 }
 
 .blog-header {
@@ -40,7 +40,7 @@ body {
     +display: inline;
     +zoom: 1;
     width: 500px;
-    line-height: 300px;
+    line-height: 200px;
     background: transparent url(../images/logo.png) no-repeat left top;
 }
 
@@ -53,5 +53,17 @@ body {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.blog-footer {
+    color: #333;
+    line-height: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.blog-footer .copy {
+    color: #999;
+    font-size: 12px;
 }
 
