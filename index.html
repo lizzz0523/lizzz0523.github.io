@@ -5,11 +5,11 @@ layout: default
 <div class="row">
     <div class="excerpts">
         <ul>
-        {% for post in paginator.posts %}
+        {% for post in site.categories.heading limit:3 %}
             <li>
                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                 <p class="date"><span class="post-date">{{ post.date | date_to_string }}</span></p>
-                <p class="excerpt">{{ post.content }}</p>
+                <p class="excerpt">{{ post.excerpt }}</p>
             </li>
         {% endfor %}
         </ul>
