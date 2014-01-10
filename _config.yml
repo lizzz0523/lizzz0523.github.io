@@ -1,0 +1,7 @@
+name: Zero I/O
+description: lizzz github page.
+
+markdown: rdiscount
+permalink: pretty
+pygments: true
+paginate: 5
