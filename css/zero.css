@@ -126,12 +126,15 @@ body {
     display: block;
 }
 
+.content code {
+    font-size: 13px;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
 .about {
     padding: 20px 0;
     line-height: 30px;
     background-color: white;
-    font-size: 13px;
-    font-family: Consolas, "Liberation Mono", Courier, monospace;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
@@ -140,3 +143,37 @@ body {
     width: 250px;
 }
 
+.post {
+    padding: 20px 0;
+    line-height: 30px;
+    background-color: white;
+    font-size: 15px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
+.post p {
+    text-indent: 2em;
+}
+
+.post p code {
+    margin: 0 2px;
+    padding: 0px 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #f8f8f8;
+    white-space: nowrap;
+}
+
+.post .highlight {
+    padding: 10px;
+}
+
+.post .highlight pre {
+    display: block;
+    border-left: 2px solid #999;
+}
+
+.post .inner {
+    margin: 0 auto; 
+    width: 960px;
+}

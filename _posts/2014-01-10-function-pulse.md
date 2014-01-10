@@ -1,6 +1,8 @@
 ---
 layout: post
 title: 脉冲式状态检测
+categories: [heading, javascript]
+tags: [state check, trigger, timer, pulse]
 ---
 
 
