@@ -31,6 +31,7 @@ body {
 }
 
 .blog-header {
+    padding-bottom: 50px;
     line-height: 24px;
     text-align: center;
 }
@@ -90,5 +91,15 @@ body {
 .blog-footer .copy {
     color: #999;
     font-size: 12px;
+}
+
+.inner {
+    margin: 0 auto;
+    width: 960px;
+}
+
+.about {
+    padding: 20px 0;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
