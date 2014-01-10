@@ -156,14 +156,14 @@ body {
 }
 
 .post h3 {
-    font-size: 28px;
-    line-height: 36px;
-}
-
-.post h4 {
     margin: 20px 0;
     font-size: 34px;
     line-height: 46px;
+}
+
+.post h4 {
+    font-size: 28px;
+    line-height: 36px;
 }
 
 .post code {
@@ -174,13 +174,26 @@ body {
 
 .post p {
     margin: 10px 0;
-    text-indent: 2em;
 }
 
 .post p code {
     margin: 0 2px;
     padding: 0px 5px;
     white-space: nowrap;
+}
+
+.post p em,
+.post p strong {
+    font-style: italic;
+}
+
+.post p strong {
+    font-weight: bold;
+}
+
+.post ul,
+.post ol {
+    padding-left: 40px;
 }
 
 .post .date {
