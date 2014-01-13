@@ -268,8 +268,15 @@ body {
 }
 
 .projects li p {
+    margin-top: 20px;
     padding-top: 30px;
     width: 100%;
     line-height: 20px;
     font-size: 15px;
+    opacity: 0;
+}
+
+.projects li .shadow {
+    background-color: black;
+    opacity: 0;
 }
