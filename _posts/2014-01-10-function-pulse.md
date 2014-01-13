@@ -29,7 +29,7 @@ tags: [state check, trigger, timer, pulse]
 
 什么是触发器呢，说简单点就是触发状态检测的原因。
 
-例如，当你点击某个按钮时，我们需要检测当前是否周末（`isWeekend`），然后弹出信息告诉我们到底是去玩还是去玩（哈哈！）。这样，__“点击按钮”__，就成为检测状态变量`isWeekend`的原因，也就是说是状态检测的触发器。
+例如，当你点击某个按钮时，我们需要检测当前是否周末（`isWeekend`），然后弹出信息告诉我们到底是去玩还是去玩（哈哈！）。这样，_“点击按钮”_，就成为检测状态变量`isWeekend`的原因，也就是说是状态检测的触发器。
 
 那么我们通常在编程时，会遇到的触发器有那些呢？_click，dbclick，mousedown，mouseenter，mouseover，mouseout，mouseleave，mousewheel，drag，swipe，tap，resize，focus，blur，change，timeout，interval......_（这里补充一点：由于我们讨论的是什么时候进行状态检测，这是一种异步的触发机制，所以我们讨论的触发器也是异步的触发器）。
 
