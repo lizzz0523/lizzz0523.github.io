@@ -4,7 +4,7 @@ body {
 	font-size: 16px;
 }
 
-a {
+a, a:hover {
     text-decoration: none;
 }
 
@@ -138,6 +138,7 @@ img {
 
 .blog-nav a:hover {
     color: #c00;
+    text-decoration: underline;
 }
 
 .blog-nav a:hover:after {
