@@ -1,17 +1,17 @@
 ---
 layout: default
+scripts: [jquery-1.8.2.min, index]
 ---
 
 <div class="row">
-    <div class="excerpts">
+    <div id="projects" class="projects">
         <ul>
-        {% for post in paginator.posts %}
-            <li>
-                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-                <span class="date">{{ post.date | date_to_string }}</span>
-                <div class="excerpt">{{ post.excerpt }}</div>
-            </li>
-        {% endfor %}
+            <li><a href="https://github.com/lizzz0523/Zita" target="_blank">
+                <span class="thumbnail"><img src="{{ site.url }}images/zita.jpg"></span>
+                <span class="shadow"></span>
+                <h3>Zita</h3>
+                <p>A JS Utils Library</p>
+            </a></li>
         </ul>
     </div>
 </div>

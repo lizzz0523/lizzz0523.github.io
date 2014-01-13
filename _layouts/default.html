@@ -29,6 +29,12 @@
 
 {% include footer.html %}
 
+{% if page.scripts %}
+    {% for script in page.scripts %}
+        <script src="js/{{ script }}.js"></script>
+    {% endfor %}
+{% endif %}
+
 </div>
 </body>
 </html>

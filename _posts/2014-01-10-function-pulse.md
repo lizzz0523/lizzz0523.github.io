@@ -22,7 +22,7 @@ tags: [state check, trigger, timer, pulse]
 
 在这里，`isWeekend`就是状态变量，我们需要通过检测这个状态变量来判断，接下来所需要完成的动作，在这里是`play()/work()`。
 
-有了状态检测，接下来，我们需要面对的一件事，就是什么时候进行状态检测，这时我们就需要引入一个叫做触发器的概念。
+有了状态检测，接下来，我们需要面对的一件事，就是什么时候进行状态检测，这时我们就需要引入一个叫做_触发器_的概念。
 
 
 #### 触发器
@@ -31,7 +31,7 @@ tags: [state check, trigger, timer, pulse]
 
 例如，当你点击某个按钮时，我们需要检测当前是否周末（`isWeekend`），然后弹出信息告诉我们到底是去玩还是去玩（哈哈！）。这样，_“点击按钮”_，就成为检测状态变量`isWeekend`的原因，也就是说是状态检测的触发器。
 
-那么我们通常在编程时，会遇到的触发器有那些呢？_click，dbclick，mousedown，mouseenter，mouseover，mouseout，mouseleave，mousewheel，drag，swipe，tap，resize，focus，blur，change，timeout，interval......_（这里补充一点：由于我们讨论的是什么时候进行状态检测，这是一种异步的触发机制，所以我们讨论的触发器也是异步的触发器）。
+那么我们通常在编程时，会遇到的触发器有那些呢？`click`，`dbclick`，`mousedown`，`mouseenter`，`mouseover`，`mouseout`，`mouseleave`，`mousewheel`，`drag`，`swipe`，`tap`，`resize`，`focus`，`blur`，`change`，`timeout`，`interval`......（这里补充一点：由于我们讨论的是什么时候进行状态检测，这是一种异步的触发机制，所以我们讨论的触发器也是异步的触发器）。
 
 当然除了上面这些，还有很多其他的触发器（例如ajax请求时的`readystatechange`等等）。
 

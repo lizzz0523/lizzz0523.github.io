@@ -1,0 +1,17 @@
+---
+layout: default
+---
+
+<div class="row">
+    <div class="excerpts">
+        <ul>
+        {% for post in paginator.posts %}
+            <li>
+                <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                <span class="date">{{ post.date | date_to_string }}</span>
+                <div class="excerpt">{{ post.excerpt }}</div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
