@@ -204,6 +204,12 @@ body {
     padding-left: 40px;
 }
 
+.post li code {
+    margin: 0 2px;
+    padding: 0px 5px;
+    white-space: nowrap;
+}
+
 .post .date {
     display: block;
     color: #aaa;
