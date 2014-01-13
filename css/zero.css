@@ -4,6 +4,16 @@ body {
 	font-size: 16px;
 }
 
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .row, .cfx {
     +zoom; 1;
 }
@@ -31,23 +41,19 @@ body {
 }
 
 .blog-header {
-    padding-bottom: 50px;
+    padding-bottom: 100px;
     line-height: 24px;
     text-align: center;
 }
 
 .blog-header h1 {
-    display: inline-block;
-    +display: inline;
-    +zoom: 1;
-    width: 500px;
-    line-height: 300px;
-    background: transparent url(../images/logo.png) no-repeat left center;
+    line-height: 250px;
+    background: transparent url(../images/logo.png) no-repeat center bottom;
 }
 
 .blog-header h2 {
     position: relative;
-    margin-top: -100px;
+    margin-top: -60px;
     width: 100%;
     float: left;
     color: #333;
@@ -57,7 +63,7 @@ body {
 }
 
 .blog-footer {
-    padding-top: 100px;
+    padding-top: 200px;
     color: #333;
     line-height: 30px;
     font-size: 15px;
@@ -75,7 +81,6 @@ body {
     +zoom: 1;
     margin: 0 10px;
     padding: 0 20px;
-    text-decoration: none;
 }
 
 .blog-footer .sns a:hover {
@@ -93,14 +98,22 @@ body {
     font-size: 12px;
 }
 
-.blog-nav a {
-    position: relative;
+.blog-nav li {
     display: inline-block;
     +display: inline;
     +zoom: 1;
+}
+
+.blog-nav a {
+    position: relative;
+    display: block;
     padding: 0 10px;
     width: 100px;
-    text-decoration: none;
+
+    -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+
+    color: #333;
 }
 
 .blog-nav a:after {
@@ -108,14 +121,19 @@ body {
     position: absolute;
     left: 10px;
     top: 50%;
-    display: none;
+    display: block;
     margin-top: -6px;
     border: 6px solid transparent;
-    border-left-color: #c00;
     width: 0;
     height: 0;
     line-height: 0;
     font-size: 0;
+
+    -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+
+    border-left-color: #333;
+    opacity: 0;
 }
 
 .blog-nav a:hover {
@@ -123,7 +141,8 @@ body {
 }
 
 .blog-nav a:hover:after {
-    display: block;
+    border-left-color: #c00;
+    opacity: 1;
 }
 
 .content code {
@@ -232,34 +251,34 @@ body {
     color: white;
 }
 
+.projects ul {
+    font-size: 0;
+}
+
 .projects li {
-    position: relative;
     display: inline-block;
     +display: inline;
     +zoom: 1;
-    margin: 0 20px; 
-    border-radius: 100%; 
+    margin: 0 20px;
+}
+
+.projects li a {
+    position: relative;
+    display: block;
+    border-radius: 100%;
     width: 160px;
     height: 160px;
     overflow: hidden;
 }
 
-.projects li h3,
-.projects li p,
-.projects li span {
+.projects h3,
+.projects p {
     position: absolute;
     left: 0;
     top: 0;
 }
 
-.projects li span,
-.projects li img {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-.projects li h3 {
+.projects h3 {
     padding-top: 60px;
     width: 100%;
     line-height: 40px;
@@ -269,51 +288,57 @@ body {
 
     -webkit-transition: all 0.5s ease;
             transition: all 0.5s ease;
+
     opacity: 1;
 }
 
-.projects li p {
+.projects p {
     width: 100%;
+    height: 100%;
     line-height: 20px;
     font-size: 15px;
+}
+
+.projects .intro {
+    display: table;
 
     -webkit-transition: all 0.5s ease;
             transition: all 0.5s ease;
+
     margin-top: -10px;
     opacity: 0;
 }
 
-.projects li .shadow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 100%;
-    border-style: solid;
-    border-color: rgba(0,0,0,0.5);
-    width: 0;
-    height: 0;
-    line-height: 0;
-    font-size: 0;
+.projects .intro i {
+    display: table-cell;
+}
 
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+.projects .shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 
     -webkit-transition: all 0.4s ease;
             transition: all 0.4s ease;
-    border-width: 0;
+
     opacity: 0;
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
 }
 
 .projects a:hover h3 {
     opacity: 0;
 }
 
-.projects a:hover p {
+.projects a:hover .intro {
     margin-top: 0;
     opacity: 1;
 }
 
 .projects a:hover .shadow {
-    border-width: 80px;
     opacity: 0.5;
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
 }
