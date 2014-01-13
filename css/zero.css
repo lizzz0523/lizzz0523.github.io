@@ -265,18 +265,40 @@ body {
     font-size: 24px;
     text-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
     text-transform: uppercase;
+
+    -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+    opacity: 1;
 }
 
 .projects li p {
-    margin-top: 20px;
-    padding-top: 30px;
     width: 100%;
     line-height: 20px;
     font-size: 15px;
+
+    -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+    margin-top: 20px;
     opacity: 0;
 }
 
 .projects li .shadow {
     background-color: black;
+
+    -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
     opacity: 0;
+}
+
+.projects a:hover h3 {
+    opacity: 0;
+}
+
+.projects a:hover p {
+    margin-top: 0;
+    opacity: 1;
+}
+
+.projects a:hover .shadow {
+    opacity: 0.5;
 }
