@@ -3,12 +3,13 @@
 $('#projects')
 
 .find('li p')
+.wrapInner('<i />')
 .css({
     'display': 'table',
     'height': '100%'
 })
 
-.wrapInner('<i />')
+.find('i')
 .css({
     'display': 'table-cell',
     'vertical-align': 'middle'
