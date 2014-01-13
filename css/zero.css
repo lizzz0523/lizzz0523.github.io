@@ -237,6 +237,7 @@ body {
     display: inline-block;
     +display: inline;
     +zoom: 1;
+    margin: 0 20px; 
     border-radius: 100%; 
     width: 160px;
     height: 160px;
