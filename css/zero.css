@@ -263,11 +263,11 @@ body {
     width: 100%;
     line-height: 40px;
     font-size: 24px;
-    text-shadow: 1px 1px 1px 1px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
     text-transform: uppercase;
 
-    -webkit-transition: all 0.4s ease;
-            transition: all 0.4s ease;
+    -webkit-transition: all 0.5s ease;
+            transition: all 0.5s ease;
     opacity: 1;
 }
 
@@ -276,17 +276,25 @@ body {
     line-height: 20px;
     font-size: 15px;
 
-    -webkit-transition: all 0.4s ease;
-            transition: all 0.4s ease;
-    margin-top: -20px;
+    -webkit-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+    margin-top: -10px;
     opacity: 0;
 }
 
 .projects li .shadow {
-    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-color: rgba(0,0,0,0.5);
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
 
     -webkit-transition: all 0.4s ease;
             transition: all 0.4s ease;
+    border-width: 0;
     opacity: 0;
 }
 
@@ -300,5 +308,6 @@ body {
 }
 
 .projects a:hover .shadow {
+    border-width: 82px;
     opacity: 0.5;
 }
