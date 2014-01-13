@@ -294,8 +294,8 @@ body {
     line-height: 0;
     font-size: 0;
 
-    -webkit-transform: translate(50%, 50%);
-            transform: translate(50%, 50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
 
     -webkit-transition: all 0.4s ease;
             transition: all 0.4s ease;
@@ -313,6 +313,6 @@ body {
 }
 
 .projects a:hover .shadow {
-    border-width: 82px;
+    border-width: 80px;
     opacity: 0.5;
 }
