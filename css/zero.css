@@ -8,12 +8,6 @@ a, a:hover {
     text-decoration: none;
 }
 
-img {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
 .row, .cfx {
     +zoom; 1;
 }
@@ -250,6 +244,12 @@ img {
 .projects {
     text-align: center;
     color: white;
+}
+
+.projects img {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .projects ul {
