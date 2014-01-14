@@ -7,7 +7,7 @@ scripts: [jquery-1.8.2.min]
 
     <!-- posts list start -->
     <div class="excerpts">
-    {% for post in site.post %}
+    {% for post in site.posts %}
         <div>
             <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
             <span class="date">{{ post.date | date_to_string }}</span>
@@ -17,7 +17,7 @@ scripts: [jquery-1.8.2.min]
                 <h4>{{ tag }}</h4>
                 <ul>
                 {% for related in site.tags[tag] %}
-                    <li><a href="{{ related.url }}">{{ related.title }}</a><span class="date">{{ post.date | date_to_string }}</span></li>
+                    <li><a href="{{ related.url }}">{{ related.title }}</a><span class="date">{{ related.date | date_to_string }}</span></li>
                 {% endfor %}
                 </ul>
             </div>
