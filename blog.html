@@ -17,7 +17,12 @@ scripts: [jquery-1.8.2.min]
                 <h4>{{ tag }}</h4>
                 <ul>
                 {% for related in site.tags[tag] %}
-                    <li><a href="{{ related.url }}">{{ related.title }}</a><span class="date">{{ related.date | date_to_string }}</span></li>
+                    {% if related.id != post.id %}
+                    <li>
+                        <a href="{{ related.url }}">{{ related.title }}</a>
+                        <span class="date">{{ related.date | date_to_string }}</span>
+                    </li>
+                    {% endif %}
                 {% endfor %}
                 </ul>
             </div>
