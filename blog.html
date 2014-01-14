@@ -1,11 +1,16 @@
 ---
 layout: default
+scripts: [jquery-1.8.2.min]
 ---
 
 <div class="row">
+
+    <!-- posts list start -->
     <div class="excerpts">
+    {% for tag in site.tags %}
+        <h3>{{ tag }}</h3>
         <ul>
-        {% for post in site.posts %}
+        {% for post in site.tags[tag] %}
             <li>
                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                 <span class="date">{{ post.date | date_to_string }}</span>
@@ -13,5 +18,8 @@ layout: default
             </li>
         {% endfor %}
         </ul>
+    {% endfor %}
     </div>
+    <!-- posts list end -->
+
 </div>
