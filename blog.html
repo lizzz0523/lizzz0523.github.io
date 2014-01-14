@@ -8,9 +8,9 @@ scripts: [jquery-1.8.2.min]
     <!-- posts list start -->
     <div class="excerpts">
     {% for tag in site.tags %}
-        <h3>{{ tag }}</h3>
+        <h3>{{ tag[0] }}</h3>
         <ul>
-        {% for post in site.tags[tag] %}
+        {% for post in site.tags[tag[0]] %}
             <li>
                 <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
                 <span class="date">{{ post.date | date_to_string }}</span>
