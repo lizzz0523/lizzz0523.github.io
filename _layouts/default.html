@@ -33,7 +33,7 @@
 
     {% if page.scripts %}
         {% for script in page.scripts %}
-            <script src="js/{{ script }}.js"></script>
+            <script src="{{ site.url }}js/{{ script }}.js"></script>
         {% endfor %}
     {% endif %}
 

@@ -1,6 +1,6 @@
 (function($, window, undefined){
 
-$.getJSON('./data/blog-list.json', function(data){
+$.getJSON('http://lizzz0523.github.io/data/blog-list.json', function(data){
     console.log(data);
 });
     
