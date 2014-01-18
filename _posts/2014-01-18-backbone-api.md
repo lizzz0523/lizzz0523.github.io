@@ -11,9 +11,9 @@ tags: [backbone api translation]
 
 #### Model
 
-_Models_是所有js程序的程序部件，其中包含了需要操作的数据，以及大部分与操作这些数据相关的逻辑：转换，验证，属性计算，以及可访问性控制等。如果你要使用`Backbone.Model`，首先，你需要用你的业务逻辑来扩展它。当然，_Model_本身已经提供了一组基本的功能来完成数据的修改。
+_Models_是所有js应用里的重要部件，其中包含了需要操作的数据，以及大部分作用在这些数据上的相关逻辑：转换，验证，属性计算，以及可访问性控制等。如果你要使用`Backbone.Model`，首先，你需要用你的业务逻辑来扩展它。当然，_Model_本身已经提供了一组基本的功能来完成数据的修改。
 
-下面是一个随便编写的例子，用来说明如果基于你的业务逻辑来定制model，设置它的属性，以及当某一个属性发生变化时，触发对应的change事件。当第一次运行这些代码以后，`sidebar`这个变量在你的console里就会变得可用，这样，你就可以按照你的想法随意的摆弄它。
+下面是一个随便编写的例子，用来说明如何基于你的业务逻辑来定制model，设置它的状态，以及当某一个状态发生变化时，change事件的触发。当第一次运行这些代码以后，`sidebar`这个变量在你的console里就会变得可用，这样，你就可以按照你的想法随意的摆弄它。
 
 {% highlight javascript %}
 
@@ -41,7 +41,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 `Backbone.Model.extend(properties, [classProperties])`
 
-为了创建你自己的_Model_类，你需要扩展`Backone.Model`，在`extend`方法中，你可以传入_实例属性_，也可以选择性的传入_类属性_，而_类属性_则会被直接赋值到子类的构造函数上。
+为了创建你自己的_Model_类，你需要扩展`Backone.Model`，在`extend`方法中，你可以传入_properties_，也可以选择性的传入_classProperities_，而_classProperities_则会被直接赋值到子类的构造函数上。
 
 `extend`方法是允许链式调用的，那就是说，你可以在你扩展出来的子类上，再次调用`extend`方法来进行进一步的扩展。
 
@@ -64,7 +64,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 {% endhighlight %}
 
-关于`super`的题外话：由于js本身并没有提供一个简单的方法来方位`super`——即在原型链上游的同名函数。如果你重载了_Model_上的方法，例如`set`，或者`save`，但你希望能在子类中重新访问这些方法，那你只能手动去调用它们了：
+关于`super`的题外话：由于js本身并没有提供一个简单的方法来调用`super`——即在原型链上游的同名函数。如果你重载了_Model_上的方法，例如`set`，或者`save`，但你希望能在子类中重新访问它们，那你只能手动去调用它们了：
 
 {% highlight javascript %}
 
@@ -82,7 +82,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 `new Model([attributes], [options])`
 
-当你创建一个model的实例是，你需要在参数中传入_attributes_的作为属性的初始值，在model的构造函数中，我们会通过调用`set`方法来设置这些初始值。如果你在扩展`Backbone.Model`时，定义了initialize方法，我们也会在构造函数中调用它。
+当你创建一个model的实例是，你需要在构造函数中传入_attributes_作为状态的初始值，在model的构造函数中，我们会通过调用`set`方法来设置这些初始值。如果你在扩展`Backbone.Model`时，定义了initialize方法，我们也会在构造函数中调用它。
 
 {% highlight javascript %}
 
@@ -93,7 +93,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 {% endhighlight %}
 
-当然，如果你需要做发生一些有趣的事情，你也可以尝试重载`constructor`来实现你的想法。当然，这种做法并不常见。
+当然，如果你希望发生一些有趣的事情，你也可以尝试重载`constructor`来实现你的想法。当然，这种做法并不常见。
 
 {% highlight javascript %}
 
@@ -154,6 +154,29 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 这是用于判断一个model是否已经同步到服务器。如果model属性中还没有`id`属性，则我们认为这个model是新的，还没有同步的。
 
 
+#### defaults(internal)
+
+`model.defaults or model.defaults()`
+
+`default`属性可以是一个hash表，也可以是一个函数，我们可以利用它来为model设置默认值。当我们创建一个model的实例时，任何没有被指定的状态都会被设置为默认值。
+
+{% highlight javascript %}
+
+    var Meal = Backbone.Model.extend({
+        defaults: {
+            "appetizer":  "caesar salad",
+            "entree":     "ravioli",
+            "dessert":    "cheesecake"
+        
+    });
+
+    alert("Dessert will be " + (new Meal).get('dessert'));
+
+{% endhighlight %}
+
+注意，在js当中，object的传递时按引用的，而已就是说，当你使用object作为默认值，那么所有的model时候，都会共享这一份默认值。相反，如果你使用function来产生默认值，就不会这样了。
+
+
 #### attributes(internal)
 
 `model.attributes`
@@ -172,16 +195,48 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 `changed`属性model内部用于保存那些在对上一次`set`操作时被修改过的状态名。千万不用手动去修改这个`changed`属性，因为它是由model的`set`来维护的。如果你想获得`changed`属性的一个副本，你可以调用model的`changedAttributes`方法。
 
 
-#### defaults(internal)
-
-
 #### hasChanged
+
+`model.hasChanged([attribute])`
+
+在上一次的`set`操作中，model是否被修改？如果参数中传入某一个_attribute_，`hasChanged`方法就会告诉你具体这个_attribute_是否被修改。
+
+注意，这个方法以及马上要说的几个与change相关的方法，只有在`change`事件发生的时候才有用。
 
 
 #### changeAttributes
 
+`model.changeAttributes([attributes])`
+
+获得一个与上一次的`set`操作中，被修改过的状态对应的hash表，如果没有任何修改，则返回false。如果你在参数中传入一个额外的_attributes_hash表，那么该方法则返回现在model所有状态中与该hash表不同的项。这可以用于决定view的那一部分需要更新，或者决定如何与后台来同步这些不同。
+
+
+#### previous
+
+`model.previous(attribute)`
+
+在`change`事件期间，这个方法能用于获取被修改的状态之前的值。
+
+{% highlight javascript %}
+
+    var bill = new Backbone.Model({
+        name: "Bill Smith"
+    });
+
+    bill.on("change:name", function(model, name) {
+        alert("Changed name from " + bill.previous("name") + " to " + name);
+    });
+
+    bill.set({name : "Bill Jones"});
+
+{% endhighlight %}
+
 
 #### previousAttributes
+
+`model.previousAttributes()`
+
+该方法将会获得修改前状态的一个副本，我们可以用它做比较不同版本的model之前的差别，或者在出现验证错误的时候，让model恢复的上一个版本。
 
 
 #### get
@@ -206,9 +261,6 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
     alert(hacker.escape('name'));
 
 {% endhighlight %}
-
-
-#### previous
 
 
 #### set
