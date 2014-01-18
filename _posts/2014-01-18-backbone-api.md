@@ -115,6 +115,36 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 如果你在参数_options_中传入`{parse: true}`，那么我们在调用`set`方法设置属性之前，首先会调用`parse`方法对传入的_attributes_进行转换。
 
 
+#### id
+
+
+#### idAttribute
+
+
+#### cid
+
+
+#### isNew
+
+
+#### attributes(internal)
+
+
+#### changed(internal)
+
+
+#### defaults(internal)
+
+
+#### hasChanged
+
+
+#### changeAttributes
+
+
+#### previousAttributes
+
+
 #### get
 
 `model.get(attribute)`
@@ -137,6 +167,9 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
     alert(hacker.escape('name'));
 
 {% endhighlight %}
+
+
+#### previous
 
 
 #### set
@@ -180,3 +213,43 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
     }
 
 {% endhighlight %}
+
+
+#### toJSON
+
+
+#### validate
+
+
+#### validationError
+
+
+#### isValid
+
+
+#### parse
+
+
+#### clone
+
+
+#### url
+
+
+#### urlRoot
+
+
+#### sync
+
+
+#### fetch
+
+
+#### save
+
+
+#### destroy
+
+
+#### Underscore Methods(6)
+
