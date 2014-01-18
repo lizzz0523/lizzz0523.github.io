@@ -37,7 +37,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 {% endhighlight %}
 
 
-### extend
+#### extend
 
 `Backbone.Model.extend(properties, [classProperties])`
 
@@ -48,25 +48,18 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 {% highlight javascript %}
 
     var Note = Backbone.Model.extend({
-
-      initialize: function() { ... },
-
-      author: function() { ... },
-
+        initialize: function() { ... },
+        author: function() { ... },
         coordinates: function() { ... },
-
         allowedToEdit: function(account) {
             return true;
         }
-
     });
 
     var PrivateNote = Note.extend({
-
         allowedToEdit: function(account) {
             return account.owns(this);
         }
-
     });
 
 {% endhighlight %}
@@ -81,5 +74,109 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
             ...
         }
     });
+
+{% endhighlight %}
+
+
+#### constructor/initialize
+
+`new Model([attributes], [options])`
+
+当你创建一个model的实例是，你需要在参数中传入_attributes_的作为属性的初始值，在model的构造函数中，我们会通过调用`set`方法来设置这些初始值。如果你在扩展`Backbone.Model`时，定义了initialize方法，我们也会在构造函数中调用它。
+
+{% highlight javascript %}
+
+    new Book({
+        title: "One Thousand and One Nights",
+        author: "Scheherazade"
+    });
+
+{% endhighlight %}
+
+当然，如果你需要做发生一些有趣的事情，你也可以尝试重载`constructor`来实现你的想法。当然，这种做法并不常见。
+
+{% highlight javascript %}
+
+    var Library = Backbone.Model.extend({
+        constructor: function() {
+            this.books = new Books();
+            Backbone.Model.apply(this, arguments);
+        },
+        parse: function(data, options) {
+            this.books.reset(data.books);
+            return data.library;
+        }
+    });
+
+{% endhighlight %}
+
+如果你在参数_options_中传入`{collection: ...}`，那么model就会被指向对应的collection（即model的`collection`属性会被赋值，用于计算出model的`url`属性）。正常的情况下，当你将model加入到某一个collection时，`model.collection`属性就会自动创建。这里要注意的是，这并不是一个逆向操作，也就是说，在传进构造函数的_options_中设置`collection`并不是真的会把model加入到对应的collection中的。有些时候，这非常有用。
+
+如果你在参数_options_中传入`{parse: true}`，那么我们在调用`set`方法设置属性之前，首先会调用`parse`方法对传入的_attributes_进行转换。
+
+
+#### get
+
+`model.get(attribute)`
+
+从model中取出attribute对应的属性的当前值，例如`note.get("title")`
+
+
+#### escape
+
+`model.escape(attribute)`
+
+与`get`方法类似，当返回值时经过html转义的。当你需要将数据如果到html中是，使用`escape`方法能防止_XSS_攻击。
+
+{% highlight javascript %}
+
+    var hacker = new Backbone.Model({
+        name: "<script>alert('xss')</script>"
+    });
+
+    alert(hacker.escape('name'));
+
+{% endhighlight %}
+
+
+#### set
+
+`model.set(attributes, [options])`
+
+根据attributes来设置model中一个或多个属性，如果过程中，修改了属性原来的值，那么model就会触发一个`change`事件，同时model也会针对被修改的属性触发`change`事件，例如`change:title`或者`change:content`，你可以根据需要来绑定这些事件。你可以通过在options中传入`{silent: true}`来阻止这些`change`事件。`set`方法也接受单个属性的设置。
+
+{% highlight javascript %}
+
+    note.set({title: "March 20", content: "In his eyes she eclipses..."});
+    book.set("title", "A Scandal in Bohemia");
+
+{% endhighlight %}
+
+
+#### unset
+
+`model.unset(attribute, [options])`
+
+重model中delete掉对应的属性，并且触发`change`事件。你可以通过在options中传入`{silent: true}`来阻止`change`事件。
+
+
+#### clear
+
+`model.clear([options])`
+
+清除model中所有的属性，包括`id`属性，触发`change`事件，同样，也可以在options中传入`silent`来阻止。
+
+
+#### has
+
+`model.has(attribute)`
+
+如果model中包含该属性（非null以及非undefined），则返回`true`。
+
+{% highlight javascript %}
+
+    if (note.has("title")) {
+      ...
+    }
 
 {% endhighlight %}
