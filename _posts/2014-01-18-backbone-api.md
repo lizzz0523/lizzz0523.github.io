@@ -308,14 +308,95 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 #### toJSON
 
+`model.toJSON([options])`
+
+获取model中的`attributes`的一个副本用于产生json格式的字符串。这能用于对数据的持久化，序列化，或在发送到后端前进行扩张。这个方法的名字可能让人有些迷惑，它实际上并是不是直接返回json字符串，但可以作为一个参数传入_JSON.stringify_方法来得到json字符串。
+
+{% highlight javascript %}
+
+    var artist = new Backbone.Model({
+        firstName: "Wassily",
+        lastName: "Kandinsky"
+    });
+
+    artist.set({birthday: "December 16, 1866"});
+
+    alert(JSON.stringify(artist));
+
+{% endhighlight %}
+
 
 #### validate
+
+`model.validate(attributes, options)`
+
+这个方法实际上并没有定义，而我们是建议你重载它，并写入关于你的业务的验证逻辑。默认情况下，`validate`方法会在`save`操作前被调用，如果你在进行`set`操作时传入`{validate: true}`，那么`validate`方法也同样会被调用，`validate`方法接受的参数其实是来自`set`方法和`save`方法的。如果验证通过，这`validate`方法不会有任何返回。但如果验证不通过，它就会根据你的选择来返回错误信息，简单的可以是显示一句关于该错误的描述，或者也可以一个充分描述这个错误的error对象。当返回一个error对象时，`save`方法会被暂停，那样在客户端的错误的数据，就不会同步到服务器了，同时会触发`invalid`事件，并且设置`validationError`属性设置为返回的error对象。
+
+{% highlight javascript %}
+
+    var Chapter = Backbone.Model.extend({
+        validate: function(attrs, options) {
+            if (attrs.end < attrs.start) {
+                return "can't end before it starts";
+            }
+        }
+    });
+
+    var one = new Chapter({
+        title : "Chapter One: The Beginning"
+    });
+
+    one.on("invalid", function(model, error) {
+        alert(model.get("title") + " " + error);
+    });
+
+    one.save({
+        start: 15,
+        end:   10
+    });
+
+{% endhighlight %}
+
+`invalid`事件能在错误发生时，在model或者collection的层面提供粗粒度的错误信息
 
 
 #### validationError
 
+`model.validationError`
+
+在最后一次调用`validate`方法时的返回值。
+
 
 #### isValid
+
+`model.isValid()`
+
+立即验证model状态的正确性
+
+{% highlight javascript %}
+
+    var Chapter = Backbone.Model.extend({
+        validate: function(attrs, options) {
+            if (attrs.end < attrs.start) {
+                return "can't end before it starts";
+            }
+        }
+    });
+
+    var one = new Chapter({
+        title : "Chapter One: The Beginning"
+    });
+
+    one.set({
+        start: 15,
+        end:   10
+    });
+
+    if (!one.isValid()) {
+        alert(one.get("title") + " " + one.validationError);
+    }
+
+{% endhighlight %}
 
 
 #### parse
