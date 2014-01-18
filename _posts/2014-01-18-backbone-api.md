@@ -117,20 +117,59 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 #### id
 
+`model.id`
+
+`id`是model中一个特殊的属性，是一个随机的数字或者UUID。如果你在`set`方法中设置`id`，它就会被复制到`model.id`中作为一个直接的对象属性。在collection中我们可以同`id`来找到对应的model对象，而且在默认的情况下，`id`会被用于产生model的url（记住Backbone与后台的教育采用RESTFUL风格的url）。
+
 
 #### idAttribute
+
+`model.idAttribute`
+
+通常，对一个model的唯一标识是保存在`id`属性里的。但如果你使用的后端技术（如CouchDB，MongoDB）使用不同的属性作为唯一标识，你可以通过设置`idAttribute`来是它自动映射到`id`属性上来。
+
+{% highlight javascript %}
+
+    var Meal = Backbone.Model.extend({
+        idAttribute: "_id"
+    });
+
+    var cake = new Meal({ _id: 1, name: "Cake" });
+    alert("Cake id: " + cake.id);
+
+{% endhighlight %}
 
 
 #### cid
 
+`model.cid`
+
+`cid`或者叫做client id，是model的一个属性。当model第一次被创建时，`model.cid`就会自动被赋值，用于_暂时_唯一标识这个model。这里的暂时是指，在model被创建，但还没有来得及同步到服务器这段时间（这时model的属性内没有`id`属性，来区分不同的model）。由于有`cid`，model就可以马上被渲染到UI上。
+
 
 #### isNew
+
+`model.isNew()`
+
+这是用于判断一个model是否已经同步到服务器。如果model属性中还没有`id`属性，则我们认为这个model是新的，还没有同步的。
 
 
 #### attributes(internal)
 
+`model.attributes`
+
+`attributes`是model内部用于保存状态的hash表，通常（但不一定）是以JSON形式存在的反映后台数据的js对象。它可以是数据库里面的某一行数据，也可以是在客户端保存的某些状态值。
+
+我们十分建议你使用`set`方法来更新model的`attributes`，而不是直接手动的修改它。如果你想获得并操作`attributes`的一个副本，你可以`_.clone(model.attributes)`;
+
+由于Backbone的事件系统是采用空格来区分多个不同的事件的，所以不要在状态名中使用空格，以免在绑定某个状态的`change`事件时出错。
+
 
 #### changed(internal)
+
+`model.changed`
+
+`changed`属性model内部用于保存那些在对上一次`set`操作时被修改过的状态名。千万不用手动去修改这个`changed`属性，因为它是由model的`set`来维护的。如果你想获得`changed`属性的一个副本，你可以调用model的`changedAttributes`方法。
 
 
 #### defaults(internal)
@@ -149,14 +188,14 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 `model.get(attribute)`
 
-从model中取出attribute对应的属性的当前值，例如`note.get("title")`
+从model中取出attribute对应的状态的当前值，例如`note.get("title")`
 
 
 #### escape
 
 `model.escape(attribute)`
 
-与`get`方法类似，当返回值时经过html转义的。当你需要将数据如果到html中是，使用`escape`方法能防止_XSS_攻击。
+与`get`方法类似，当返回值时经过html转义的。当你需要将状态数据渲染到html中是，使用`escape`方法能防止_XSS_攻击。
 
 {% highlight javascript %}
 
@@ -176,7 +215,7 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 `model.set(attributes, [options])`
 
-根据attributes来设置model中一个或多个属性，如果过程中，修改了属性原来的值，那么model就会触发一个`change`事件，同时model也会针对被修改的属性触发`change`事件，例如`change:title`或者`change:content`，你可以根据需要来绑定这些事件。你可以通过在options中传入`{silent: true}`来阻止这些`change`事件。`set`方法也接受单个属性的设置。
+根据attributes来设置model中一个或多个状态，如果过程中，修改了状态原本的值，那么model就会触发一个`change`事件，同时model也会针对被修改的状态来触发不同的`change`事件，例如`change:title`或者`change:content`，你可以根据需要来绑定这些事件。你可以通过在options中传入`{silent: true}`来阻止这些`change`事件。`set`方法也接受单个状态的设置。
 
 {% highlight javascript %}
 
@@ -190,21 +229,21 @@ _Models_是所有js程序的程序部件，其中包含了需要操作的数据�
 
 `model.unset(attribute, [options])`
 
-重model中delete掉对应的属性，并且触发`change`事件。你可以通过在options中传入`{silent: true}`来阻止`change`事件。
+重model中delete掉对应的状态，并且触发`change`事件。你可以通过在options中传入`{silent: true}`来阻止`change`事件。
 
 
 #### clear
 
 `model.clear([options])`
 
-清除model中所有的属性，包括`id`属性，触发`change`事件，同样，也可以在options中传入`silent`来阻止。
+清除model中所有的状态，包括`id`属性，触发`change`事件，同样，也可以在options中传入`silent`来阻止。
 
 
 #### has
 
 `model.has(attribute)`
 
-如果model中包含该属性（非null以及非undefined），则返回`true`。
+如果model中包含该状态（非null以及非undefined），则返回`true`。
 
 {% highlight javascript %}
 
