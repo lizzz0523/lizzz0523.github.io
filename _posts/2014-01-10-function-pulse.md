@@ -97,7 +97,7 @@ tags: [state check, trigger, timer, pulse]
 这个只是我的一个想法，至于如何实现，我下次再想。
 
 
-[1]: {{ site.url }}images/post/click-20140110-001.gif
-[2]: {{ site.url }}images/post/mousewheel-20140110-002.gif
-[3]: {{ site.url }}images/post/timer-20140110-003.gif
-[4]: {{ site.url }}images/post/pulse-20140110-004.gif
+[1]: {{ site.url }}/images/post/click-20140110-001.gif
+[2]: {{ site.url }}/images/post/mousewheel-20140110-002.gif
+[3]: {{ site.url }}/images/post/timer-20140110-003.gif
+[4]: {{ site.url }}/images/post/pulse-20140110-004.gif
