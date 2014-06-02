@@ -47,7 +47,7 @@ var ProjectItem = B.View.extend({
         },
 
         addOne : function(model) {
-            var item = new projectItem({
+            var item = new ProjectItem({
                 model : model
             });
 
