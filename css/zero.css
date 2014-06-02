@@ -31,21 +31,35 @@ a, a:hover {
     text-indent: -9999em;
 }
 
+.ac {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .canvas {
 }
 
-.blog-header {
+.highlight {
+    margin: 10px;
+}
+
+.highlight code {
+    display: block;
+    overflow: auto;
+}
+
+.page_header {
     padding-bottom: 100px;
     line-height: 24px;
     text-align: center;
 }
 
-.blog-header h1 {
+.page_header h1 {
     line-height: 250px;
     background: transparent url(../images/logo.png) no-repeat center bottom;
 }
 
-.blog-header h2 {
+.page_header h2 {
     position: relative;
     margin-top: -60px;
     width: 100%;
@@ -56,49 +70,13 @@ a, a:hover {
     text-transform: uppercase;
 }
 
-.blog-footer {
-    padding-top: 200px;
-    color: #333;
-    line-height: 30px;
-    font-size: 15px;
-    text-align: center;
-}
-
-.blog-footer .sns {
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.blog-footer .sns a {
-    display: inline-block;
-    +display: inline;
-    +zoom: 1;
-    margin: 0 10px;
-    padding: 0 20px;
-}
-
-.blog-footer .sns a:hover {
-    color: #c00;
-}
-
-.blog-footer .sns .fa {
-    display: block;
-    line-height: 60px;  
-    font-size: 56px;
-}
-
-.blog-footer .copy {
-    color: #999;
-    font-size: 12px;
-}
-
-.blog-nav li {
+.page_header .ph_nav li {
     display: inline-block;
     +display: inline;
     +zoom: 1;
 }
 
-.blog-nav a {
+.page_header .ph_nav a {
     position: relative;
     display: block;
     padding: 0 10px;
@@ -110,7 +88,7 @@ a, a:hover {
     color: #333;
 }
 
-.blog-nav a:after {
+.page_header .ph_nav a:after {
     content: '';
     position: absolute;
     left: 10px;
@@ -130,20 +108,59 @@ a, a:hover {
     opacity: 0;
 }
 
-.blog-nav a:hover {
+.page_header .ph_nav a:hover {
     color: #c00;
     text-decoration: underline;
 }
 
-.blog-nav a:hover:after {
+.page_header .ph_nav a:hover:after {
     border-left-color: #c00;
     opacity: 1;
 }
 
-.content code {
+.page_footer {
+    padding-top: 200px;
+    color: #333;
+    line-height: 30px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.page_footer .pf_sns {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.page_footer .pf_sns a {
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
+    margin: 0 10px;
+    padding: 0 20px;
+}
+
+.page_footer .pf_sns a:hover {
+    color: #c00;
+}
+
+.page_footer .pf_sns .fa {
+    display: block;
+    line-height: 60px;  
+    font-size: 56px;
+}
+
+.page_footer .pf_copy {
+    color: #999;
+    font-size: 12px;
+}
+
+.page_content code {
     font-size: 13px;
     font-family: Consolas, "Liberation Mono", Courier, monospace;
 }
+
+
+/* about */
 
 .about {
     padding: 20px 0;
@@ -152,10 +169,12 @@ a, a:hover {
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
-.about .inner {
-    margin: 0 auto; 
-    width: 250px;
+.about .about_inner {
+    width: 310px;
 }
+
+
+/* post */
 
 .post {
     padding: 20px 0;
@@ -221,49 +240,42 @@ a, a:hover {
     white-space: nowrap;
 }
 
-.post .date {
+.post .post_date {
     display: block;
     color: #aaa;
     font-size: 13px;
 }
 
-.post .highlight {
-    margin: 10px;
-}
-
-.post .highlight code {
-    display: block;
-    overflow: auto;
-}
-
-.post .inner {
-    margin: 0 auto; 
+.post .post_inner {
     width: 960px;
 }
 
-.projects {
+
+/* project */
+
+.project {
     text-align: center;
     color: white;
 }
 
-.projects img {
+.project img {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-.projects ul {
+.project ul {
     font-size: 0;
 }
 
-.projects li {
+.project li {
     display: inline-block;
     +display: inline;
     +zoom: 1;
     margin: 0 20px;
 }
 
-.projects li a {
+.project li a {
     position: relative;
     z-index: 1;
     display: block;
@@ -273,14 +285,14 @@ a, a:hover {
     overflow: hidden;
 }
 
-.projects h3,
-.projects p {
+.project h3,
+.project p {
     position: absolute;
     left: 0;
     top: 0;
 }
 
-.projects h3 {
+.project h3 {
     padding-top: 60px;
     width: 100%;
     line-height: 40px;
@@ -294,14 +306,14 @@ a, a:hover {
     opacity: 1;
 }
 
-.projects p {
+.project p {
     width: 100%;
     height: 100%;
     line-height: 20px;
     font-size: 15px;
 }
 
-.projects .intro {
+.project .project_intro {
     display: table;
 
     -webkit-transition: all 0.5s ease;
@@ -311,12 +323,12 @@ a, a:hover {
     opacity: 0;
 }
 
-.projects .intro i {
+.project .project_intro span {
     display: table-cell;
     vertical-align: middle;
 }
 
-.projects .shadow {
+.project .project_shadow {
     position: absolute;
     top: 0;
     left: 0;
@@ -333,16 +345,16 @@ a, a:hover {
             transform: scale(0, 0);
 }
 
-.projects a:hover h3 {
+.project a:hover h3 {
     opacity: 0;
 }
 
-.projects a:hover .intro {
+.project a:hover .project_intro {
     margin-top: 0;
     opacity: 1;
 }
 
-.projects a:hover .shadow {
+.project a:hover .project_shadow {
     opacity: 0.5;
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);

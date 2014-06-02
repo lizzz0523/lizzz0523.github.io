@@ -401,14 +401,33 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 #### parse
 
+`model.parse(response, options)`
+
+每当数据从服务器返回（调用`fetch`，`save`方法），`parse`方法就会被调用。我们会直接将从服务器返回的元素数据丢入`parse`方法中，它应当返回一个状态hash表，以便之后作为参数传入model的`set`方法。
+默认情况下，`parse`方法对原始数据不做任何处理，直接返回。当你需要对数据库的数据作任何预处理的时候，可以选择重载`parse`方法。
+
 
 #### clone
+
+`model.clone()`
+
+返回一个新的model对象，并且与原来的model对象拥有一样的状态
 
 
 #### url
 
+`model.url()`
+
+这个方法会返回model所反映的数据在后端的URL地址。如果你的数据并不在后端服务器，你可以重载这个函数，并返回正确的地址。默认的情况下，这个URL地址是由`"[collection.url]/[id]"`组成，但你可以通过指定`urlRoot`来改变这个行为。
+
+由于我们是利用_Collection#url_来产生model对应的URL，所以如果由这个类产生的所有model实例都共享同一个根URL，你应当保证你在model中定义了`collection`属性，或者至少定义了`urlRoot`属性。例如一个id为`101`，并且存储在`url`为`"/documents/7/notes"`的_Backbone.Collection_中的model，它的默认URL为`"/documents/7/notes/101"`。
+
 
 #### urlRoot
+
+`model.urlRoot or model.urlRoot()`
+
+如果你的model并不属于任何一个collection的话，那么你就需要定义`urlRoot`来使得`url`方法在默认的情况下能正确的生成URL`"[urlRoot]/[id]"`。而在一般情况下，你是不需要定义这个属性的。这里需要注意的是，`urlRoot`也可以是一个函数。
 
 
 #### sync
