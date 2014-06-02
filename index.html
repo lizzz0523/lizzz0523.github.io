@@ -1,24 +1,13 @@
 ---
 layout: default
-scripts: [jquery-1.8.2.min]
+scripts: [jquery-1.8.2.min, underscore-min, backbone-min, prject]
 ---
 
 <div class="row">
 
     <!-- projects list start -->
-    <div id="projects" class="project">
-        <ul>
-            <li><a href="https://github.com/lizzz0523/Zita" target="_blank">
-                <p class="project_thumbnail"><img src="{{ site.url }}/images/zita.jpg" /><i class="project_shadow">&nbsp;</i></p>
-                <h3>Zita</h3>
-                <p class="project_intro"><span>A JS Utils Library</span></p>
-            </a></li>
-            <li><a href="https://github.com/lizzz0523/Zoe" target="_blank">
-                <p class="project_thumbnail"><img src="{{ site.url }}/images/zoe.jpg" /><i class="project_shadow">&nbsp;</i></p>
-                <h3>Zoe</h3>
-                <p class="project_intro"><span>A jQuery Effects Kit<br />base on Zita</span></p>
-            </a></li>
-        </ul>
+    <div class="project">
+        <ul id="project-list" ></ul>
     </div>
     <!-- projects list end -->
 
