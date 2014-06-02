@@ -6,7 +6,7 @@ var tmpl = [
                 '<img src="<% thumbnail %>" />',
                 '<i class="project_shadow">&nbsp;</i>',
             '</p>',
-            '<h3><% title %></h3>',
+            '<h3><% name %></h3>',
             '<p class="project_intro">',
                 '<span><% intro %></span>',
             '</p>',
