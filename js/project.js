@@ -11,7 +11,7 @@ var tmpl = [
                 '<span>{intro}</span>',
             '</p>',
         '</a>'
-    ];
+    ].join('');
 
 
 var Project = B.Model.extend({
