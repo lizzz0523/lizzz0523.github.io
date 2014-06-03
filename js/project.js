@@ -1,14 +1,14 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<div class="proj_thumbnail">'
+        '<div class="proj_thumbnail">',
             '<h3 class="proj_name fx-500"><%= name %></h3>',
             '<p>',
                 '<img src="<%= thumbnail %>" />',
                 '<span class="proj_shadow fx-500">&nbsp;</span>',
             '</p>',
         '</div>',
-        '<div class="proj_intro fx-500">'
+        '<div class="proj_intro fx-500">',
             '<p>',
                 '<a href="<%= url %>" target="_blank"><span><%= intro %></span></a>',
             '</p>',
