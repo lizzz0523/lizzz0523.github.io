@@ -1,14 +1,18 @@
+---
+layout: nil
+---
+
 [
     {
         "url"       : "https://github.com/lizzz0523/Zita",
-        "thumbnail" : "http://lizzz0523.github.io/images/zita.jpg",
+        "thumbnail" : "{{ site.url }}/images/zita.jpg",
         "name"      : "Zita",
         "intro"     : "A JS Utils Library"
     },
 
     {
         "url"       : "https://github.com/lizzz0523/Zoe",
-        "thumbnail" : "http://lizzz0523.github.io/images/zoe.jpg",
+        "thumbnail" : "{{ site.url }}/images/zoe.jpg",
         "name"      : "Zoe",
         "intro"     : "A jQuery Effects Kit<br />base on Zita"
     }

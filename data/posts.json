@@ -4,7 +4,7 @@ layout: nil
 
 [{% for post in site.posts %}
     {
-        "title"   : "{{post.title}}",
+        "title"   : "{{ post.title }}",
         "url"     : "{{ site.url }}{{ post.url }}",
         "excerpt" : "{{ post.excerpt | escape | strip_newlines }}",
         "date"    : "{{ post.date | date_to_string }}",
