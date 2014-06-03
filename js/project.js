@@ -31,6 +31,7 @@ var ProjectItem = B.View.extend({
         initialize : function() { },
 
         render : function() {
+            console.log(this.model.toJSON());
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         }
