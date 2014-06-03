@@ -280,6 +280,7 @@ a, a:hover {
 
 .project li {
     position: relative;
+    z-index: 1;
     display: inline-block;
     +display: inline;
     +zoom: 1;
