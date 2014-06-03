@@ -1,14 +1,14 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<a href="<% url %>" target="_blank">',
+        '<a href="<%= url %>" target="_blank">',
             '<p class="project_thumbnail">',
-                '<img src="<% thumbnail %>" />',
+                '<img src="<%= thumbnail %>" />',
                 '<i class="project_shadow">&nbsp;</i>',
             '</p>',
-            '<h3><% name %></h3>',
+            '<h3><%= name %></h3>',
             '<p class="project_intro">',
-                '<span><% intro %></span>',
+                '<span><%= intro %></span>',
             '</p>',
         '</a>'
     ].join('');
@@ -31,7 +31,6 @@ var ProjectItem = B.View.extend({
         initialize : function() { },
 
         render : function() {
-            console.log(this.model.toJSON());
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         }
