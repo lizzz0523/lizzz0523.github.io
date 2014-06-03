@@ -15,5 +15,12 @@ layout: nil
         "thumbnail" : "{{ site.url }}/images/zoe.jpg",
         "name"      : "Zoe",
         "intro"     : "A jQuery Effects Kit<br />base on Zita"
+    },
+
+    {
+        "url"       : "https://github.com/lizzz0523/Zend",
+        "thumbnail" : "{{ site.url }}/images/zend.jpg",
+        "name"      : "Zend",
+        "intro"     : "A DOM Library like jQuery"
     }
 ]
