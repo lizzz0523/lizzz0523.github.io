@@ -1,16 +1,18 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<a href="<%= url %>" target="_blank">',
-            '<p class="project_thumbnail">',
+        '<div class="proj_thumbnail">'
+            '<h3 class="proj_name fx-500"><%= name %></h3>',
+            '<p>',
                 '<img src="<%= thumbnail %>" />',
-                '<i class="project_shadow">&nbsp;</i>',
+                '<span class="proj_shadow fx-500">&nbsp;</span>',
             '</p>',
-            '<h3><%= name %></h3>',
-            '<p class="project_intro">',
-                '<span><%= intro %></span>',
+        '</div>',
+        '<div class="proj_intro fx-500">'
+            '<p>',
+                '<a href="<%= url %>" target="_blank"><span><%= intro %></span></a>',
             '</p>',
-        '</a>'
+        '</div>'
     ].join('');
 
 

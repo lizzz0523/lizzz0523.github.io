@@ -36,6 +36,16 @@ a, a:hover {
     margin-right: auto;
 }
 
+.fx-300 {
+    -webkit-transition: all 300ms ease;
+            transition: all 300ms ease;
+}
+
+.fx-500 {
+    -webkit-transition: all 500ms ease;
+            transition: all 500ms ease;
+}
+
 .canvas {
 }
 
@@ -269,93 +279,87 @@ a, a:hover {
 }
 
 .project li {
+    position: relative;
     display: inline-block;
     +display: inline;
     +zoom: 1;
-    margin: 0 20px;
-}
-
-.project li a {
-    position: relative;
-    z-index: 1;
-    display: block;
     border-radius: 100%;
     width: 160px;
     height: 160px;
     overflow: hidden;
+    margin: 0 20px;
 }
 
-.project h3,
-.project p {
+.project div {
     position: absolute;
     left: 0;
     top: 0;
-}
-
-.project h3 {
-    padding-top: 60px;
     width: 100%;
-    line-height: 40px;
-    font-size: 24px;
-    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
-    text-transform: uppercase;
-
-    -webkit-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-
-    opacity: 1;
+    height: 100%;
 }
 
-.project p {
+.project div p {
     width: 100%;
     height: 100%;
     line-height: 20px;
     font-size: 15px;
 }
 
-.project .project_intro {
-    display: table;
-
-    -webkit-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-
-    margin-top: -10px;
-    opacity: 0;
+.project .proj_name {
+    position: relative;
+    top: 100px;
+    margin-top: -40px;
+    width: 100%;
+    line-height: 40px;
+    float: left;
+    font-size: 24px;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    opacity: 1;
 }
 
-.project .project_intro span {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.project .project_shadow {
-    position: absolute;
-    top: 0;
-    left: 0;
+.project .proj_shadow {
+    position: relative;
+    margin-top: -160px;
     border-radius: 100%;
     width: 100%;
     height: 100%;
+    float: left;
     background-color: rgba(0,0,0,0.5);
-
-    -webkit-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-
     opacity: 0;
+
     -webkit-transform: scale(0, 0);
             transform: scale(0, 0);
 }
 
-.project a:hover h3 {
+.project .proj_intro {
+    margin-top: -10px;
     opacity: 0;
 }
 
-.project a:hover .project_intro {
+.project .proj_intro a {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.project .proj_intro span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.project li:hover .proj_name {
+    opacity: 0;
+}
+
+.project li:hover .proj_intro {
     margin-top: 0;
     opacity: 1;
 }
 
-.project a:hover .project_shadow {
+.project li:hover .proj_shadow {
     opacity: 0.5;
+
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);
 }

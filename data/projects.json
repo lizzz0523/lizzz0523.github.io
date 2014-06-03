@@ -14,7 +14,7 @@ layout: nil
         "url"       : "https://github.com/lizzz0523/Zoe",
         "thumbnail" : "{{ site.url }}/images/zoe.jpg",
         "name"      : "Zoe",
-        "intro"     : "A jQuery Effects Kit<br />base on Zita"
+        "intro"     : "A UI Effects Kit<br />base on Zita & Zend"
     },
 
     {
