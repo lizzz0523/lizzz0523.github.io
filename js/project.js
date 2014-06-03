@@ -17,7 +17,11 @@ var tmpl = [
 
 
 var Project = B.Model.extend({
-
+        defaults : function() {
+            return {
+                order : this.collection.length
+            }
+        }
     }),
 
     Projects = B.Collection.extend({
@@ -50,7 +54,8 @@ var ProjectItem = B.View.extend({
 
         addOne : function(model) {
             var item = new ProjectItem({
-                model : model
+                model : model,
+                id : 'project-item-' + model.get('order')
             });
 
             this.$el.append(item.render().el);
@@ -69,8 +74,7 @@ var projects = new Projects(),
 
 B.$.getJSON('http://lizzz0523.github.io/data/projects.json?' + Math.random(), function(data) {
     _.each(data, function(data) {
-        var project = new Project(data);
-        projects.push(project, {silent : true});
+        projects.add(data, {silent : true});
     });
 
     projects.trigger('reset');
