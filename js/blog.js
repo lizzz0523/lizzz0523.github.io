@@ -21,7 +21,7 @@ var Post = B.Model.extend({
 
 
 var PostItem = B.View.extend({
-        template : _.template(tmpl.item),
+        template : _.template(tmpl),
 
         tagName : 'li',
 
