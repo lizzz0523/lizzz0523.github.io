@@ -2,7 +2,7 @@
 layout: post
 title: Backbone API 中文翻译（持续更新）
 categories: [javascript, backbone]
-tags: [backbone api translation]
+tags: [backbone, api, translation]
 ---
 
 
