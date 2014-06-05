@@ -366,6 +366,9 @@ a, a:hover {
     padding: 20px 0;
     line-height: 20px;
     background-color: white;
+    color: #999;
+    font-weight: 13px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
 .excerpt h3 {
@@ -382,11 +385,10 @@ a, a:hover {
     color: #c00;
 }
 
-.excerpt p {
-    color: #999;
-    font-weight: 13px;
-}
-
 .excerpt li {
     width: 400px;
+}
+
+.excerpt .expt_date {
+    display: none;
 }
