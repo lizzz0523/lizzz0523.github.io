@@ -363,7 +363,7 @@ a, a:hover {
 .excerpt li:after {
     content: '';
     position: absolute;
-    top: 20px;
+    top: 25px;
     display: block;
     border-radius: 100%;
     width: 10px;
