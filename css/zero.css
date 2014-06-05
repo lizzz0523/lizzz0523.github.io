@@ -390,6 +390,7 @@ a, a:hover {
     color: white;
     font-weight: bold;
     opacity: 0;
+    visibility: hidden;
 
     -webkit-transform: translateY(-5px);
             transform: translateY(-5px);
@@ -407,6 +408,7 @@ a, a:hover {
 
 .excerpt li:hover .expt_date {
     opacity: 1;
+    visibility: visible;
     -webkit-transform: translateY(0);
             transform: translateY(0);
 }
