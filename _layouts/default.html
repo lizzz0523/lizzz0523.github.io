@@ -17,25 +17,25 @@
 <body>
 <div class="canvas">
 
-    {% include header.html %}
+{% include header.html %}
 
-    <!-- blog content start -->
-    <div class="page_content">
+<!-- blog content start -->
+<div class="page_content">
 
-        {{ content }}
+{{ content }}
 
-    </div>
-    <!-- blog content end -->
+</div>
+<!-- blog content end -->
 
-    {% include footer.html %}
+{% include footer.html %}
 
-    </div>
+</div>
 
-    {% if page.scripts %}
-        {% for script in page.scripts %}
-            <script src="{{ site.url }}/js/{{ script }}.js"></script>
-        {% endfor %}
-    {% endif %}
+{% if page.scripts %}
+{% for script in page.scripts %}
+    <script src="{{ site.url }}/js/{{ script }}.js"></script>
+{% endfor %}
+{% endif %}
 
 </body>
 </html>

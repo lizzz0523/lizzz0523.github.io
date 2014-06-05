@@ -320,7 +320,7 @@ a, a:hover {
     line-height: 20px;
     background-color: white;
     color: #999;
-    font-weight: 13px;
+    font-size: 13px;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
 }
 
@@ -338,14 +338,32 @@ a, a:hover {
     color: #c00;
 }
 
+.excerpt ul {
+    width: 100%;
+}
+
 .excerpt li {
-    width: 400px;
+    padding-bottom: 50px;
 }
 
 .excerpt .expt_date {
     display: none;
 }
 
+.excerpt .expt_inner {
+    padding-left: 480px;
+    width: 480px;
+}
+
+.excerpt .expt_list-left {
+    margin-left: -480px;
+    float: left;
+}
+
+.excerpt .expt_list-right {
+    padding-top: 50px;
+    float: right;
+}
 
 /* post */
 

@@ -21,7 +21,7 @@ var Post = B.Model.extend({
 
 
 var PostItem = B.View.extend({
-        template : _.template(tmpl),
+        template : _.template(tmpl.item),
 
         tagName : 'li',
 
@@ -34,8 +34,15 @@ var PostItem = B.View.extend({
     }),
 
     PostList = B.View.extend({
-
         initialize : function() {
+            this.$left = this.$('.expt_list-left');
+            this.$right = this.$('.expt_list-right');
+
+            this.curOffset = {
+                left : 0,
+                right : 0
+            };
+
             this.listenTo(this.collection, 'reset', this.addAll);
         },
 
@@ -49,7 +56,13 @@ var PostItem = B.View.extend({
                 id : 'post-item-' + model.get('order')
             });
 
-            this.$el.append(item.render().el);
+            if (this.curOffset.left <= this.curOffset.right) {
+                this.$left.append(item.render().el);
+                this.curOffset.left += item.$el.outerHeight(true);
+            } else {
+                this.$right.append(item.render().el);
+                this.curOffset.right += item.$el.outerHeight(true);
+            }
         }
     });
 
