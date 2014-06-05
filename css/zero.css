@@ -337,7 +337,7 @@ a, a:hover {
 }
 
 .excerpt h3 {
-    padding: 10px 0;
+    padding-bottom: 10px;
     font-size: 16px;
     font-weight: bold;
 }
@@ -366,9 +366,16 @@ a, a:hover {
     display: block;
     width: 10px;
     height: 10px;
-    background: #c00;
+    background-color: #999;
     border-radius: 100%;
     margin-top: -5px;
+
+    -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+}
+
+.excerpt li:hover:after {
+    background-color: #c00;
 }
 
 .excerpt .expt_date {
@@ -390,12 +397,15 @@ a, a:hover {
 }
 
 .excerpt .expt_list-right {
-    padding-top: 20px;
     float: right;
 }
 
 .excerpt .expt_list-right li:after {
     left: -25px;
+}
+
+.excerpt .expt_tag {
+    height: 60px;
 }
 
 /* post */
