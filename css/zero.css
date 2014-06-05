@@ -317,6 +317,7 @@ a, a:hover {
 
 .excerpt {
     position: relative;
+    padding: 20px 0;
     line-height: 20px;
     background-color: white;
     color: #999;
@@ -406,7 +407,9 @@ a, a:hover {
 
 .excerpt .expt_tag {
     padding: 0;
-    height: 60px;
+    border-radius: 5px;
+    min-height: 100px;
+    background-color: #eee;
 }
 
 .excerpt .expt_tag:after {
