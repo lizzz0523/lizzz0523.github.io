@@ -317,7 +317,6 @@ a, a:hover {
 
 .excerpt {
     position: relative;
-    padding: 20px 0;
     line-height: 20px;
     background-color: white;
     color: #999;
@@ -357,7 +356,7 @@ a, a:hover {
 
 .excerpt li {
     position: relative;
-    padding-bottom: 50px;
+    padding: 20px 0;
 }
 
 .excerpt li:after {
@@ -387,16 +386,16 @@ a, a:hover {
 }
 
 .excerpt .expt_list-left li:after {
-    right: -20px;
+    right: -25px;
 }
 
 .excerpt .expt_list-right {
-    padding-top: 50px;
+    padding-top: 20px;
     float: right;
 }
 
 .excerpt .expt_list-right li:after {
-    left: -20px;
+    left: -25px;
 }
 
 /* post */
