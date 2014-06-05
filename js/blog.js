@@ -37,10 +37,11 @@ var PostItem = B.View.extend({
         initialize : function() {
             this.$left = this.$('.expt_list-left');
             this.$right = this.$('.expt_list-right');
+            this.$tag = this.$('.expt_tag')
 
             this.curOffset = {
                 left : 0,
-                right : 0
+                right : this.$tag.outerHeight()
             };
 
             this.listenTo(this.collection, 'reset', this.addAll);
