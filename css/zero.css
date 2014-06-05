@@ -405,7 +405,12 @@ a, a:hover {
 }
 
 .excerpt .expt_tag {
+    padding: 0;
     height: 60px;
+}
+
+.excerpt .expt_tag:after {
+    display: none;
 }
 
 /* post */
