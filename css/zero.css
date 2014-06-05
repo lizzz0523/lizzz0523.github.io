@@ -363,13 +363,12 @@ a, a:hover {
 .excerpt li:after {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 20px;
     display: block;
+    border-radius: 100%;
     width: 10px;
     height: 10px;
     background-color: #999;
-    border-radius: 100%;
-    margin-top: -5px;
 
     -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
@@ -382,14 +381,14 @@ a, a:hover {
 .excerpt .expt_date {
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: -2px;
     display: block;
-    margin-top: -32px;
     border-radius: 3px;
     width: 100px;
     text-align: center;
-    background-color: #999;
+    background-color: #c00;
     color: white;
+    font-weight: bold;
     opacity: 0;
 
     -webkit-transform: translateY(-5px);
@@ -401,7 +400,7 @@ a, a:hover {
     position: absolute;
     bottom: -10px;
     border: 5px solid transparent;
-    border-top-color: #999;
+    border-top-color: #c00;
     width: 0;
     height: 0;
 }
