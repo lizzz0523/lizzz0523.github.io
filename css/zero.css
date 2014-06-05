@@ -362,6 +362,12 @@ a, a:hover {
             transform: scale(1, 1);
 }
 
+.excerpt {
+    padding: 20px 0;
+    line-height: 20px;
+    background-color: white;
+}
+
 .excerpt h3 {
     padding: 10px 0;
     font-size: 16px;
@@ -383,5 +389,4 @@ a, a:hover {
 
 .excerpt li {
     width: 400px;
-    line-height: 20px;
 }
