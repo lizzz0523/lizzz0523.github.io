@@ -399,7 +399,6 @@ a, a:hover {
 .excerpt .expt_date:after {
     content: '';
     position: absolute;
-    left: 50%;
     bottom: -10px;
     border: 5px solid transparent;
     border-top-color: #999;
@@ -427,6 +426,7 @@ a, a:hover {
 }
 
 .excerpt .expt_list-left .expt_date:after {
+    left: 50%;
     margin-left: 15px;
 }
 
@@ -443,6 +443,7 @@ a, a:hover {
 }
 
 .excerpt .expt_list-right .expt_date:after {
+    right: 50%;
     margin-right: 15px;
 }
 
