@@ -316,12 +316,25 @@ a, a:hover {
 /* excerpt */
 
 .excerpt {
+    position: relative;
     padding: 20px 0;
     line-height: 20px;
     background-color: white;
     color: #999;
     font-size: 13px;
     box-shadow: 0 0 6px rgba(0,0,0,0.4);
+}
+
+.excerpt:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    display: block;
+    margin-left: -2px;
+    width: 4px;
+    background-color: #ccc;
 }
 
 .excerpt h3 {
@@ -343,7 +356,20 @@ a, a:hover {
 }
 
 .excerpt li {
+    position: relative;
     padding-bottom: 50px;
+}
+
+.excerpt li:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: #c00;
+    border-radius: 100%;
+    margin-top: -5px;
 }
 
 .excerpt .expt_date {
@@ -360,9 +386,17 @@ a, a:hover {
     float: left;
 }
 
+.excerpt .expt_list-left li:after {
+    right: -20px;
+}
+
 .excerpt .expt_list-right {
     padding-top: 50px;
     float: right;
+}
+
+.excerpt .expt_list-right li:after {
+    left: -20px;
 }
 
 /* post */
