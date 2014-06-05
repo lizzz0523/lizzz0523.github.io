@@ -392,8 +392,8 @@ a, a:hover {
     color: white;
     opacity: 0;
 
-    -webkit-transform: translateY(-10px);
-            transform: translateY(-10px);
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
 }
 
 .excerpt .expt_date:after {
@@ -401,7 +401,6 @@ a, a:hover {
     position: absolute;
     left: 50%;
     bottom: -10px;
-    margin-left: 15px;
     border: 5px solid transparent;
     border-top-color: #999;
     width: 0;
@@ -427,6 +426,10 @@ a, a:hover {
     right: -50px;
 }
 
+.excerpt .expt_list-left .expt_date:after {
+    margin-left: 15px;
+}
+
 .excerpt .expt_list-right {
     float: right;
 }
@@ -437,6 +440,10 @@ a, a:hover {
 
 .excerpt .expt_list-right .expt_date {
     left: -50px;
+}
+
+.excerpt .expt_list-right .expt_date:after {
+    margin-right: 15px;
 }
 
 .excerpt .expt_tag {
