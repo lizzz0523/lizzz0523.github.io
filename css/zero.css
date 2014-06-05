@@ -92,9 +92,6 @@ a, a:hover {
     padding: 0 10px;
     width: 100px;
 
-    -webkit-transition: all 0.3s ease;
-            transition: all 0.3s ease;
-
     color: #333;
 }
 
@@ -363,4 +360,28 @@ a, a:hover {
 
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);
+}
+
+.excerpt h3 {
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.excerpt h3 a {
+    color: #333;
+}
+
+.excerpt h3 a:hover {
+    color: #c00;
+}
+
+.excerpt p {
+    color: #999;
+    font-weight: 13px;
+}
+
+.excerpt li {
+    width: 400px;
+    line-height: 20px;
 }

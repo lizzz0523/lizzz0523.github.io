@@ -2,7 +2,7 @@
 
 var tmpl = [
         '<div class="expt_date"><%= date %></div>',
-        '<h3><a href="<%= url %>"><%= title %></a></h3>',
+        '<h3><a class="fx-300" href="<%= url %>"><%= title %></a></h3>',
         '<%= _.unescape(excerpt) %>'
     ].join('');
 
