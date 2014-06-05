@@ -377,12 +377,12 @@ a, a:hover {
 }
 
 .excerpt .expt_inner {
-    padding-left: 480px;
-    width: 480px;
+    padding-left: 500px;
+    width: 460px;
 }
 
 .excerpt .expt_list-left {
-    margin-left: -480px;
+    margin-left: -500px;
     float: left;
 }
 
