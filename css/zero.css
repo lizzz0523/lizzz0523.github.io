@@ -380,12 +380,38 @@ a, a:hover {
 }
 
 .excerpt .expt_date {
-    display: none;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    display: block;
+    margin-top: -32px;
+    border-radius: 3px;
+    width: 100px;
+    text-align: center;
+    background-color: #999;
+    color: white;
+    opacity: 0;
+
+    -webkit-transform: translateY(-10px);
+            transform: translateY(-10px);
 }
 
-.excerpt .expt_inner {
-    padding-left: 500px;
-    width: 460px;
+.excerpt .expt_date:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    margin-left: 15px;
+    border: 5px solid transparent;
+    border-top-color: #999;
+    width: 0;
+    height: 0;
+}
+
+.excerpt li:hover .expt_date {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
 }
 
 .excerpt .expt_list-left {
@@ -397,12 +423,20 @@ a, a:hover {
     right: -25px;
 }
 
+.excerpt .expt_list-left .expt_date {
+    right: -50px;
+}
+
 .excerpt .expt_list-right {
     float: right;
 }
 
 .excerpt .expt_list-right li:after {
     left: -25px;
+}
+
+.excerpt .expt_list-right .expt_date {
+    left: -50px;
 }
 
 .excerpt .expt_tag {
@@ -415,6 +449,12 @@ a, a:hover {
 .excerpt .expt_tag:after {
     display: none;
 }
+
+.excerpt .expt_inner {
+    padding-left: 500px;
+    width: 460px;
+}
+
 
 /* post */
 

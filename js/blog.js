@@ -1,8 +1,8 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<div class="expt_date"><%= date %></div>',
-        '<h3><a class="fx-300" href="<%= url %>"><%= title %></a></h3>',
+        '<div class="expt_date fx-300"><%= date %></div>',
+        '<h3><a class="fx-300" href="<%= url %>" target="_blank"><%= title %></a></h3>',
         '<%= _.unescape(excerpt) %>'
     ].join('');
 
