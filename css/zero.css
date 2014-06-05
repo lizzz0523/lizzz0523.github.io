@@ -422,12 +422,12 @@ a, a:hover {
 }
 
 .excerpt .expt_list-left .expt_date {
-    right: -50px;
+    right: -90px;
 }
 
 .excerpt .expt_list-left .expt_date:after {
     left: 50%;
-    margin-left: 15px;
+    margin-left: -25px;
 }
 
 .excerpt .expt_list-right {
@@ -439,12 +439,12 @@ a, a:hover {
 }
 
 .excerpt .expt_list-right .expt_date {
-    left: -50px;
+    left: -90px;
 }
 
 .excerpt .expt_list-right .expt_date:after {
     right: 50%;
-    margin-right: 15px;
+    margin-right: -25px;
 }
 
 .excerpt .expt_tag {
