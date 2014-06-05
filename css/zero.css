@@ -525,6 +525,23 @@ a, a:hover {
     padding-left: 40px;
 }
 
+.post li {
+    position: relative;
+}
+
+.post li:before {
+    content: '';
+    position: absolute;
+    left: -23px;
+    top: 50%;
+    display: block;
+    margin-top: -3px;
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    background-color: #333;
+}
+
 .post li code {
     margin: 0 2px;
     padding: 0px 5px;
