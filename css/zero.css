@@ -468,8 +468,7 @@ a, a:hover {
     display: inline-block;
     +display: inline;
     +zoom: 1;
-    margin: 2px;
-    margin-right: 10px;
+    margin: 10px 10px 2px 2px;
     padding: 0 10px;
     border-radius: 4px;
     background-color: #ccc;
