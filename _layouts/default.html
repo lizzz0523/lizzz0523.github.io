@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 
-<title>Zero I/O{% if page.title %} | {{ page.title }}{% endif %}</title>
+<title>{{ site.name }}{% if page.title %} | {{ page.title }}{% endif %}</title>
 
 <link rel="stylesheet" href="{{ site.url }}/css/reset.css" />
 <link rel="stylesheet" href="{{ site.url }}/css/zero.css" />
@@ -15,18 +15,18 @@
 <![endif]-->
 </head>
 <body>
-    
+
 <div class="canvas">
 
 {% include header.html %}
 
-<!-- blog content start -->
+<!-- page content start -->
 <div class="page_content">
 
 {{ content }}
 
 </div>
-<!-- blog content end -->
+<!-- page content end -->
 
 {% include footer.html %}
 

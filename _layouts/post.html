@@ -1,5 +1,6 @@
 ---
 layout: default
+scripts: [jquery-1.8.2.min, underscore-min, backbone-min]
 ---
 
 <div class="row">
@@ -11,9 +12,31 @@ layout: default
                 <h3>{{ page.title }}</h3>
                 <span class="post_date">{{ page.date | date_to_string }}</span>
             </header>
-            {{ content }}
+            <div class="post_content">             
+                {{ content }}
+            </div>
+            <div class="post_comment">
+                {% include comment.html %}
+            </div>
         </div>
     </div>
     <!-- post end -->
 
 </div>
+
+<script type="text/javascript">
+    var duoshuoQuery = {
+        short_name: "lizzz0523"
+    };
+
+    (function() {
+        var ds = document.createElement('script');
+
+        ds.type = 'text/javascript';
+        ds.async = true;
+        ds.src = 'http://static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
