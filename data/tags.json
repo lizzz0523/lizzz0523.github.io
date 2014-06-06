@@ -6,6 +6,5 @@ layout: nil
     {
         "tag"  : "{{ tag[0] }}",
         "size" : {{ tag[1].size }}
-        "text" : {{ tag[2] }}
     }{% if forloop.last == false %},{% endif %}
 {% endfor %}]
