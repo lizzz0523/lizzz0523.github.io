@@ -474,6 +474,7 @@ a, a:hover {
     background-color: #ccc;
     color: #333;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .excerpt .expt_tag sup {
