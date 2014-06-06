@@ -50,15 +50,6 @@ a, a:hover {
 .canvas {
 }
 
-.highlight {
-    margin: 10px;
-}
-
-.highlight code {
-    display: block;
-    overflow: auto;
-}
-
 .page_header {
     padding-bottom: 100px;
     line-height: 24px;
@@ -162,6 +153,15 @@ a, a:hover {
 .page_content code {
     font-size: 13px;
     font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+.page_content .highlight {
+    margin: 10px;
+}
+
+.page_content .highlight code {
+    display: block;
+    overflow: auto;
 }
 
 
