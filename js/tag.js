@@ -1,7 +1,7 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<%= tag %>'
+        '<%= tag %><sup><%= size %></sup>'
     ].join('');
 
 
@@ -23,9 +23,7 @@ var TagItem = B.View.extend({
 
         tagName : 'span',
 
-        initialize : function(options) {
-            this.size = options.size;
-        },
+        initialize : function(options) { },
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));

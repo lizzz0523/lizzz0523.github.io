@@ -459,6 +459,37 @@ a, a:hover {
     display: none;
 }
 
+.excerpt .expt_tag p {
+    padding: 10px;
+}
+
+.excerpt .expt_tag span {
+    position: relative;
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
+    margin: 2px;
+    margin-right: 10px;
+    padding: 0 10px;
+    border-radius: 4px;
+    background-color: #ccc;
+    color: #333;
+    font-weight: bold;
+}
+
+.excerpt .expt_tag sup {
+    display: block;
+    margin-top: -7px;
+    margin-right: -14px;
+    padding: 0 4px;
+    border-radius: 10px;
+    line-height: 16px;
+    float: right;
+    background: #c00;
+    color: white;
+    font-size: 12px;
+}
+
 .excerpt .expt_inner {
     padding-left: 500px;
     width: 460px;
