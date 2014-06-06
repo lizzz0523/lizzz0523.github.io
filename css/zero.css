@@ -510,57 +510,57 @@ a, a:hover {
     margin-bottom: 30px;
 }
 
-.post h3 {
+.post .post_content h3 {
     margin-top: 20px;
     font-size: 34px;
     line-height: 46px;
 }
 
-.post h4 {
+.post .post_content h4 {
     margin-top: 20px;
     font-size: 24px;
     line-height: 36px;
 }
 
-.post code {
+.post .post_content code {
     border: 1px solid #ddd;
     border-radius: 3px;
     background-color: #f8f8f8;
 }
 
-.post a {
+.post .post_content a {
     text-decoration: underline;
 }
 
-.post a:hover {
+.post .post_content a:hover {
     color: #c00;
 }
 
-.post p {
+.post .post_content p {
     margin: 10px 0;
 }
 
-.post p code {
+.post .post_content p code {
     margin: 0 2px;
     padding: 0px 5px;
     white-space: nowrap;
 }
 
-.post p em,
-.post p strong {
+.post .post_content p em,
+.post .post_content p strong {
     font-weight: bold;
 }
 
-.post ul,
-.post ol {
+.post .post_content ul,
+.post .post_content ol {
     padding-left: 40px;
 }
 
-.post li {
+.post .post_content li {
     position: relative;
 }
 
-.post li:before {
+.post .post_content li:before {
     content: '';
     position: absolute;
     left: -23px;
@@ -573,7 +573,7 @@ a, a:hover {
     background-color: #333;
 }
 
-.post li code {
+.post .post_content li code {
     margin: 0 2px;
     padding: 0px 5px;
     white-space: nowrap;
