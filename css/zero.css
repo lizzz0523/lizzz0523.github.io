@@ -1,5 +1,6 @@
 body {
     background: transparent url(../images/bg.png) repeat left top;
+    color: #333;
 	font-family: Arial, "Microsoft YaHei";
 	font-size: 16px;
 }
@@ -74,7 +75,6 @@ a, a:hover {
     margin-top: -60px;
     width: 100%;
     float: left;
-    color: #333;
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
@@ -91,7 +91,6 @@ a, a:hover {
     display: block;
     padding: 0 10px;
     width: 100px;
-
     color: #333;
 }
 
@@ -127,7 +126,6 @@ a, a:hover {
 
 .page_footer {
     padding-top: 200px;
-    color: #333;
     line-height: 30px;
     font-size: 15px;
     text-align: center;
