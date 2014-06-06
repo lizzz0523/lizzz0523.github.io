@@ -6,9 +6,7 @@ tags: [NaN, isNaN, Nubmer.isNaN]
 ---
 
 
-#### 问题
-
-由于在js中有一个非常特殊的数，它就是`NaN`，它特殊到自己也不等于自己，就是说
+由于在js中有一个非常特殊的数，它就是`NaN`，它特殊到自己也不等于自己，就是说：
 
 {% highlight javascript %}
 
@@ -17,7 +15,12 @@ tags: [NaN, isNaN, Nubmer.isNaN]
 
 {% endhighlight %}
 
-所以在早期的js中提供了`isNaN`这样一个全局函数来帮助我们判断一个数是否是`NaN`。但很遗憾，这个全局的isNaN并不没有很好的完成它的任务。它除了
+所以在早期的js中提供了`isNaN`这样一个全局函数来帮助我们判断一个数是否是`NaN`。
+
+
+#### 问题
+
+但很遗憾，这个全局的isNaN并不没有很好的完成它的任务。它除了
 
 {% highlight javascript %}
 
