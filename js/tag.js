@@ -47,6 +47,8 @@ var TagItem = B.View.extend({
                 model : model,
                 id : 'tag-item-' + model.get('order')
             });
+
+            this.$el.append(item.render().el);
         }
     });
 
