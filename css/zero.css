@@ -516,6 +516,15 @@ a, a:hover {
     line-height: 46px;
 }
 
+.post .post_content {
+    color: #666;
+}
+
+.post .post_content h4,
+.post .post_content code {
+    color: #333;
+}
+
 .post .post_content h4 {
     margin-top: 20px;
     font-size: 24px;
