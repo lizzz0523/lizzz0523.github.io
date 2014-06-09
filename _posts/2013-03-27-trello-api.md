@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Trello API 中文翻译
-categories: [translation, trello]
+categories: [translation]
 tags: [trello, api, translation]
 ---
 

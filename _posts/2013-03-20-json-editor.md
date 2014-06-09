@@ -2,7 +2,7 @@
 layout: post
 title: JSON Editor
 categories: [javascript]
-tags: [json, editor]
+tags: [json editor]
 ---
 
 

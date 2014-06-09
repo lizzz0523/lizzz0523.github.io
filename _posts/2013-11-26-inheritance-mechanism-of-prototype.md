@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Prototype 的类创建与继承机制
-categories: [javascript, prototype]
+categories: [javascript]
 tags: [prototype, inheritance, class]
 ---
 
