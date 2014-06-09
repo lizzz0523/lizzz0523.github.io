@@ -319,6 +319,7 @@ a, a:hover {
 }
 
 .toolbar .tb_inner {
+    width: 960px;
     padding: 0 300px;
 }
 
