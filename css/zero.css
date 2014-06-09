@@ -314,8 +314,54 @@ a, a:hover {
 /* toolbar */
 
 .toolbar {
-    padding: 10px 0;
-    background-color: #333;
+    padding: 12px 0;
+    border-bottom: 3px solid #c00;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+}
+
+.toolbar button,
+.toolbar input,
+.toolbar select {
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    vertical-align: top;
+}
+
+.toolbar button {
+    margin-left: 5px;
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 19px;
+    color: white;
+    background: none;
+    cursor: pointer;
+}
+
+.toolbar input {
+    padding: 2px;
+    width: 150px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.toolbar select {
+    width: 140px;
+    height: 28px;
+    line-height: 28px;
+}
+
+.toolbar h3 {
+    line-height: 28px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .toolbar .tb_inner {
@@ -323,23 +369,26 @@ a, a:hover {
     padding: 0 300px;
 }
 
-.toolbar .tb_col {
+.toolbar .tb_side {
     width: 300px;
 }
 
 .toolbar .tb_mid {
     width: 100%;
     float: left;
+    text-align: center;
 }
 
 .toolbar .tb_left {
     margin-left: -300px;
     float: left;
+    text-align: left;
 }
 
 .toolbar .tb_right {
     margin-right: -300px;
     float: right;
+    text-align: right;
 }
 
 
