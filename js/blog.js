@@ -68,13 +68,13 @@ var PostItem = B.View.extend({
     }),
 
     Toolbar = B.View.extend({
-        initialize : {
+        initialize : function() {
             this.$fake = B.$('div').height(this.$el.outerHeight(true)).hide();
 
             this.offsetTop = this.$el.offset().top;
         },
 
-        updatePos : function(scrollTop) {}
+        updatePos : function(scrollTop) {
             if (scrollTop >= this.offsetTop) {
                 this.$el.addClass('full-fixed');
                 this.$fake.show();
