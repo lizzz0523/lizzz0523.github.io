@@ -56,7 +56,7 @@ var CategoryItem = B.View.extend({
 var categories = new Categories(),
 
     categoryList = new CategoryList({
-        el : B.$('#categories-list')[0],
+        el : B.$('#category-list')[0],
         collection : categories,
     });
 
