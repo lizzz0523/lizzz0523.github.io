@@ -57,7 +57,7 @@ var categories = new Categories(),
 
     categoryList = new CategoryList({
         el : B.$('#category-list')[0],
-        collection : categories,
+        collection : categories
     });
 
 B.$.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {

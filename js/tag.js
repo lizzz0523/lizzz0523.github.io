@@ -57,7 +57,7 @@ var tags = new Tags(),
 
     tagList = new TagList({
         el : B.$('#tag-list')[0],
-        collection : tags,
+        collection : tags
     });
 
 B.$.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {

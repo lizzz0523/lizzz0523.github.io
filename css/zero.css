@@ -47,6 +47,13 @@ a, a:hover {
             transition: all 500ms ease;
 }
 
+.full-fixed {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
 .canvas {
 }
 
@@ -276,7 +283,7 @@ a, a:hover {
     padding: 20px 0;
     line-height: 30px;
     background-color: white;
-    box-shadow: 0 0 1px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0,0,0,0.4);
 }
 
 .about .about_inner {
@@ -413,7 +420,7 @@ a, a:hover {
     background-color: white;
     color: #999;
     font-size: 13px;
-    box-shadow: 0 0 1px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0,0,0,0.4);
 }
 
 .excerpt:before {
@@ -594,7 +601,7 @@ a, a:hover {
     line-height: 30px;
     background-color: white;
     font-size: 15px;
-    box-shadow: 0 0 1px rgba(0,0,0,0.4);
+    box-shadow: 0 0 2px rgba(0,0,0,0.4);
 }
 
 .post header {
