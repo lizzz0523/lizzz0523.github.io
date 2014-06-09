@@ -315,7 +315,7 @@ a, a:hover {
 
 .toolbar {
     position: relative;
-    z-index: 10px;
+    z-index: 10;
     padding: 12px 0;
     border-bottom: 3px solid #c00;
     background-color: rgba(0, 0, 0, 0.6);
