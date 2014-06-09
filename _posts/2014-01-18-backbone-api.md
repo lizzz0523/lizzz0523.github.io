@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Backbone API 中文翻译（持续更新）
-categories: [javascript, backbone]
+categories: [translation, backbone]
 tags: [backbone, api, translation]
 ---
 
@@ -41,7 +41,7 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 `Backbone.Model.extend(properties, [classProperties])`
 
-为了创建你自己的_Model_类，你需要扩展`Backone.Model`，在`extend`方法中，你可以传入_properties_，也可以选择性的传入_classProperities_，而_classProperities_则会被直接赋值到子类的构造函数上。
+为了创建你自己的_Model_类，你需要扩展`Backone.Model`，在`extend`方法中，你可以传入`properties`，也可以选择性的传入`classProperities`，而`classProperities`则会被直接赋值到子类的构造函数上。
 
 `extend`方法是允许链式调用的，那就是说，你可以在你扩展出来的子类上，再次调用`extend`方法来进行进一步的扩展。
 
@@ -82,7 +82,7 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 `new Model([attributes], [options])`
 
-当你创建一个model的实例是，你需要在构造函数中传入_attributes_作为状态的初始值，在model的构造函数中，我们会通过调用`set`方法来设置这些初始值。如果你在扩展`Backbone.Model`时，定义了initialize方法，我们也会在构造函数中调用它。
+当你创建一个model的实例是，你需要在构造函数中传入`attributes`作为状态的初始值，在model的构造函数中，我们会通过调用`set`方法来设置这些初始值。如果你在扩展`Backbone.Model`时，定义了initialize方法，我们也会在构造函数中调用它。
 
 {% highlight javascript %}
 
@@ -110,9 +110,9 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 {% endhighlight %}
 
-如果你在参数_options_中传入`{collection: ...}`，那么model就会被指向对应的collection（即model的`collection`属性会被赋值，用于计算出model的`url`属性）。正常的情况下，当你将model加入到某一个collection时，`model.collection`属性就会自动创建。这里要注意的是，这并不是一个逆向操作，也就是说，在传进构造函数的_options_中设置`collection`并不是真的会把model加入到对应的collection中的。有些时候，这非常有用。
+如果你在参数`options`中传入`{collection: ...}`，那么model就会被指向对应的collection（即model的`collection`属性会被赋值，用于计算出model的`url`属性）。正常的情况下，当你将model加入到某一个collection时，`model.collection`属性就会自动创建。这里要注意的是，这并不是一个逆向操作，也就是说，在传进构造函数的`options`中设置`collection`并不是真的会把model加入到对应的collection中的。有些时候，这非常有用。
 
-如果你在参数_options_中传入`{parse: true}`，那么我们在调用`set`方法设置属性之前，首先会调用`parse`方法对传入的_attributes_进行转换。
+如果你在参数`options`中传入`{parse: true}`，那么我们在调用`set`方法设置属性之前，首先会调用`parse`方法对传入的`attributes`进行转换。
 
 
 #### id
@@ -199,7 +199,7 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 `model.hasChanged([attribute])`
 
-在上一次的`set`操作中，model是否被修改？如果参数中传入某一个_attribute_，`hasChanged`方法就会告诉你具体这个_attribute_是否被修改。
+在上一次的`set`操作中，model是否被修改？如果参数中传入某一个`attribute`，`hasChanged`方法就会告诉你具体这个`attribute`是否被修改。
 
 注意，这个方法以及马上要说的几个与change相关的方法，只有在`change`事件发生的时候才有用。
 
@@ -208,7 +208,7 @@ _Models_是所有js应用里的重要部件，其中包含了需要操作的数�
 
 `model.changeAttributes([attributes])`
 
-获得一个与上一次的`set`操作中，被修改过的状态对应的hash表，如果没有任何修改，则返回false。如果你在参数中传入一个额外的_attributes_hash表，那么该方法则返回现在model所有状态中与该hash表不同的项。这可以用于决定view的那一部分需要更新，或者决定如何与后台来同步这些不同。
+获得一个与上一次的`set`操作中，被修改过的状态对应的hash表，如果没有任何修改，则返回false。如果你在参数中传入一个额外的`attributes`hash表，那么该方法则返回现在model所有状态中与该hash表不同的项。这可以用于决定view的那一部分需要更新，或者决定如何与后台来同步这些不同。
 
 
 #### previous

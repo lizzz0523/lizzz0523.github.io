@@ -8,7 +8,7 @@ tags: [state check, trigger, timer, pulse]
 
 #### 状态检测
 
-在web编程时，我们经常要做的一件事就是状态检测。例如：
+在web编程时，我们经常要做的一件事就是__状态检测__。例如：
 
 {% highlight javascript %}
 
