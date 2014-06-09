@@ -67,7 +67,7 @@ tags: [backbone, extend, inheritance, class]
 当然，为了以后引用方便，__Backbone__在`child.__super__`中保存了`parent.prototype`。
 
 
-这就是__Backbone_的_extend模式_，较为充分的考虑了js原型链的特性，值得学习学习。
+这就是__Backbone__的_extend模式_，较为充分的考虑了js原型链的特性，值得学习学习。
 
 
 [1]: http://code-magazine.com/Article.aspx?quickid=1312061
