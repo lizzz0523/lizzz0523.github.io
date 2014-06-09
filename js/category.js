@@ -1,7 +1,7 @@
 (function(_, B, window){
 
 var tmpl = [
-        '<%= tag %> [<%= size %>]'
+        '<%= category %> [<%= size %>]'
     ].join('');
 
 
