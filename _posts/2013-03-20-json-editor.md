@@ -110,10 +110,11 @@ tags: [json, editor]
 
 ![流程图][3]
 
-最后放出一个自己做的[dome][4]来加强对上述过程的理解，大致流程一致，有小许的修改
+最后放出一个自己做的[demo[1]][4]，[demo[2]][5]来加强对上述过程的理解，大致流程一致，有小许的修改
 
 
 [1]: http://www.jsoneditoronline.org/
 [2]: https://github.com/josdejong/jsoneditoronline
 [3]: {{ site.url }}/images/post/json-editor-20140609-001.gif
 [4]: http://www.led-zero.org/demo/jsoneditor.html
+[5]: http://www.led-zero.org/demo/jsoneditor-2.html
