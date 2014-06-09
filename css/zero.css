@@ -276,7 +276,7 @@ a, a:hover {
     padding: 20px 0;
     line-height: 30px;
     background-color: white;
-    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    box-shadow: 0 0 1px rgba(0,0,0,0.4);
 }
 
 .about .about_inner {
@@ -314,6 +314,8 @@ a, a:hover {
 /* toolbar */
 
 .toolbar {
+    position: relative;
+    z-index: 10px;
     padding: 12px 0;
     border-bottom: 3px solid #c00;
     background-color: rgba(0, 0, 0, 0.6);
@@ -401,7 +403,7 @@ a, a:hover {
     background-color: white;
     color: #999;
     font-size: 13px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    box-shadow: 0 0 1px rgba(0,0,0,0.4);
 }
 
 .excerpt:before {
@@ -582,7 +584,7 @@ a, a:hover {
     line-height: 30px;
     background-color: white;
     font-size: 15px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    box-shadow: 0 0 1px rgba(0,0,0,0.4);
 }
 
 .post header {
