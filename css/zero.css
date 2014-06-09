@@ -348,13 +348,13 @@ a, a:hover {
 
 .toolbar input {
     padding: 2px;
-    width: 150px;
+    width: 176px;
     height: 24px;
     line-height: 24px;
 }
 
 .toolbar select {
-    width: 140px;
+    width: 180px;
     height: 28px;
     line-height: 28px;
 }
@@ -364,6 +364,16 @@ a, a:hover {
     color: white;
     font-size: 18px;
     font-weight: bold;
+}
+
+.toolbar .tb_search-input {
+    padding-right: 28px;
+    width: 150px;
+}
+
+.toolbar .tb_search-btn {
+    margin-left: -28px;
+    color: #999;
 }
 
 .toolbar .tb_inner {
