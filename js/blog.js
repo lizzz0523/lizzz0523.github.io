@@ -83,7 +83,7 @@ var PostItem = B.View.extend({
                 this.$fake.hide();
             }
         }
-    })
+    });
 
 
 (function() {
@@ -95,11 +95,11 @@ var posts = new Posts(),
     postList = new PostList({
         el : B.$('#post-list')[0],
         collection : posts
-    }),
-
-    toolbar = new Toolbar({
-        el : B.$('#post-toolbar')[0]
     });
+
+    // toolbar = new Toolbar({
+    //     el : B.$('#post-toolbar')[0]
+    // });
 
 B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
     _.each(data, function(data) {
@@ -110,7 +110,7 @@ B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), funct
 });
 
 setInterval(function() {
-    toolbar.updatePos($win.scrollTop());
+    // toolbar.updatePos($win.scrollTop());
 }, 100);
 
 })();
