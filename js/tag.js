@@ -15,6 +15,7 @@ var Tag = B.Model.extend({
 
     Tags = B.Collection.extend({
         model : Tag,
+        comparator: 'size'
     });
 
 

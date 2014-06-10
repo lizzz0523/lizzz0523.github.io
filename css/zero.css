@@ -489,8 +489,8 @@ a, a:hover {
     opacity: 0;
     visibility: hidden;
 
-    -webkit-transform: translateY(-5px);
-            transform: translateY(-5px);
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
 }
 
 .excerpt .expt_date:after {

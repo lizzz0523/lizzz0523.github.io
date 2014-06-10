@@ -16,7 +16,7 @@ var Post = B.Model.extend({
     }),
 
     Posts = B.Collection.extend({
-        model : Post,
+        model : Post
     });
 
 

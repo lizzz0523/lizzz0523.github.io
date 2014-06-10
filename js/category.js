@@ -14,7 +14,7 @@ var Category = B.Model.extend({
     }),
 
     Categories = B.Collection.extend({
-        model : Category,
+        model : Category
     });
 
 
