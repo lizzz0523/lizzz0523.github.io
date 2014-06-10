@@ -1,10 +1,49 @@
 (function(_, B, window){
 
-var tmpl = [
-        '<div class="expt_date fx-300"><%= date %></div>',
-        '<h3><a class="fx-300" href="<%= url %>" target="_blank"><%= title %></a></h3>',
-        '<%= _.unescape(excerpt) %>'
-    ].join('');
+var tmpl = {
+        post : [
+            '<div class="expt_date fx-300"><%= date %></div>',
+            '<h3><a class="fx-300" href="<%= url %>" target="_blank"><%= title %></a></h3>',
+            '<%= _.unescape(excerpt) %>'
+        ].join(''),
+
+        tag : [
+            '<%= tag %><sup><%= size %></sup>'
+        ].join(''),
+
+        category : [
+            '<%= category %> [<%= size %>]'
+        ].join('')
+    };
+
+
+var Tag = B.Model.extend({
+        defaults : function() {
+            return {
+                order : this.collection.length
+            }
+        }
+    }),
+
+    Tags = B.Collection.extend({
+        model : Tag,
+        comparator: function(tag1, tag2) {
+            return tag1.get('size') < tag2.get('size') ? 1 : -1;
+        }
+    });
+
+
+var Category = B.Model.extend({
+        defaults : function() {
+            return {
+                order : this.collection.length
+            }
+        }
+    }),
+
+    Categories = B.Collection.extend({
+        model : Category
+    });
 
 
 var Post = B.Model.extend({
@@ -20,8 +59,74 @@ var Post = B.Model.extend({
     });
 
 
+var TagItem = B.View.extend({
+        template : _.template(tmpl.tag),
+
+        tagName : 'span',
+
+        initialize : function(options) { },
+
+        render : function() {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    }),
+
+    TagList = B.View.extend({
+        initialize : function() {
+            this.listenTo(this.collection, 'reset', this.addAll);
+        },
+
+        addAll : function() {
+            this.collection.each(this.addOne, this)
+        },
+
+        addOne : function(model) {
+            var item = new TagItem({
+                model : model,
+                id : 'tag-item-' + model.get('order')
+            });
+
+            this.$el.append(item.render().el);
+        }
+    });
+
+
+var CategoryItem = B.View.extend({
+        template : _.template(tmpl.Category),
+
+        tagName : 'option',
+
+        initialize : function(options) { },
+
+        render : function() {
+            this.$el.html(this.template(this.model.toJSON()));
+            return this;
+        }
+    }),
+
+    CategoryList = B.View.extend({
+        initialize : function() {
+            this.listenTo(this.collection, 'reset', this.addAll);
+        },
+
+        addAll : function() {
+            this.collection.each(this.addOne, this)
+        },
+
+        addOne : function(model) {
+            var item = new CategoryItem({
+                model : model,
+                id : 'category-item-' + model.get('order')
+            });
+
+            this.$el.append(item.render().el);
+        }
+    });
+
+
 var PostItem = B.View.extend({
-        template : _.template(tmpl),
+        template : _.template(tmpl.post),
 
         tagName : 'li',
 
@@ -94,7 +199,23 @@ var PostItem = B.View.extend({
 
 var $win = B.$(window);
 
-var posts = new Posts(),
+
+var tags = new Tags(),
+
+    categories = new Categories(),
+
+    posts = new Posts();
+
+
+var tagList = new TagList({
+        el : B.$('#tag-list')[0],
+        collection : tags
+    }),
+
+    categoryList = new CategoryList({
+        el : B.$('#category-list')[0],
+        collection : categories
+    }),
 
     postList = new PostList({
         el : B.$('#post-list')[0],
@@ -105,13 +226,43 @@ var posts = new Posts(),
         el : B.$('#post-toolbar')[0]
     });
 
-B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
-    _.each(data, function(data) {
-        posts.add(data, {silent : true});
-    });
 
-    posts.trigger('reset');
-});
+$win.queue('data', [
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                categories.add(data, {silent : true});
+            });
+            categories.trigger('reset');
+
+            $win.dequeue('data');
+        });
+    },
+
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                tags.add(data, {silent : true});
+            });
+            tags.trigger('reset');
+
+            $win.dequeue('data');
+        });
+    },
+
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                posts.add(data, {silent : true});
+            });
+            posts.trigger('reset');
+
+            $win.dequeue('data');
+        });
+    }
+]);
+
+$win.dequeue('data');
 
 $win.on('scroll', function() {
     toolbar.updatePos($win.scrollTop());
