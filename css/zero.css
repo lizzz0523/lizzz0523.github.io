@@ -545,19 +545,15 @@ a, a:hover {
     margin-right: -25px;
 }
 
-.excerpt .expt_tag {
-    padding: 0;
-    border-radius: 5px;
-    min-height: 160px;
-    background-color: #eee;
-}
-
 .excerpt .expt_tag:after {
     display: none;
 }
 
 .excerpt .expt_tag p {
     padding: 10px;
+    border-radius: 5px;
+    min-height: 160px;
+    background-color: #eee;
 }
 
 .excerpt .expt_tag span {
