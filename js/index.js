@@ -1,4 +1,4 @@
-seajs.use(['underscore', 'backbone', 'app/model/Project', 'app/view/ProjectList'], function(_, B, Projects, ProjectList) {
+seajs.use(['underscore', 'backbone', 'app/model/Projects', 'app/view/ProjectList'], function(_, B, Projects, ProjectList) {
     var projects = new Projects(),
 
         projectList = new ProjectList({
