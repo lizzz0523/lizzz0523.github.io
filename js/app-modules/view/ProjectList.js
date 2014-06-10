@@ -1,4 +1,7 @@
-(function(_, B, window){
+define(function(require, exports, module) {
+
+var B = require('backbone'),
+    _ = require('underscore');
 
 var tmpl = [
         '<div class="proj_thumbnail">',
@@ -14,19 +17,6 @@ var tmpl = [
             '</p>',
         '</div>'
     ].join('');
-
-
-var Project = B.Model.extend({
-        defaults : function() {
-            return {
-                order : this.collection.length
-            }
-        }
-    }),
-
-    Projects = B.Collection.extend({
-        model : Project,
-    });
 
 
 var ProjectItem = B.View.extend({
@@ -62,24 +52,6 @@ var ProjectItem = B.View.extend({
         }
     });
 
-
-(function() {
-
-var projects = new Projects(),
-
-    projectList = new ProjectList({
-        el : B.$('#project-list')[0],
-        collection : projects,
-    });
-
-B.$.getJSON('http://lizzz0523.github.io/data/projects.json?' + Math.random(), function(data) {
-    _.each(data, function(data) {
-        projects.add(data, {silent : true});
-    });
-
-    projects.trigger('reset');
-});
-
-})();
+module.exports = ProjectList;
     
-})(_, Backbone, this);
+});
