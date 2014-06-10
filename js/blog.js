@@ -113,9 +113,9 @@ B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), funct
     posts.trigger('reset');
 });
 
-setInterval(function() {
+$win.on('scroll', function() {
     toolbar.updatePos($win.scrollTop());
-}, 16);
+});
 
 })();
     
