@@ -64,6 +64,8 @@ var TagItem = B.View.extend({
 
         tagName : 'span',
 
+        className : 'fx-300',
+
         initialize : function(options) { },
 
         render : function() {

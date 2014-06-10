@@ -570,6 +570,10 @@ a, a:hover {
     cursor: pointer;
 }
 
+.excerpt .expt_tag span:hover {
+    background-color: #aaa;
+}
+
 .excerpt .expt_tag sup {
     display: block;
     margin-top: -12px;
