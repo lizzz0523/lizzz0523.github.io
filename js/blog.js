@@ -69,7 +69,10 @@ var PostItem = B.View.extend({
 
     Toolbar = B.View.extend({
         initialize : function() {
-            this.$fake = B.$('<div />').height(this.$el.outerHeight(true)).hide();
+            this.$fake = B.$('<div />');
+
+            this.$fake.height(this.$el.outerHeight(true)).hide();
+            this.$el.before(this.$fake);
 
             this.offsetTop = this.$el.offset().top;
         },
