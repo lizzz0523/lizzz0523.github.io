@@ -15,7 +15,9 @@ var Tag = B.Model.extend({
 
     Tags = B.Collection.extend({
         model : Tag,
-        comparator: 'size'
+        comparator: function(tag1, tag2) {
+            return tag1.size > tag2.size ? 1 : -1;
+        }
     });
 
 
