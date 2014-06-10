@@ -70,8 +70,9 @@ var PostItem = B.View.extend({
     Toolbar = B.View.extend({
         initialize : function() {
             this.$fake = B.$('<div />');
+            this.$fake.height(this.$el.outerHeight(true))
+            this.$fake.hide();
 
-            this.$fake.height(this.$el.outerHeight(true)).hide();
             this.$el.before(this.$fake);
 
             this.offsetTop = this.$el.offset().top;
@@ -114,7 +115,7 @@ B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), funct
 
 setInterval(function() {
     toolbar.updatePos($win.scrollTop());
-}, 100);
+}, 16);
 
 })();
     
