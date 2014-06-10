@@ -93,7 +93,7 @@ var TagItem = B.View.extend({
 
 
 var CategoryItem = B.View.extend({
-        template : _.template(tmpl.Category),
+        template : _.template(tmpl.category),
 
         tagName : 'option',
 
@@ -227,42 +227,42 @@ var tagList = new TagList({
     });
 
 
-// $win.queue('data', [
-//     function() {
-//         B.$.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
-//             _.each(data, function(data) {
-//                 categories.add(data, {silent : true});
-//             });
-//             categories.trigger('reset');
+$win.queue('data', [
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                categories.add(data, {silent : true});
+            });
+            categories.trigger('reset');
 
-//             $win.dequeue('data');
-//         });
-//     },
+            $win.dequeue('data');
+        });
+    },
 
-//     function() {
-//         B.$.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
-//             _.each(data, function(data) {
-//                 tags.add(data, {silent : true});
-//             });
-//             tags.trigger('reset');
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                tags.add(data, {silent : true});
+            });
+            tags.trigger('reset');
 
-//             $win.dequeue('data');
-//         });
-//     },
+            $win.dequeue('data');
+        });
+    },
 
-//     function() {
-//         B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
-//             _.each(data, function(data) {
-//                 posts.add(data, {silent : true});
-//             });
-//             posts.trigger('reset');
+    function() {
+        B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
+            _.each(data, function(data) {
+                posts.add(data, {silent : true});
+            });
+            posts.trigger('reset');
 
-//             $win.dequeue('data');
-//         });
-//     }
-// ]);
+            $win.dequeue('data');
+        });
+    }
+]);
 
-// $win.dequeue('data');
+$win.dequeue('data');
 
 $win.on('scroll', function() {
     toolbar.updatePos($win.scrollTop());
