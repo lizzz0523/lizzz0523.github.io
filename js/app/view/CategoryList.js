@@ -25,7 +25,7 @@ var CategoryItem = B.View.extend({
 
     CategoryList = B.View.extend({
         events : {
-            'change' : 'categoryChange'
+            'change' : 'changeCategory'
         },
 
         initialize : function() {
@@ -45,7 +45,12 @@ var CategoryItem = B.View.extend({
             this.$el.append(item.render().el);
         },
 
-        categoryChange : function() {
+        select : function(value) {
+            this.$el.val(value);
+            this.changeCategory();
+        }
+
+        changeCategory : function() {
             this.trigger('change', this.$(':selected').val());
         }
     });
