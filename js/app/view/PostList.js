@@ -29,6 +29,7 @@ var PostItem = B.View.extend({
 
         remove : function() {
             this.$el.detach();
+            this.$el.removeClass('fade-in');
         },
 
         insert : function($parent) {
