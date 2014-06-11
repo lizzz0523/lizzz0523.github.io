@@ -9,6 +9,10 @@ var Category = B.Model.extend({
             return {
                 order : this.collection.length
             }
+        },
+
+        initialize : function() {
+            this.set('value', this.get('text'));
         }
     }),
 

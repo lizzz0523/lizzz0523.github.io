@@ -18,7 +18,7 @@ var CategoryItem = B.View.extend({
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$el.data('value', this.model.get('text'));
+            this.$el.attr('value', this.model.get('value'));
             return this;
         }
     }),
