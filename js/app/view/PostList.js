@@ -12,7 +12,7 @@ var tmpl = [
 
 
 var PostItem = B.View.extend({
-        template : _.template(tmpl.post),
+        template : _.template(tmpl),
 
         tagName : 'li',
 
