@@ -1,10 +1,10 @@
 seajs.config({
-    // 预加载项
-    preload : [
-      'vendor/underscore-min',
-      'vendor/jquery-1.8.3.min',
-      'vendor/backbone-min'
-    ],
+    // 别名配置
+    alias: {
+      'backbone': 'vendor/backbone-min',
+      'underscore': 'vendor/underscore-min',
+      'jquery': 'vendor/jquery-1.8.3.min'
+    },
 
     // 路径配置
     paths : {
