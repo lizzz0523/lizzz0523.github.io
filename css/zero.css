@@ -77,8 +77,8 @@ a, a:hover {
 }
 
 .fade-in {
-    -webkit-animation: fadeIn 0.3s ease-out;
-            animation: fadeIn 0.3s ease-out;
+    -webkit-animation: fadeIn 300ms ease;
+            animation: fadeIn 300ms ease;
 }
 
 .full-fixed {
