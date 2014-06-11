@@ -111,7 +111,7 @@ seajs.use([
         },
 
         function() {
-            categoryList.on('change', switchCategory);
+            categoryList.on('change', switchCategory).trigger('change');
         }
     ]);
 

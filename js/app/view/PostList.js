@@ -52,7 +52,10 @@ var PostItem = B.View.extend({
                 id : 'post-item-' + model.get('order')
             });
 
-            if (!item.isVisible()) return;
+            if (!item.isVisible()) {
+                item.detach();
+                return;
+            }
 
             if (this.curOffset.left <= this.curOffset.right) {
                 this.$left.append(item.render().el);
