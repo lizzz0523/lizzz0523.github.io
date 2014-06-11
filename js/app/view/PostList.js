@@ -16,14 +16,15 @@ var PostItem = B.View.extend({
 
         tagName : 'li',
 
-        initialize : function() {
-            this.listenTo(this.model, 'change', this.render);
-        },
+        initialize : function() { },
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
-            this.$el.toggle(this.model.get('visible'));
             return this;
+        },
+
+        isVisible : function() {
+            return this.model.get('visible');
         }
     }),
 
@@ -50,6 +51,8 @@ var PostItem = B.View.extend({
                 model : model,
                 id : 'post-item-' + model.get('order')
             });
+
+            if (!item.isVisible()) return;
 
             if (this.curOffset.left <= this.curOffset.right) {
                 this.$left.append(item.render().el);

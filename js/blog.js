@@ -44,17 +44,19 @@ seajs.use([
             var categories = post.get('categories');
 
             if (value != 'all') {
-                post.set('visible', false);
+                post.set({'visible' : false}, {silent : true});
             } else {
-                post.set('visible', true);
+                post.set({'visible' : true}, {silent : true});
             }
 
             $.each(categories, function(index, category) {
                 if (category == value) {
-                    post.set('visible', true);
+                    post.set({'visible' : true}, {silent : true});
                 }
             });
         });
+
+        posts.trigger('reset');
     }
 
 
@@ -68,7 +70,7 @@ seajs.use([
                         data.value = data.text;
                     }
                     categories.add(data, {silent : true});
-                    
+
                     total += data['size'] || 0;
                 });
 
