@@ -64,7 +64,7 @@ seajs.use([
                 var total = 0;
 
                 $.each(data, function(index, data) {
-                    categories.add(data, {silent : true});
+                    categories.add(data, {silent : true, parse : true});
                     total += data['size'] || 0;
                 });
 

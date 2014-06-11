@@ -11,8 +11,8 @@ var Category = B.Model.extend({
             }
         },
 
-        initialize : function() {
-            this.set('value', this.get('text'));
+        parse : function(data) {
+            if (data.value == void 0) data.value = data.text;
         }
     }),
 
