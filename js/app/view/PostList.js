@@ -25,6 +25,10 @@ var PostItem = B.View.extend({
 
         isVisible : function() {
             return this.model.get('visible');
+        },
+
+        remove : function() {
+            this.$el.detach();
         }
     }),
 
@@ -53,7 +57,7 @@ var PostItem = B.View.extend({
             });
 
             if (!item.isVisible()) {
-                item.detach();
+                item.remove();
                 return;
             }
 
