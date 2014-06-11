@@ -72,6 +72,15 @@ a, a:hover {
             transition: all 500ms ease;
 }
 
+.fade-out {
+    opacity: 0;
+}
+
+.fade-in {
+    -webkit-animation: fadeIn 0.3s ease-out;
+            animation: fadeIn 0.3s ease-out;
+}
+
 .full-fixed {
     position: fixed !important;
     top: 0;
@@ -611,11 +620,6 @@ a, a:hover {
     background: #c00;
     color: white;
     font-size: 12px;
-}
-
-.excerpt .expt_item {
-    -webkit-animation: fadeIn 0.3s ease-out;
-            animation: fadeIn 0.3s ease-out;
 }
 
 .excerpt .expt_inner {

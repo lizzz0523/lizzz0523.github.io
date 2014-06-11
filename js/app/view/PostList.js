@@ -16,8 +16,6 @@ var PostItem = B.View.extend({
 
         tagName : 'li',
 
-        className : 'expt_item',
-
         initialize : function() { },
 
         render : function() {
@@ -36,8 +34,12 @@ var PostItem = B.View.extend({
         insert : function($parent) {
             var delay = Math.floor(Math.random() * 500);
 
-            this.el.style.WebkitAnimationDelay = delay + 'ms';
-            this.el.style.animationDelay = delay + 'ms';
+            this.$el.addClass('fade-out');
+
+            _.delay(function($el) {
+                $el.removeClass('fade-out');
+                $el.addClass('fade-in');
+            }, delay, this.$el);
 
             this.$el.appendTo($parent);
         },
