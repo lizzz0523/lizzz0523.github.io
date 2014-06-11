@@ -614,8 +614,8 @@ a, a:hover {
 }
 
 .excerpt .expt_item {
-    -webkit-animation: fadeIn 0.3s ease-in;
-            animation: fadeIn 0.3s ease-in;
+    -webkit-animation: fadeIn 0.3s ease-out;
+            animation: fadeIn 0.3s ease-out;
 }
 
 .excerpt .expt_inner {
