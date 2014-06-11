@@ -56,7 +56,7 @@ seajs.use([
             });
         });
 
-        posts.trigger('reset');
+        posts.trigger('update');
     }
 
 

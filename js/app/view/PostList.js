@@ -43,7 +43,22 @@ var PostItem = B.View.extend({
                 right : this.$tag.outerHeight()
             };
 
+            this.items = [];
+
             this.listenTo(this.collection, 'reset', this.addAll);
+            this.listenTo(this.collection, 'update', this.toggleAll);
+        },
+
+        insertItem : function(item) {
+            if (!item.isVisible()) return;
+
+            if (this.curOffset.left <= this.curOffset.right) {
+                this.$left.append(item.$el);
+                this.curOffset.left += item.$el.outerHeight(true);
+            } else {
+                this.$right.append(item.$el);
+                this.curOffset.right += item.$el.outerHeight(true);
+            }
         },
 
         addAll : function() {
@@ -56,18 +71,22 @@ var PostItem = B.View.extend({
                 id : 'post-item-' + model.get('order')
             });
 
-            if (!item.isVisible()) {
-                item.remove();
-                return;
-            }
+            this.items.push(item);
+            this.insertItem(item.render());
+        },
 
-            if (this.curOffset.left <= this.curOffset.right) {
-                this.$left.append(item.render().el);
-                this.curOffset.left += item.$el.outerHeight(true);
-            } else {
-                this.$right.append(item.render().el);
-                this.curOffset.right += item.$el.outerHeight(true);
-            }
+        toggleAll : function() {
+            this.curOffset = {
+                left : 0,
+                right : this.$tag.outerHeight()
+            };
+
+            _.each(this.items, this.toggleOne, this);
+        },
+
+        toggleOne : function(item) {
+            item.remove();
+            this.insertItem(item);
         }
     });
 
