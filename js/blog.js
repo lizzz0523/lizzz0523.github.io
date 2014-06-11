@@ -43,7 +43,7 @@ seajs.use([
         posts.each(function(post) {
             var categories = post.get('categories');
 
-            if (value == -1) {
+            if (value != 'all') {
                 post.set('visible', false);
             } else {
                 post.set('visible', true);
@@ -64,14 +64,18 @@ seajs.use([
                 var total = 0;
 
                 $.each(data, function(index, data) {
-                    categories.add(data, {silent : true, parse : true});
+                    if (data.value == void 0) {
+                        data.value = data.text;
+                    }
+                    categories.add(data, {silent : true});
+                    
                     total += data['size'] || 0;
                 });
 
                 categories.unshift({
                     'text'  : '全部文章',
                     'size'  : total,
-                    'value' : -1
+                    'value' : 'all'
                 }, {silent : true});
 
                 categories.trigger('reset');
