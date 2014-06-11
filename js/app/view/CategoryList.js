@@ -25,7 +25,7 @@ var CategoryItem = B.View.extend({
     CategoryList = B.View.extend({
         events : {
             'change' : 'categoryChange'
-        }
+        },
 
         initialize : function() {
             this.listenTo(this.collection, 'reset', this.addAll);
