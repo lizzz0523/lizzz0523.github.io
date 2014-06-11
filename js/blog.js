@@ -43,7 +43,7 @@ seajs.use([
         posts.each(function(post) {
             var categories = post.get('categories');
 
-            if (value) {
+            if (value == -1) {
                 post.set('visible', false);
             } else {
                 post.set('visible', true);
@@ -71,7 +71,7 @@ seajs.use([
                 categories.unshift({
                     'text'  : '全部文章',
                     'size'  : total,
-                    'value' : false
+                    'value' : -1
                 }, {silent : true});
 
                 categories.trigger('reset');
