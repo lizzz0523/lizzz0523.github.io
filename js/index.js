@@ -1,4 +1,4 @@
-seajs.use(['jquery', 'app/model/Projects', 'app/view/ProjectList'], function(Projects, ProjectList) {
+seajs.use(['jquery', 'app/model/Projects', 'app/view/ProjectList'], function($, Projects, ProjectList) {
     var projects = new Projects(),
 
         projectList = new ProjectList({
