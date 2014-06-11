@@ -7,7 +7,7 @@ seajs.use([
     'app/view/TagList',
     'app/view/PostList',
     'app/view/Toolbar'
-], function($, Categories, Tags, Projects, CategoryList, TagList, PostList, Toolbar) {
+], function($, Categories, Tags, Posts, CategoryList, TagList, PostList, Toolbar) {
 
     var $win = $(window);
 
