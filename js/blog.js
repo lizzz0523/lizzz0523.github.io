@@ -5,9 +5,9 @@ seajs.use([
     'app/model/Posts',
     'app/view/CategoryList',
     'app/view/TagList',
-    'app/view/ProjectList',
+    'app/view/PostList',
     'app/view/Toolbar'
-], function($, Categories, Tags, Projects, CategoryList, TagList, ProjectList, Toolbar) {
+], function($, Categories, Tags, Projects, CategoryList, TagList, PostList, Toolbar) {
 
     var $win = $(window);
 
