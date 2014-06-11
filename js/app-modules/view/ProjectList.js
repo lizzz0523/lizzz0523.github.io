@@ -1,5 +1,8 @@
 define(function(require, exports, module) {
 
+var B = require('backbone'),
+    _ = require('underscore');
+
 var tmpl = [
         '<div class="proj_thumbnail">',
             '<h3 class="proj_name fx-500"><%= name %></h3>',

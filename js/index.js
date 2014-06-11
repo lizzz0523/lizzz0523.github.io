@@ -1,4 +1,4 @@
-seajs.use(['app/model/Projects', 'app/view/ProjectList'], function(Projects, ProjectList) {
+seajs.use(['jquery', 'app/model/Projects', 'app/view/ProjectList'], function(Projects, ProjectList) {
     var projects = new Projects(),
 
         projectList = new ProjectList({
@@ -7,7 +7,7 @@ seajs.use(['app/model/Projects', 'app/view/ProjectList'], function(Projects, Pro
         });
 
     $.getJSON('http://lizzz0523.github.io/data/projects.json?' + Math.random(), function(data) {
-        _.each(data, function(data) {
+        $.each(data, function(data) {
             projects.add(data, {silent : true});
         });
 
