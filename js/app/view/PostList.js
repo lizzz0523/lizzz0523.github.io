@@ -17,7 +17,7 @@ var PostItem = B.View.extend({
         tagName : 'li',
 
         initialize : function() {
-            this.listenTo(this.model, 'change', render);
+            this.listenTo(this.model, 'change', this.render);
         },
 
         render : function() {
