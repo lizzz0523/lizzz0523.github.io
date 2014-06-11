@@ -16,6 +16,8 @@ var PostItem = B.View.extend({
 
         tagName : 'li',
 
+        className : 'expt_item',
+
         initialize : function() { },
 
         render : function() {
@@ -29,6 +31,14 @@ var PostItem = B.View.extend({
 
         remove : function() {
             this.$el.detach();
+        },
+
+        insert : function($parent) {
+            this.$el.appendTo($parent);
+        },
+
+        height : function() {
+            return this.$el.outerHeight(true);
         }
     }),
 
@@ -53,11 +63,11 @@ var PostItem = B.View.extend({
             if (!item.isVisible()) return;
 
             if (this.curOffset.left <= this.curOffset.right) {
-                this.$left.append(item.$el);
-                this.curOffset.left += item.$el.outerHeight(true);
+                item.insert(this.$left);
+                this.curOffset.left += item.height();
             } else {
-                this.$right.append(item.$el);
-                this.curOffset.right += item.$el.outerHeight(true);
+                item.insert(this.$right);
+                this.curOffset.right += item.height();
             }
         },
 

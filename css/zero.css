@@ -1,3 +1,28 @@
+@keyframes fadeIn {
+    from {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        -webkit-transform: translateY(-10px);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
 body {
     background: transparent url(../images/bg.png) repeat left top;
     color: #333;
@@ -506,6 +531,7 @@ a, a:hover {
 .excerpt li:hover .expt_date {
     opacity: 1;
     visibility: visible;
+
     -webkit-transform: translateY(0);
             transform: translateY(0);
 }
@@ -585,6 +611,11 @@ a, a:hover {
     background: #c00;
     color: white;
     font-size: 12px;
+}
+
+.excerpt .expt_item {
+    -webkit-animation: fadeIn 0.3s ease-in;
+            animation: fadeIn 0.3s ease-in;
 }
 
 .excerpt .expt_inner {

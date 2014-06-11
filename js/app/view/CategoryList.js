@@ -47,7 +47,7 @@ var CategoryItem = B.View.extend({
 
         select : function(value) {
             this.$el.val(value);
-            this.changeCategory();
+            this.$el.trigger('change');
         },
 
         changeCategory : function() {
