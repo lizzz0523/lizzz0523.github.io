@@ -4,7 +4,7 @@ layout: nil
 
 [{% for category in site.categories %}
     {
-        "category"  : "{{ category[0] }}",
+        "text"  : "{{ category[0] }}",
         "size" : {{ category[1].size }}
     }{% if forloop.last == false %},{% endif %}
 {% endfor %}]

@@ -7,7 +7,8 @@ var B = require('backbone'),
 var Post = B.Model.extend({
         defaults : function() {
             return {
-                order : this.collection.length
+                order : this.collection.length,
+                visible : true
             }
         }
     }),

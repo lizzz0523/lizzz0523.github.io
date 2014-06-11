@@ -5,7 +5,7 @@ var B = require('backbone'),
 
 
 var tmpl = [
-        '<%= tag %><sup><%= size %></sup>'
+        '<%= text %><sup><%= size %></sup>'
     ].join('');
 
 
@@ -13,6 +13,8 @@ var TagItem = B.View.extend({
         template : _.template(tmpl),
 
         tagName : 'span',
+
+        className : 'fx-300',
 
         initialize : function(options) { },
 

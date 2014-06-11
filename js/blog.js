@@ -39,6 +39,21 @@ seajs.use([
         });
 
 
+    function switchCategory(value) {
+        posts.each(function(post) {
+            var categories = post.get('categories');
+
+            post.set('visible', false);
+
+            $.each(categories, function(index, category) {
+                if (category == value) {
+                    post.set('visible', false);
+                }
+            });
+        });
+    }
+
+
     $win.queue('data', [
         function() {
             $.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
@@ -71,6 +86,10 @@ seajs.use([
 
                 $win.dequeue('data');
             });
+        },
+
+        function() {
+            categoryList.on('change', switchCategory);
         }
     ]);
 

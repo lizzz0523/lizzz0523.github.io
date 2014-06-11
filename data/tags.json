@@ -4,7 +4,7 @@ layout: nil
 
 [{% for tag in site.tags %}
     {
-        "tag"  : "{{ tag[0] }}",
+        "text"  : "{{ tag[0] }}",
         "size" : {{ tag[1].size }}
     }{% if forloop.last == false %},{% endif %}
 {% endfor %}]

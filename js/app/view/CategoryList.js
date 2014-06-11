@@ -5,7 +5,7 @@ var B = require('backbone'),
     
 
 var tmpl = [
-        '<%= category %> [<%= size %>]'
+        '<%= text %> [<%= size %>]'
     ].join('');
 
 
@@ -23,6 +23,10 @@ var CategoryItem = B.View.extend({
     }),
 
     CategoryList = B.View.extend({
+        events : {
+            'change' : 'categoryChange'
+        }
+
         initialize : function() {
             this.listenTo(this.collection, 'reset', this.addAll);
         },
@@ -38,6 +42,10 @@ var CategoryItem = B.View.extend({
             });
 
             this.$el.append(item.render().el);
+        },
+
+        categoryChange : function() {
+            this.trigger('change', this.$el.val());
         }
     });
 
