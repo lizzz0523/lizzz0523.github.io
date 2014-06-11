@@ -1,8 +1,5 @@
 define(function(require, exports, module) {
 
-var B = require('backbone'),
-    _ = require('underscore');
-
 var tmpl = [
         '<div class="proj_thumbnail">',
             '<h3 class="proj_name fx-500"><%= name %></h3>',
@@ -19,7 +16,7 @@ var tmpl = [
     ].join('');
 
 
-var ProjectItem = B.View.extend({
+var ProjectItem = Backbone.View.extend({
         template : _.template(tmpl),
 
         tagName : 'li',
@@ -32,7 +29,7 @@ var ProjectItem = B.View.extend({
         }
     }),
 
-    ProjectList = B.View.extend({
+    ProjectList = Backbone.View.extend({
 
         initialize : function() {
             this.listenTo(this.collection, 'reset', this.addAll);

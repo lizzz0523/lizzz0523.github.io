@@ -1,9 +1,6 @@
 define(function(require, exports, module) {
 
-var B = require('backbone'),
-    _ = require('underscore');
-
-var Project = B.Model.extend({
+var Project = Backbone.Model.extend({
         defaults : function() {
             return {
                 order : this.collection.length
@@ -11,7 +8,7 @@ var Project = B.Model.extend({
         }
     }),
 
-    Projects = B.Collection.extend({
+    Projects = Backbone.Collection.extend({
         model : Project,
     });
 
