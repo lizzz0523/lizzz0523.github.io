@@ -34,13 +34,11 @@ var PostItem = B.View.extend({
         },
 
         insert : function($parent) {
-            var delay = Math.random() * 500;
+            var delay = Math.floor(Math.random() * 500);
 
-            this.$el.css({
-                '-webkit-animation-delay' : delay + 'ms',
-                        'animation-delay' : delay + 'ms'
-            });
-            
+            this.el.style.WebkitAnimationDelay = delay + 'ms';
+            this.el.style.animationDelay = delay + 'ms';
+
             this.$el.appendTo($parent);
         },
 
