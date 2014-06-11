@@ -13,6 +13,7 @@ var Category = B.Model.extend({
 
         parse : function(data) {
             if (data.value == void 0) data.value = data.text;
+            return data;
         }
     }),
 
