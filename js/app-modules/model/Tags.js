@@ -4,7 +4,7 @@ var B = require('backbone'),
     _ = require('underscore');
 
 
-var Project = B.Model.extend({
+var Tag = B.Model.extend({
         defaults : function() {
             return {
                 order : this.collection.length
@@ -12,11 +12,14 @@ var Project = B.Model.extend({
         }
     }),
 
-    Projects = B.Collection.extend({
-        model : Project,
+    Tags = B.Collection.extend({
+        model : Tag,
+        comparator: function(tag1, tag2) {
+            return tag1.get('size') < tag2.get('size') ? 1 : -1;
+        }
     });
 
 
-module.exports = Projects;
-    
+module.exports = Tags;
+
 });

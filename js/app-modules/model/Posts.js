@@ -4,7 +4,7 @@ var B = require('backbone'),
     _ = require('underscore');
 
 
-var Project = B.Model.extend({
+var Post = B.Model.extend({
         defaults : function() {
             return {
                 order : this.collection.length
@@ -12,11 +12,11 @@ var Project = B.Model.extend({
         }
     }),
 
-    Projects = B.Collection.extend({
-        model : Project,
+    Posts = B.Collection.extend({
+        model : Post
     });
 
 
-module.exports = Projects;
+module.exports = Posts;
     
 });

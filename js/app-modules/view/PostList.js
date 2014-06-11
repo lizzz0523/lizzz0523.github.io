@@ -1,23 +1,14 @@
-(function(_, B, window){
+define(function(require, exports, module) {
+
+var B = require('backbone'),
+    _ = require('underscore');
+
 
 var tmpl = [
         '<div class="expt_date fx-300"><%= date %></div>',
         '<h3><a class="fx-300" href="<%= url %>" target="_blank"><%= title %></a></h3>',
         '<%= _.unescape(excerpt) %>'
     ].join('');
-
-
-var Post = B.Model.extend({
-        defaults : function() {
-            return {
-                order : this.collection.length
-            }
-        }
-    }),
-
-    Posts = B.Collection.extend({
-        model : Post
-    });
 
 
 var PostItem = B.View.extend({
@@ -65,60 +56,9 @@ var PostItem = B.View.extend({
                 this.curOffset.right += item.$el.outerHeight(true);
             }
         }
-    }),
-
-    Toolbar = B.View.extend({
-        initialize : function() {
-            this.$fake = B.$('<div />');
-            this.$fake.height(this.$el.outerHeight(true))
-            this.$fake.hide();
-
-            this.$el.before(this.$fake);
-
-            this.offsetTop = this.$el.offset().top;
-        },
-
-        updatePos : function(scrollTop) {
-            if (scrollTop >= this.offsetTop) {
-                this.$el.addClass('full-fixed');
-                this.$fake.show();
-            } else {
-                this.$el.removeClass('full-fixed');
-                this.$fake.hide();
-            }
-        }
     });
 
-
-(function() {
-
-var $win = B.$(window);
-
-
-var posts = new Posts(),
-
-    postList = new PostList({
-        el : B.$('#post-list')[0],
-        collection : posts
-    }),
-
-    toolbar = new Toolbar({
-        el : B.$('#post-toolbar')[0]
-    });
-
-
-
-B.$.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
-    _.each(data, function(data) {
-        posts.add(data, {silent : true});
-    });
-    posts.trigger('reset');
-});
-
-$win.on('scroll', function() {
-    toolbar.updatePos($win.scrollTop());
-});
-
-})();
     
-})(_, Backbone, this);
+module.exports = PostList;
+
+});

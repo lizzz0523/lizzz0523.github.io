@@ -1,21 +1,12 @@
-(function(_, B, window){
+define(function(require, exports, module) {
+
+var B = require('backbone'),
+    _ = require('underscore');
+    
 
 var tmpl = [
         '<%= category %> [<%= size %>]'
     ].join('');
-
-
-var Category = B.Model.extend({
-        defaults : function() {
-            return {
-                order : this.collection.length
-            }
-        }
-    }),
-
-    Categories = B.Collection.extend({
-        model : Category
-    });
 
 
 var CategoryItem = B.View.extend({
@@ -50,24 +41,7 @@ var CategoryItem = B.View.extend({
         }
     });
 
-
-(function() {
-
-var categories = new Categories(),
-
-    categoryList = new CategoryList({
-        el : B.$('#category-list')[0],
-        collection : categories
-    });
-
-B.$.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
-    _.each(data, function(data) {
-        categories.add(data, {silent : true});
-    });
-
-    categories.trigger('reset');
-});
-
-})();
     
-})(_, Backbone, this);
+module.exports = CategoryList;
+
+});

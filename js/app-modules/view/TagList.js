@@ -1,24 +1,12 @@
-(function(_, B, window){
+define(function(require, exports, module) {
+
+var B = require('backbone'),
+    _ = require('underscore');
+
 
 var tmpl = [
         '<%= tag %><sup><%= size %></sup>'
     ].join('');
-
-
-var Tag = B.Model.extend({
-        defaults : function() {
-            return {
-                order : this.collection.length
-            }
-        }
-    }),
-
-    Tags = B.Collection.extend({
-        model : Tag,
-        comparator: function(tag1, tag2) {
-            return tag1.get('size') < tag2.get('size') ? 1 : -1;
-        }
-    });
 
 
 var TagItem = B.View.extend({
@@ -54,23 +42,6 @@ var TagItem = B.View.extend({
     });
 
 
-(function() {
+module.exports = TagList;
 
-var tags = new Tags(),
-
-    tagList = new TagList({
-        el : B.$('#tag-list')[0],
-        collection : tags
-    });
-
-B.$.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
-    _.each(data, function(data) {
-        tags.add(data, {silent : true});
-    });
-
-    tags.trigger('reset');
 });
-
-})();
-    
-})(_, Backbone, this);
