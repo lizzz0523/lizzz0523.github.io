@@ -48,7 +48,7 @@ var
 
             this.$el.appendTo($parent);
 
-            if (!slient) {
+            if (!silent) {
                 this.$el.addClass('fade-out');
 
                 /*
