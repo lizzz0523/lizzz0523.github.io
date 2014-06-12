@@ -58,7 +58,7 @@ var PostItem = B.View.extend({
 
             this.curOffset = {
                 left : 0,
-                right : this.$tag.outerHeight()
+                right : this.$tag.outerHeight() + PostList.COMMENT_OFFSET
             };
 
             this.items = [];
@@ -96,7 +96,7 @@ var PostItem = B.View.extend({
         toggleAll : function() {
             this.curOffset = {
                 left : 0,
-                right : this.$tag.outerHeight()
+                right : this.$tag.outerHeight() + PostList.COMMENT_OFFSET
             };
 
             _.each(this.items, this.toggleOne, this);
@@ -106,6 +106,8 @@ var PostItem = B.View.extend({
             item.remove();
             this.insertItem(item);
         }
+    }, {
+        COMMENT_OFFSET : 350
     });
 
     

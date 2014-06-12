@@ -18,6 +18,21 @@ scripts: [jquery-1.8.2.min, underscore-min, backbone-min]
             <div class="post_comment">
                 <!-- duoshuo comment start -->
                 <div class="ds-thread" {% if page.id %}data-thread-key="{{ page.id }}" {% endif %}data-title="{{ site.name }}{% if page.title %} | {{ page.title }}{% endif %}" data-form-position="top" data-order="desc"></div>
+                <script type="text/javascript">
+                    var duoshuoQuery = {
+                        short_name: 'lizzz0523'
+                    };
+
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
                 <!-- duoshuo comment end -->
             </div>
         </div>
@@ -25,19 +40,3 @@ scripts: [jquery-1.8.2.min, underscore-min, backbone-min]
     <!-- post end -->
 
 </div>
-
-<script type="text/javascript">
-    var duoshuoQuery = {
-        short_name: 'lizzz0523'
-    };
-
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';
-        ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-</script>

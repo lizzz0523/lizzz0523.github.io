@@ -1,5 +1,6 @@
 ---
 layout: default
+title: Blog
 scripts: [sea, sea-config, blog]
 ---
 
@@ -35,6 +36,26 @@ scripts: [sea, sea-config, blog]
             <ul class="expt_list-right">
                 <li class="expt_tag"><p id="tag-list"></p></li>
             </ul>
+            <div class="expt_comment">
+                <!-- duoshuo comment start -->
+                <div class="ds-thread" {% if page.id %}data-thread-key="{{ page.id }}" {% endif %}data-title="{{ site.name }}{% if page.title %} | {{ page.title }}{% endif %}" data-form-position="top" data-order="desc"></div>
+                <script type="text/javascript">
+                    var duoshuoQuery = {
+                        short_name: 'lizzz0523'
+                    };
+
+                    (function() {
+                        var ds = document.createElement('script');
+                        ds.type = 'text/javascript';
+                        ds.async = true;
+                        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+                        ds.charset = 'UTF-8';
+
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+                    })();
+                </script>
+                <!-- duoshuo comment end -->
+            </div>
         </div>
     </div>
     <!-- post list end -->
