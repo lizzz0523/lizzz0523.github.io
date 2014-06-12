@@ -198,18 +198,24 @@ var
         adjustOffset : function() {
             var len = this.items.length,
                 start = len,
-                offset = 0;
+                offset = 0,
+                item,
+                items = [];
 
             while (start--) {
-                offset += this.items[start].height();
-                if(offset >= PostList.COMMENT_OFFSET) {
-                    break;
+                item = this.items[start];
+
+                if (item.isVisible()) {
+                    items.push(item);
+                    offset += item.height();
+
+                    if (offset >= PostList.COMMENT_OFFSET) {
+                        break;
+                    }
                 }
             }
 
-            while (start < len) {
-                this.items[start++].insert(this.$left, true);
-            }
+            _.invoke(items, 'insert', this.$left, true);
         }
     }, {
         COMMENT_OFFSET : 350
