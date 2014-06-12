@@ -191,7 +191,7 @@ var
             this.adjustOffset();
         },
 
-        toggleOne : function() {
+        toggleOne : function(item) {
             this.insertItem(item.render());
         },
 
