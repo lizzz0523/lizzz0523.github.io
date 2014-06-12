@@ -208,7 +208,7 @@ var
             }
 
             while (start < len) {
-                this.items[start++].insert（this.$left, true);
+                this.items[start++].insert(this.$left, true);
             }
         }
     }, {
