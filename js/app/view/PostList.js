@@ -206,7 +206,7 @@ var
                 item = this.items[start];
 
                 if (item.isVisible()) {
-                    items.push(item);
+                    items.unshift(item);
                     offset += item.height();
 
                     if (offset >= PostList.COMMENT_OFFSET) {
