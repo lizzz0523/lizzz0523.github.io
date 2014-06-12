@@ -16,6 +16,8 @@ var PostItem = B.View.extend({
 
         tagName : 'li',
 
+        className : 'expt_item',
+
         initialize : function() { },
 
         render : function() {
