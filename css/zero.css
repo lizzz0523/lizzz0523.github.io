@@ -624,6 +624,7 @@ a, a:hover {
 }
 
 .excerpt .expt_comment {
+    padding: 20px 0;
     width: 100%;
     float: right;
 }
