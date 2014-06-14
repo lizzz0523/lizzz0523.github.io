@@ -13,6 +13,9 @@ var
     tmpl = [
         '<div class="expt_date fx-300"><%= date %></div>',
         '<h3><a class="fx-300" href="<%= url %>" target="_blank"><%= title %></a></h3>',
+        '<div class="expt_info">',
+            '<p><i class="fa fa-tag"></i><% for(var i = 0; i < tags.length; i++){ %><span><%= tags[i] %></span><% } %></p>',
+        '</div>',
         '<%= _.unescape(excerpt) %>'
     ].join('');
 
