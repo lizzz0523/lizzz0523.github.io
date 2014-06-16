@@ -273,7 +273,7 @@ var
             _.each(this.items, function(item) {
                 var offset = item.offset(scrollTop);
 
-                if (offset > 0 && offset < min) {
+                if (offset > PostList.TOP_OFFSET && offset < min) {
                     date = item.getDate();
                     min = offset;
                 }
@@ -282,7 +282,8 @@ var
             return date;
         }
     }, {
-        COMMENT_OFFSET : 350
+        COMMENT_OFFSET : 350,
+        TOP_OFFSET : 100
     });
 
     
