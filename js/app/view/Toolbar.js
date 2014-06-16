@@ -52,7 +52,7 @@ var Toolbar = B.View.extend({
             queue.add(fx, function() {
                 _.delay(function() {
                     queue.next(fx);
-                }, 160);
+                }, 100);
             }, this);
 
             queue.add(fx, function() {
@@ -77,6 +77,7 @@ var Toolbar = B.View.extend({
             }));
 
             this.$title.animate({scrollTop : 28}, 300, _.bind(function() {
+                this.$title.scrollTop(0);
                 this.$title.html(title);
                 this.curTitle = title;
                 this.animated = false;
