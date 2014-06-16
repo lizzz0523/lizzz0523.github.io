@@ -1,12 +1,14 @@
 define(function(require, exports, module) {
 
-var $ = require('jquery');
+var $ = require('jquery'),
+    _ = require('underscore');
+
 
 var $win = $(window),
     
     queue = {
         add : function(name, callback, context) {
-            return $win.queue(name, $.proxy(callback, context || window));
+            return $win.queue(name, _.bind(callback, context || window));
         },
 
         next : function(name) {
