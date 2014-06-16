@@ -44,7 +44,7 @@ var Toolbar = B.View.extend({
         },
 
         setTitle : function(title) {
-            var isEmpty = !queue.size('slide'),
+            var isEmpty = queue.size('slide') == 0,
                 fx = 'slide';
 
             queue.clear(fx);

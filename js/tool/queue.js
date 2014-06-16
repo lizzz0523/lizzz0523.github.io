@@ -20,7 +20,7 @@ var $win = $(window),
         },
 
         size : function(name) {
-            return $win.queue(name).length == 0;
+            return $win.queue(name).length;
         }
     };
 
