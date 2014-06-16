@@ -91,6 +91,8 @@ var
 
                     queue.next('fade');
                 }, this);
+
+                queue.next('fade');
             }
         },
 
