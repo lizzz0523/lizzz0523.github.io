@@ -16,7 +16,7 @@ var TagItem = B.View.extend({
 
         className : 'fx-300',
 
-        initialize : function(options) { },
+        initialize : function() { },
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));

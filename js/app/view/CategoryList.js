@@ -14,7 +14,7 @@ var CategoryItem = B.View.extend({
 
         tagName : 'option',
 
-        initialize : function(options) { },
+        initialize : function() { },
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
