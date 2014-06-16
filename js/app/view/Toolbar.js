@@ -44,24 +44,25 @@ var Toolbar = B.View.extend({
         },
 
         setTitle : function(title) {
-            var isEmpty = !queue.size('slide');
+            var isEmpty = !queue.size('slide'),
+                fx = 'slide';
 
-            queue.clear('slide');
+            queue.clear(fx);
 
-            queue.add('slide', function() {
+            queue.add(fx, function() {
                 _.delay(function() {
-                    queue.next('slide');
+                    queue.next(fx);
                 });
             }, this);
 
-            queue.add('slide', function() {
+            queue.add(fx, function() {
                 this.slideTitle(title, function() {
-                    queue.next('slide');
+                    queue.next(fx);
                 });
             }, this);
 
             if (isEmpty && !this.animated) {
-                queue.next('slide');
+                queue.next(fx);
             }
         },
 

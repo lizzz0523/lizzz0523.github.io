@@ -37,7 +37,9 @@ var
 
         className : 'expt_item',
 
-        initialize : function() {
+        initialize : function(options) {
+            this.id = options.id;
+
             /*
                 获取文章对应的月份，如：JAN 2012
             */
@@ -56,7 +58,8 @@ var
         },
 
         insert : function($parent, silent) {
-            var delay = Math.floor(Math.random() * 500);
+            var delay = Math.floor(Math.random() * 500),
+                fx = 'fade-' +  this.id;
 
             /*
                 将列表项插入的dom树中
@@ -73,26 +76,26 @@ var
                     是因为，无法直接在elem.style属性中插入animation-delay属性
                 */
 
-                queue.add('fade', function() {
+                queue.add(fx, function() {
                     this.$el.addClass('fade-out');
 
-                    queue.next('fade');
+                    queue.next(fx);
                 }, this);
 
-                queue.add('fade', function() {
+                queue.add(fx, function() {
                     _.delay(function() {
-                        queue.next('fade');
+                        queue.next(fx);
                     }, delay);
                 }, this)
 
-                queue.add('fade', function() {
+                queue.add(fx, function() {
                     this.$el.removeClass('fade-out');
                     this.$el.addClass('fade-in');
 
-                    queue.next('fade');
+                    queue.next(fx);
                 }, this);
 
-                queue.next('fade');
+                queue.next(fx);
             }
         },
 
