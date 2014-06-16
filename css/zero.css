@@ -600,9 +600,11 @@ a, a:hover {
     background-color: #c00;
 }
 
-.excerpt .expt_tag {
-    position: relative;
+.excerpt .expt_tag,
+.excerpt .expt_comment {
     padding: 20px 0;
+    width: 100%;
+    float: right;
 }
 
 .excerpt .expt_tag p {
@@ -641,12 +643,6 @@ a, a:hover {
     background: #c00;
     color: white;
     font-size: 12px;
-}
-
-.excerpt .expt_comment {
-    padding: 20px 0;
-    width: 100%;
-    float: right;
 }
 
 .excerpt .expt_inner {

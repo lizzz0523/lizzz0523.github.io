@@ -33,9 +33,8 @@ scripts: [sea, sea-config, blog]
     <div id="post-list" class="excerpt">
         <div class="expt_inner ac cfx">
             <ul class="expt_list-left"></ul>
-            <ul class="expt_list-right">
-                <li class="expt_tag"><p id="tag-list"></p></li>
-            </ul>
+            <div class="expt_tag"><p id="tag-list"></p></div>
+            <ul class="expt_list-right"></ul>
             <div class="expt_comment">
                 <!-- duoshuo comment start -->
                 <div class="ds-thread" {% if page.id %}data-thread-key="/blog" {% endif %}data-title="{{ site.name }}{% if page.title %} | {{ page.title }}{% endif %}" data-form-position="top" data-order="desc"></div>
