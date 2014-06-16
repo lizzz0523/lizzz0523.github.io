@@ -400,10 +400,16 @@ a, a:hover {
 }
 
 .toolbar h3 {
+    height: 28px;
     line-height: 28px;
+    overflow: hidden;
     color: white;
     font-size: 18px;
     font-weight: bold;
+}
+
+.toolbar h3 span {
+    display: block;
 }
 
 .toolbar .tb_search-input {

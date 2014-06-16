@@ -1,6 +1,8 @@
 define(function(require, exports, module) {
 
-var B = require('backbone'),
+var queue = require('tool/queue'),
+
+    B = require('backbone'),
     _ = require('underscore');
 
 
@@ -17,7 +19,9 @@ var
             '<p><i class="fa fa-tag"></i><% for(var i = 0; i < tags.length; i++){ %><span><%= tags[i] %></span><% } %></p>',
         '</div>',
         '<%= _.unescape(excerpt) %>'
-    ].join('');
+    ].join(''),
+
+    dateRex = /^\d{2}\s((?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\s\d{4})$/i;
 
 
 var 
@@ -33,7 +37,18 @@ var
 
         className : 'expt_item',
 
-        initialize : function() { },
+        initialize : function() {
+            /*
+                获取文章对应的月份，如：JAN 2012
+            */
+
+            this.date = this.model.get('date').replace(dateRex, function(all, month) {
+                return month;
+            });
+
+
+            this.listenTo(this.model, 'select', this.toggleVisible);
+        },
 
         render : function() {
             this.$el.html(this.template(this.model.toJSON()));
@@ -52,17 +67,30 @@ var
             this.$el.appendTo($parent);
 
             if (!silent) {
-                this.$el.addClass('fade-out');
 
                 /*
                     这里之所以会用js来控制delay
                     是因为，无法直接在elem.style属性中插入animation-delay属性
                 */
 
-                _.delay(function($el) {
-                    $el.removeClass('fade-out');
-                    $el.addClass('fade-in');
-                }, delay, this.$el);
+                queue.add('fade', function() {
+                    this.$el.addClass('fade-out');
+
+                    queue.next('fade');
+                }, this);
+
+                queue.add('fade', function() {
+                    _.delay(function() {
+                        queue.next('fade');
+                    }, delay);
+                }, this)
+
+                queue.add('fade', function() {
+                    this.$el.removeClass('fade-out');
+                    this.$el.addClass('fade-in');
+
+                    queue.next('fade');
+                }, this);
             }
         },
 
@@ -72,7 +100,6 @@ var
             */
 
             this.$el.removeClass('fade-in');
-
             this.$el.detach();
         },
 
@@ -80,8 +107,20 @@ var
             return this.$el.outerHeight(true);
         },
 
+        offset : function(scrollTop) {
+            return this.$el.offset().top - (scrollTop || 0);
+        },
+
+        toggleVisible : function(visible) {
+            this.visible = visible;
+        },
+
         isVisible : function() {
-            return this.model.get('visible');
+            return this.visible;
+        },
+
+        getDate : function() {
+            return this.date;
         }
     }),
 
@@ -95,6 +134,7 @@ var
             this.$left = this.$('.expt_list-left');
             this.$right = this.$('.expt_list-right');
             this.$tag = this.$('.expt_tag');
+            this.$comment = this.$('.expt_comment');
 
 
             /*
@@ -108,7 +148,7 @@ var
                 当post数据发送变化时，
                 collection会触发update事件
             */
-            this.listenTo(this.collection, 'update', this.toggleAll);
+            this.listenTo(this.collection, 'update', this.updateAll);
         },
 
         clearItems : function() {
@@ -161,12 +201,12 @@ var
                 model : model,
                 id : 'post-item-' + model.get('order')
             });
+
             this.items.push(item);
-            
             this.insertItem(item.render());
         },
 
-        toggleAll : function() {
+        updateAll : function() {
             /*
                 首先从dom树移除所有的item
                 重置curOffset
@@ -184,7 +224,7 @@ var
                 从新生成渲染和插入dom树
             */
 
-            _.each(this.items, this.toggleOne, this);
+            _.each(this.items, this.updateOne, this);
 
             /*
                 最后调整列表项的位置
@@ -194,7 +234,7 @@ var
             this.adjustOffset();
         },
 
-        toggleOne : function(item) {
+        updateOne : function(item) {
             this.insertItem(item.render());
         },
 
@@ -219,6 +259,22 @@ var
             }
 
             _.invoke(items, 'insert', this.$left, true);
+        },
+
+        getCurDate : function(scrollTop) {
+            var min = Number.POSITIVE_INFINITY,
+                date;
+
+            _.each(this.items, function(item) {
+                var offset = item.offset(scrollTop);
+
+                if (offset > 0 && offset < min) {
+                    date = item.getDate();
+                    min = offset;
+                }
+            });
+
+            return date;
         }
     }, {
         COMMENT_OFFSET : 350

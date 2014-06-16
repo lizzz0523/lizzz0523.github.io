@@ -8,7 +8,7 @@ var Post = B.Model.extend({
         defaults : function() {
             return {
                 order : this.collection.length,
-                visible : false
+                selected : false
             }
         }
     }),

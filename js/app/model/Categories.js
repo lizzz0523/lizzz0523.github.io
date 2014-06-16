@@ -9,6 +9,14 @@ var Category = B.Model.extend({
             return {
                 order : this.collection.length
             }
+        },
+
+        parse : function(data) {
+            if (data.value == void 0) {
+                data.value = data.text;
+            }
+            
+            return data;
         }
     }),
 

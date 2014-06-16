@@ -1,5 +1,7 @@
 seajs.use([
     'jquery',
+    'tool/queue',
+
     'app/model/Categories',
     'app/model/Tags',
     'app/model/Posts',
@@ -7,10 +9,7 @@ seajs.use([
     'app/view/TagList',
     'app/view/PostList',
     'app/view/Toolbar'
-], function($, Categories, Tags, Posts, CategoryList, TagList, PostList, Toolbar) {
-
-    var $win = $(window);
-
+], function($, queue, Categories, Tags, Posts, CategoryList, TagList, PostList, Toolbar) {
 
     var categories = new Categories(),
 
@@ -41,17 +40,23 @@ seajs.use([
 
     function switchCategory(value) {
         posts.each(function(post) {
-            var categories = post.get('categories');
+            var categories = post.get('categories'),
+                dataOpts = {
+                    silent : true
+                };
 
             if (value != 'all') {
-                post.set({'visible' : false}, {silent : true});
+                post.set({'selected' : false}, dataOpts);
+                post.trigger('select', false);
             } else {
-                post.set({'visible' : true}, {silent : true});
+                post.set({'selected' : true}, dataOpts);
+                post.trigger('select', true);
             }
 
             $.each(categories, function(index, category) {
                 if (category == value) {
-                    post.set({'visible' : true}, {silent : true});
+                    post.set({'selected' : true}, dataOpts);
+                    post.trigger('select', true);
                 }
             });
         });
@@ -60,66 +65,79 @@ seajs.use([
     }
 
 
-    $win.queue('data', [
-        function() {
-            $.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
-                var total = 0;
+    queue.add('data', function() {
+        $.getJSON('http://lizzz0523.github.io/data/categories.json?' + Math.random(), function(data) {
+            var total = 0,
+                dataOpts = {
+                    silent : true,
+                    parse : true
+                };
 
-                $.each(data, function(index, data) {
-                    if (data.value == void 0) {
-                        data.value = data.text;
-                    }
-                    categories.add(data, {silent : true});
-
-                    total += data['size'] || 0;
-                });
-
-                categories.unshift({
-                    'text'  : '全部文章',
-                    'size'  : total,
-                    'value' : 'all'
-                }, {silent : true});
-
-                categories.trigger('reset');
-
-                $win.dequeue('data');
+            $.each(data, function(index, data) {
+                categories.add(data, dataOpts);
+                total += data['size'] || 0;
             });
-        },
 
-        function() {
-            $.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
-                $.each(data, function(index, data) {
-                    tags.add(data, {silent : true});
-                });
+            categories.unshift({
+                'text'  : '全部文章',
+                'size'  : total,
+                'value' : 'all'
+            }, dataOpts);
 
-                tags.trigger('reset');
+            categories.trigger('reset');
 
-                $win.dequeue('data');
+            queue.next('data');
+        });
+    });
+
+    queue.add('data', function() {
+        $.getJSON('http://lizzz0523.github.io/data/tags.json?' + Math.random(), function(data) {
+            var dataOpts = {
+                    silent : true
+                };
+
+            $.each(data, function(index, data) {
+                tags.add(data, dataOpts);
             });
-        },
 
-        function() {
-            $.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
-                $.each(data, function(index, data) {
-                    posts.add(data, {silent : true});
-                });
+            tags.trigger('reset');
 
-                posts.trigger('reset');
+            queue.next('data');
+        });
+    });
 
-                $win.dequeue('data');
+    queue.add('data', function() {
+        $.getJSON('http://lizzz0523.github.io/data/posts.json?' + Math.random(), function(data) {
+            var dataOpts = {
+                    silent : true
+                };
+
+            $.each(data, function(index, data) {
+                posts.add(data, dataOpts);
             });
-        },
 
-        function() {
-            categoryList.on('change', switchCategory)
-            categoryList.select('all');
-        }
-    ]);
+            posts.trigger('reset');
 
-    $win.dequeue('data');
+            queue.next('data');
+        });
+    });
 
-    $win.on('scroll', function() {
-        toolbar.updatePos($win.scrollTop());
+    queue.add('data', function() {
+        categoryList.on('change', switchCategory);
+        categoryList.select('all');
+
+        queue.next('data');
+    });
+
+    queue.next('data');
+
+
+    $(window).on('scroll', function() {
+        var scrollTop = $(window).scrollTop(),
+            title = postList.getCurDate(scrollTop),
+            fixed = toolbar.updatePos(scrollTop);
+        
+        toolbar.setTitle(!fixed ? 'Latest' : title || 'Latest');
     });
     
 });

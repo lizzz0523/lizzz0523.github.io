@@ -34,7 +34,6 @@ var ProjectItem = Backbone.View.extend({
     }),
 
     ProjectList = Backbone.View.extend({
-
         initialize : function() {
             this.listenTo(this.collection, 'reset', this.addAll);
         },
