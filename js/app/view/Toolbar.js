@@ -52,7 +52,7 @@ var Toolbar = B.View.extend({
             queue.add(fx, function() {
                 _.delay(function() {
                     queue.next(fx);
-                });
+                }, 160);
             }, this);
 
             queue.add(fx, function() {
