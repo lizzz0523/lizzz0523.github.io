@@ -137,7 +137,9 @@ seajs.use([
             title = postList.getCurDate(scrollTop),
             fixed = toolbar.updatePos(scrollTop);
         
-        toolbar.setTitle(!fixed ? 'Latest' : title || 'Latest');
+        if (title) {
+            toolbar.setTitle(!fixed ? 'Latest' : title);
+        }
     });
     
 });
