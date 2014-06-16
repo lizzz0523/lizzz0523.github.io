@@ -75,7 +75,7 @@ var Toolbar = B.View.extend({
                 oldTitle : this.curTitle
             }));
 
-            this.$title.animate({scrollTop : 28}, 300, $.proxy(function() {
+            this.$title.animate({scrollTop : 28}, 300, _.bind(function() {
                 this.$title.html(title);
                 this.curTitle = title;
                 this.animated = false;
