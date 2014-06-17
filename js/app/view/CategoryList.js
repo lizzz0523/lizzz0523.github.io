@@ -38,11 +38,11 @@ var CategoryItem = B.View.extend({
 
         addOne : function(model) {
             var item = new CategoryItem({
-                model : model,
-                id : 'category-item-' + model.get('order')
-            });
+                    model : model,
+                    id : 'category-item-' + model.get('order')
+                });
 
-            this.$el.append(item.render().el);
+            this.$el.append(item.render().$el);
         },
 
         select : function(value) {

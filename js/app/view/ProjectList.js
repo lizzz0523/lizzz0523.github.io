@@ -44,11 +44,11 @@ var ProjectItem = Backbone.View.extend({
 
         addOne : function(model) {
             var item = new ProjectItem({
-                model : model,
-                id : 'project-item-' + model.get('order')
-            });
+                    model : model,
+                    id : 'project-item-' + model.get('order')
+                });
 
-            this.$el.append(item.render().el);
+            this.$el.append(item.render().$el);
         }
     });
 

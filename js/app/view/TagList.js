@@ -26,6 +26,9 @@ var TagItem = B.View.extend({
 
     TagList = B.View.extend({
         initialize : function() {
+            this.line = 0;
+            this.lockLine = 0;
+
             this.listenTo(this.collection, 'reset', this.addAll);
         },
 
@@ -35,12 +38,32 @@ var TagItem = B.View.extend({
 
         addOne : function(model) {
             var item = new TagItem({
-                model : model,
-                id : 'tag-item-' + model.get('order')
-            });
+                    model : model,
+                    id : 'tag-item-' + model.get('order')
+                }),
 
-            this.$el.append(item.render().el);
+                curTop,
+                top;
+
+            if (this.lockLine !== true) {
+                this.$el.append(item.render().$el);
+
+                curTop = this.lockLine;
+                top = item.$el.position().top;
+
+                if (curTop != top) {
+                    this.line++;
+                }
+                this.lockLine = top;
+
+                if (this.line > TagList.MAX_LINE) {
+                    this.lockLine = true;
+                    item.$el.detach();
+                }
+            }
         }
+    }, {
+        MAX_LINE : 3
     });
 
 

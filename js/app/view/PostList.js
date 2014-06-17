@@ -203,9 +203,9 @@ var
 
         addOne : function(model) {
             var item = new PostItem({
-                model : model,
-                id : 'post-item-' + model.get('order')
-            });
+                    model : model,
+                    id : 'post-item-' + model.get('order')
+                });
 
             this.items.push(item);
             this.insertItem(item.render());

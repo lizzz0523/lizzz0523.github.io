@@ -616,7 +616,6 @@ a, a:hover {
 .excerpt .expt_tag p {
     padding: 10px;
     border-radius: 5px;
-    min-height: 160px;
     background-color: #eee;
 }
 
