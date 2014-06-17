@@ -32,7 +32,7 @@ var TagItem = B.View.extend({
             this.listenTo(this.collection, 'reset', this.addAll);
         },
 
-        insertItem : function(item) {,
+        insertItem : function(item) {
             var curTop,
                 top;
 
