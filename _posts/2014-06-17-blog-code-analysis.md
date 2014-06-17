@@ -45,20 +45,20 @@ __Transform your plain text into static websites and blogs.__
     layout: nil
     ---
 
-    [{% for post in site.posts %}
+    [{ for post in site.posts }
         {
-            "title"   : "{{ post.title }}",
-            "url"     : "{{ site.url }}{{ post.url }}",
-            "excerpt" : "{{ post.excerpt | escape | strip_newlines }}",
-            "date"    : "{{ post.date | date_to_string }}",
-            "tags"    : [{% for tag in post.tags %}
-                            "{{ tag }}"{% if forloop.last == false %},{% endif %}
-                        {% endfor %}],
-            "categories"    : [{% for category in post.categories %}
-                            "{{ category }}"{% if forloop.last == false %},{% endif %}
-                        {% endfor %}]
-        }{% if forloop.last == false %},{% endif %}
-    {% endfor %}]
+            "title"   : "{ post.title }",
+            "url"     : "{ site.url }{ post.url }",
+            "excerpt" : "{ post.excerpt | escape | strip_newlines }",
+            "date"    : "{ post.date | date_to_string }",
+            "tags"    : [{ for tag in post.tags }
+                            "{ tag }"{ if forloop.last == false },{ endif }
+                        { endfor }],
+            "categories"    : [{ for category in post.categories }
+                            "{ category }"{ if forloop.last == false },{ endif }
+                        { endfor }]
+        }{ if forloop.last == false },{ endif }
+    { endfor }]
 
 {% endhighlight %}
 
@@ -106,28 +106,28 @@ _第二_：在layouts文件夹下的default.html模板中把statistics.html模�
     <html lang="en">
     <head>
     <meta charset="UTF-8">
-    <title>{{ site.name }}{% if page.title %} | {{ page.title }}{% endif %}</title>
+    <title>Zero I/0</title>
     </head>
     <body>
 
     <div class="canvas">
 
-    {% include header.html %}
+    { include header.html }
 
     <!-- page content start -->
     <div class="page_content">
 
-    {{ content }}
+    { content }
 
     </div>
     <!-- page content end -->
 
-    {% include footer.html %}
+    { include footer.html }
 
     </div>
 
     <!-- 引入 statistics.html 模块 -->
-    {% include statistics.html %}
+    { include statistics.html }
 
     </body>
     </html>
@@ -135,6 +135,13 @@ _第二_：在layouts文件夹下的default.html模板中把statistics.html模�
 {% endhighlight %}
 
 具体位置，就自己决定把。未免她影响到我其他代码的运行，我是把它放在了body标签结束之前才添加的。
+
+
+#### 调试
+
+最后说说调试问题，最好的做法，当然是在本地安装一下__Jekyll__，具体安装方法在[官网][3]上有。但我还是嫌麻烦，因为__Jekyll__是基于Ruby的，而我本地已经安装了php，mysql，nodejs，mongodb等平台，真系不想只为了调试一下博客再去安装一个Ruby。
+
+所以我觉得还是用回前端的调试方法--_Fiddler_，每次调试完一个功能再commit到github上。
 
 
 [1]: https://github.com/lizzz0523
