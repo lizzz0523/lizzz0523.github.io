@@ -32,17 +32,8 @@ var TagItem = B.View.extend({
             this.listenTo(this.collection, 'reset', this.addAll);
         },
 
-        addAll : function() {
-            this.collection.each(this.addOne, this)
-        },
-
-        addOne : function(model) {
-            var item = new TagItem({
-                    model : model,
-                    id : 'tag-item-' + model.get('order')
-                }),
-
-                curTop,
+        insertItem : function(item) {,
+            var curTop,
                 top;
 
             if (this.lockLine !== true) {
@@ -61,6 +52,19 @@ var TagItem = B.View.extend({
                     item.$el.detach();
                 }
             }
+        },
+
+        addAll : function() {
+            this.collection.each(this.addOne, this)
+        },
+
+        addOne : function(model) {
+            var item = new TagItem({
+                    model : model,
+                    id : 'tag-item-' + model.get('order')
+                });
+
+            this.insertItem(item);
         }
     }, {
         MAX_LINE : 3
