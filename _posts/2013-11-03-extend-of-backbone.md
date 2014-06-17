@@ -2,7 +2,7 @@
 layout: post
 title: Backbone extend 方法
 categories: [javascript]
-tags: [backbone, extend, inheritance, class]
+tags: [backbone, extend, inheritance, code analysis]
 ---
 
 
