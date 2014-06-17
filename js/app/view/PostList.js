@@ -282,7 +282,7 @@ var
             return date;
         }
     }, {
-        COMMENT_OFFSET : 350,
+        COMMENT_OFFSET : 500,
         TOP_OFFSET : 30
     });
 
