@@ -13,7 +13,7 @@ tags: [blog, code analysis]
 
 好了废话说完了，这篇博文主要是记录一下，建立github page过程中我的一些经验和想法。
 
-首先说明一下，github page其实就是github上的一个repository，只是这个repo比较特殊，它的名字必须以`{{ username }}.github.io`这样的格式给出，其中username是你在github上的用户名。所以，我的整个博客，大家都可以在我的[github][1]上找到[源码][2]。
+首先说明一下，github page其实就是github上的一个repository，只是这个repo比较特殊，它的名字必须以`{ username }.github.io`这样的格式给出，其中username是你在github上的用户名。所以，我的整个博客，大家都可以在我的[github][1]上找到[源码][2]。
 
 
 #### Jekyll
