@@ -37,7 +37,7 @@ var TagItem = B.View.extend({
                 top;
 
             if (this.lockLine !== true) {
-                this.$el.append(item.render().$el);
+                this.$el.append(item.$el);
 
                 curTop = this.lockLine;
                 top = item.$el.position().top;
@@ -64,7 +64,7 @@ var TagItem = B.View.extend({
                     id : 'tag-item-' + model.get('order')
                 });
 
-            this.insertItem(item);
+            this.insertItem(item.render());
         }
     }, {
         MAX_LINE : 3

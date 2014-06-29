@@ -57,7 +57,7 @@ var
             return this;
         },
 
-        insert : function($parent, silent) {
+        insertTo : function($parent, silent) {
             var delay = Math.floor(Math.random() * 500),
                 fx = 'fade-' +  this.id;
 
@@ -164,10 +164,10 @@ var
             if (!item.isVisible()) return;
 
             if (this.curOffset.left <= this.curOffset.right) {
-                item.insert(this.$left);
+                item.insertTo(this.$left);
                 this.curOffset.left += item.height();
             } else {
-                item.insert(this.$right);
+                item.insertTo(this.$right);
                 this.curOffset.right += item.height();
             }
         },
@@ -263,7 +263,7 @@ var
                 }
             }
 
-            _.invoke(items, 'insert', this.$left, true);
+            _.invoke(items, 'insertTo', this.$left, true);
         },
 
         getCurDate : function(scrollTop) {

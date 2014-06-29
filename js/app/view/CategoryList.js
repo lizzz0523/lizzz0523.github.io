@@ -32,6 +32,10 @@ var CategoryItem = B.View.extend({
             this.listenTo(this.collection, 'reset', this.addAll);
         },
 
+        insertItem : function(item) {
+            this.$el.append(item.$el);
+        },
+
         addAll : function() {
             this.collection.each(this.addOne, this)
         },
@@ -42,7 +46,7 @@ var CategoryItem = B.View.extend({
                     id : 'category-item-' + model.get('order')
                 });
 
-            this.$el.append(item.render().$el);
+            this.insertItem(item.render());
         },
 
         select : function(value) {
