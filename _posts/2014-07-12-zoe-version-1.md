@@ -46,7 +46,7 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
         </p>
     </div>
 
-{% endhighli %}
+{% endhighlight %}
 
 你只需在某个div标签中，按照`name[param1=value1, param2=value2, ...]`格式配置`data-zoe`属性，则__Zoe__内部的扫描程序，就会自动获取到这些配置信息，并对Slider组件进行初始化。
 
