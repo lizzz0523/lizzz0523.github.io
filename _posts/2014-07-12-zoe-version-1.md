@@ -97,7 +97,7 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
 在_sea-config.js_文件中，有这么一句：
 
 {% highlight javascript %}
-    
+
     sea.use('zoe');
 
 {% endhighlight %}
@@ -117,9 +117,7 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
         这里是app.js文件
     */
     define(function(require, exports, module) {
-
         var zoe = require('zoe');
-
     });
 
 {% endhighlight %}
@@ -132,13 +130,10 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
         这里是app.js文件
     */
     define(function(require, exports, module) {
-
         var zoe = require('zoe');
-
         zoe(function() {
             // 这里的回调就是当所有组件都初始化完毕才执行的
         });
-
     });
 
 {% endhighlight %}
@@ -151,13 +146,10 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
         这里是app.js文件
     */
     define(function(require, exports, module) {
-
         var zoe = require('zoe');
-
         zoe(function() {
             var view = zoe.find('view-id');
         });
-
     });
 
 {% endhighlight %}
