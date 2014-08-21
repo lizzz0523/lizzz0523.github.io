@@ -132,7 +132,7 @@ seajs.use([
     queue.next('data');
 
 
-    $(window).on('scroll', function() {
+    $(window).on('scroll touchmove', function() {
         var scrollTop = $(window).scrollTop(),
             title = postList.getCurDate(scrollTop),
             fixed = toolbar.updatePos(scrollTop);
