@@ -24,20 +24,35 @@ var Toolbar = B.View.extend({
 
             this.$el.before(this.$fake);
 
+            this.height = this.$el.height();
             this.offsetTop = this.$el.offset().top;
+            this.fixed = false;
+
             this.curTitle = this.$title.html();
             this.animated = false;
         },
 
         updatePos : function(scrollTop) {
-            if (scrollTop >= this.offsetTop) {
-                this.$el.addClass('full-fixed');
-                this.$fake.show();
+            var $elem = this.$el,
+                $fake = this.$fake;
+
+            if (scrollTop >= this.offsetTop + this.height && !this.fixed) {
+                $elem.addClass('full-fixed');
+                $fake.show();
+
+                $elem.css('top', -this.height);
+                _.delay(function() {
+                    $elem.animate({top : 0}, 'fast');
+                }, 300);
+
+                this.fixed = true;
 
                 return true;
             } else {
                 this.$el.removeClass('full-fixed');
                 this.$fake.hide();
+
+                this.fixed = false;
 
                 return false;
             }
