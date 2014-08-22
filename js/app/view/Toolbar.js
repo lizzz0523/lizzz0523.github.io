@@ -24,7 +24,7 @@ var Toolbar = B.View.extend({
 
             this.$el.before(this.$fake);
 
-            this.height = this.$el.height();
+            this.height = this.$el.outerHeight();
             this.offsetTop = this.$el.offset().top;
             this.fixed = false;
 
@@ -48,7 +48,9 @@ var Toolbar = B.View.extend({
                 this.fixed = true;
 
                 return true;
-            } else {
+            } 
+
+            if (scrollTop <= this.offsetTop && this.fixed) {
                 this.$el.removeClass('full-fixed');
                 this.$fake.hide();
 
