@@ -16,17 +16,18 @@ var Toolbar = B.View.extend({
         template : _.template(tmpl),
 
         initialize : function() {
-            this.$title = this.$('h3');
+            this.height = this.$el.outerHeight(true);
+            this.offsetTop = this.$el.offset().top;
 
             this.$fake = B.$('<div />');
-            this.$fake.height(this.$el.outerHeight(true))
+            this.$fake.height(this.height)
             this.$fake.hide();
-
             this.$el.before(this.$fake);
 
-            this.height = this.$el.outerHeight();
-            this.offsetTop = this.$el.offset().top;
             this.fixed = false;
+
+
+            this.$title = this.$('h3');
 
             this.curTitle = this.$title.html();
             this.animated = false;
