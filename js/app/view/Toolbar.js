@@ -26,7 +26,6 @@ var Toolbar = B.View.extend({
 
             this.fixed = false;
 
-
             this.$title = this.$('h3');
 
             this.curTitle = this.$title.html();
@@ -47,8 +46,6 @@ var Toolbar = B.View.extend({
                 }, 300);
 
                 this.fixed = true;
-
-                return true;
             } 
 
             if (scrollTop <= this.offsetTop && this.fixed) {
@@ -56,9 +53,9 @@ var Toolbar = B.View.extend({
                 this.$fake.hide();
 
                 this.fixed = false;
-
-                return false;
             }
+
+            return this.fixed;
         },
 
         setTitle : function(title) {
