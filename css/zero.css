@@ -692,6 +692,7 @@ a, a:hover {
 }
 
 .post .post_content code {
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 3px;
     background-color: #f8f8f8;
