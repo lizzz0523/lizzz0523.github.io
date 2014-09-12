@@ -54,12 +54,12 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
 
 {% highlight html %}
 
-    <div class="my_tab" data-zoe="menu[current=item-1]" data-for="panel-1">
+    <div class="my_tab" data-zoe="menu[init=item-1]" data-for="panel-1">
         <a href="#item-1">Tab-1</a>
         <a href="#item-2">Tab-2</a>
         <a href="#item-3">Tab-3</a>
     </div>
-    <div class="my_panel" data-zoe="panel[current=item-1]" data-id="panel-1">
+    <div class="my_panel" data-zoe="panel[init=item-1]" data-id="panel-1">
         <p id="item-1" class="my_panel_item">
             <img src="path/to/pic1.jpg" />
         </p>
@@ -154,7 +154,52 @@ __Zoe__的目标对象主要是设计师，这是由于__Zoe__在开发初期就
 
 {% endhighlight %}
 
+或者直接向`zoe`对象传入字符串：
+
+{% highlight javascript %}
+
+    /* 
+        这里是app.js文件
+    */
+    define(function(require, exports, module) {
+        var zoe = require('zoe');
+        zoe(function() {
+            var view = zoe('view-id');
+        });
+    });
+
+{% endhighlight %}
+
 这样，你就能与__Zoe__进行交互了。
+
+如果你要在_app.js_内使手动去初始化某个组件，可以利用`zoe`对象的`use`方法：
+
+{% highlight javascript %}
+
+    /* 
+        这里是app.js文件
+    */
+    define(function(require, exports, module) {
+        var zoe = require('zoe'),
+            $ = require('jquery');
+        zoe.use(['slider', 'panel'], function(Slider, Panel) {
+            var slider = new Slider({
+                    el    : $('#slider').get(0),
+                    nav   : false,
+                    page  : true,
+                    hover : true,
+                    loop  : true
+                }),
+                panel = new Panel({
+                    el    : $('#panel').get(0),
+                    init : 'car-1'
+                });
+            slider.active(false);
+            panel.show(2);
+        });
+    });
+
+{% endhighlight %}
 
 
 #### 自定义样式
