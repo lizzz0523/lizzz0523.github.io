@@ -4,6 +4,9 @@ seajs.use([
     'app/view/ProjectList'
 ], function($, Projects, ProjectList) {
 
+    var firebase = new Firebase('shining-fire-8063.firebaseIO.com'),
+        visitor = firebase.get('visitor');
+
     var projects = new Projects(),
 
         projectList = new ProjectList({
@@ -18,5 +21,9 @@ seajs.use([
 
         projects.trigger('reset');
     });
-    
+
+    console.log(visitor);
+    visitor++;
+
+    firebase.set('visitor');
 });
