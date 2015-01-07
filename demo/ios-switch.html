@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" >
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .canvas {
+            padding: 20px 0;
+            background-color: #dee1e4;
+        }
+
+        .ui-check {
+            display: inline-block;
+            width: 40px;
+            height: 24px;
+            vertical-align: top;
+        }
+        
+        .ui-check label {
+            position: relative;
+            display: block;
+            padding: 1px;
+            border-radius: 24px;
+            height: 22px;
+            background-color: #eee;
+            cursor: pointer;
+            vertical-align: top;
+
+            -webkit-user-select: none;
+            -webkit-transition: all 0.3s ease;
+        }
+
+        .ui-check label::before {
+            content: '';
+            display: block;
+            border-radius: 24px;
+            height: 22px;
+            background-color: white;
+
+            -webkit-transform: scale(1, 1);
+            -webkit-transition: all 0.3s ease;
+        }
+
+        .ui-check label::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -11px;
+            margin-left: -11px;
+            display: block;
+            border-radius: 100%;
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.08);
+
+            -webkit-transform: translateX(-9px);
+            -webkit-transition: all 0.3s ease;
+        }
+
+        .ui-check input[type=checkbox] {
+            display: none;
+        }
+
+        .ui-check input[type=checkbox]:checked~label {
+            background-color: #4cda64;
+        }
+
+        .ui-check input[type=checkbox]:checked~label::before {
+            -webkit-transform: scale(0, 0);
+        }
+
+        .ui-check input[type=checkbox]:checked~label::after {
+            -webkit-transform: translateX(9px);
+        }
+
+        .ui-list {
+            padding-left: 10px;
+            border-top: 1px solid #d2dade;
+            border-bottom: 1px solid #d2dade;
+            color: #666;
+            background-color: white;
+            font-size: 16px;
+            font-family: "Microsoft YaHei";
+        }
+
+        .ui-list table {
+            width: 100%;
+        }
+
+        .ui-list tr td {
+            border-bottom: 1px solid #d2dade;
+            height: 40px;
+        }
+
+        .ui-list tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvas">
+        <div class="ui-list">
+            <table>
+                <col />
+                <col width="60"/>
+                <tr>
+                    <td>蜂窝移动数据</td>
+                    <td>
+                        <span class="ui-check">
+                            <input id="check1" type="checkbox" />
+                            <label for="check1"></label>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>启动4G</td>
+                    <td>
+                        <span class="ui-check">
+                            <input id="check2" type="checkbox" />
+                            <label for="check2"></label>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>数据漫游</td>
+                    <td>
+                        <span class="ui-check">
+                            <input id="check3" type="checkbox" />
+                            <label for="check3"></label>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>个人热点</td>
+                    <td>
+                        <span class="ui-check">
+                            <input id="check4" type="checkbox" />
+                            <label for="check4"></label>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
