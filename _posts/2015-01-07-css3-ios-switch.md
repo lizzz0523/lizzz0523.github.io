@@ -7,15 +7,15 @@ tags: [css ios switch]
 
 不废话先上效果图
 
- ![demo][1]
+![demo][1]
 
 请注意，这个不是iPhone截屏，而是使用纯CSS实现的模仿IOS开关效果图
- ![gif][2]
- ![gif][2]
- ![gif][2]
- ![gif][2]
- ![gif][2]
- ![gif][2]
+![gif][2]
+![gif][2]
+![gif][2]
+![gif][2]
+![gif][2]
+![gif][2]
 
 为了模拟出开关的不同状态，我们必须能记录当前开关状态，通常我们会使用JS来达到这样的目的，而纯CSS，你该如何是好？
 
@@ -118,16 +118,17 @@ tags: [css ios switch]
 可以看到，利用CSS伪类:checked可以选中checkbox的不同状态，然后根据不同的状态，对label进行了不同的样式设置
 
 整个label分为三层
- * label本身是负责显示底色（灰色和高亮的绿色）
- * label::before负责做一层白色的遮罩，来模拟ios开关效果
- * label::after负责开关的那个圆形凸起（记得加box-shadow来提高逼格哦）
+ 
++ label本身是负责显示底色（灰色和高亮的绿色）
++ label::before负责做一层白色的遮罩，来模拟ios开关效果
++ label::after负责开关的那个圆形凸起（记得加box-shadow来提高逼格哦）
 
 <br />
 动画部分采用的是CSS3的transition动画。
 
 最后习惯性的放个彩蛋
 
- ![code][3]
+![code][3]
 
 以上~~
 
