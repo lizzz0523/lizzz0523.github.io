@@ -92,24 +92,22 @@
             -webkit-transform: translateX(9px);
         }
 
-        .ui-check:active label::before {
+        .ui-check.active label::before {
             -webkit-transform: scale(0, 0);
         }
 
-        .ui-check:active label::after {
-            margin-left: -13px;
+        .ui-check.active label::after {
             width: 26px;
-            -webkit-transform: translateX(-7px);
+            -webkit-transform: translateX(-9px);
         }
 
-        .ui-check:active input[type=checkbox]:checked~label::before {
+        .ui-check.active input[type=checkbox]:checked~label::before {
             -webkit-transform: scale(0, 0);
         }
 
-        .ui-check:active input[type=checkbox]:checked~label::after {
-            margin-left: -13px;
+        .ui-check.active input[type=checkbox]:checked~label::after {
             width: 26px;
-            -webkit-transform: translateX(7px);
+            -webkit-transform: translateX(5px);
         }
 
         .ui-list {
@@ -181,5 +179,15 @@
             </table>
         </div>
     </div>
+    <script>
+        Array.prototype.slice.call(document.querySelectorAll('.ui-check')).forEach(function(uiCheck) {
+            uiCheck.addEventListener('touchstart', function() {
+                uiCheck.classList.add('active');
+            });
+            uiCheck.addEventListener('touchend', function() {
+                uiCheck.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
