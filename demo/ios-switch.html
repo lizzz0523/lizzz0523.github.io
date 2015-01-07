@@ -44,7 +44,7 @@
             vertical-align: top;
 
             -webkit-user-select: none;
-            -webkit-transition: all 0.3s linear;
+            -webkit-transition: all 0.3s ease;
         }
 
         .ui-check label::before {
@@ -55,7 +55,7 @@
             background-color: white;
 
             -webkit-transform: scale(1, 1);
-            -webkit-transition: all 0.3s linear;
+            -webkit-transition: all 0.3s ease;
         }
 
         .ui-check label::after {
@@ -73,7 +73,7 @@
             box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.08);
 
             -webkit-transform: translateX(-9px);
-            -webkit-transition: all 0.3s linear;
+            -webkit-transition: all 0.3s ease;
         }
 
         .ui-check input[type=checkbox] {
@@ -97,8 +97,8 @@
         }
 
         .ui-check.active label::after {
+            margin-left: -13px;
             width: 26px;
-            -webkit-transform: translateX(-9px);
         }
 
         .ui-check.active input[type=checkbox]:checked~label::before {
@@ -106,8 +106,8 @@
         }
 
         .ui-check.active input[type=checkbox]:checked~label::after {
+            margin-left: -13px;
             width: 26px;
-            -webkit-transform: translateX(5px);
         }
 
         .ui-list {
