@@ -92,6 +92,26 @@
             -webkit-transform: translateX(9px);
         }
 
+        .ui-check:hover label::before {
+            -webkit-transform: scale(0, 0);
+        }
+
+        .ui-check:hover label::after {
+            margin-left: -13px;
+            width: 26px;
+            -webkit-transform: translateX(-7px);
+        }
+
+        .ui-check:hover input[type=checkbox]:checked~label::before {
+            -webkit-transform: scale(0, 0);
+        }
+
+        .ui-check:hover input[type=checkbox]:checked~label::after {
+            margin-left: -13px;
+            width: 26px;
+            -webkit-transform: translateX(7px);
+        }
+
         .ui-list {
             padding-left: 10px;
             border-top: 1px solid #d2dade;
