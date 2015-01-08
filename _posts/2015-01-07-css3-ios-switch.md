@@ -2,7 +2,7 @@
 layout: post
 title: 纯CSS实现IOS开关模拟
 categories: [css]
-tags: [css ios switch]
+tags: [css, ios, switch]
 ---
 
 不废话先上效果图
