@@ -642,12 +642,14 @@ a, a:hover {
     margin-top: -12px;
     margin-right: -14px;
     padding: 0 4px;
-    border-radius: 10px;
+    border-radius: 16px;
+    min-width: 8px;
     line-height: 16px;
     float: right;
     background: #c00;
     color: white;
     font-size: 12px;
+    text-align: center;
 }
 
 .excerpt .expt_inner {
