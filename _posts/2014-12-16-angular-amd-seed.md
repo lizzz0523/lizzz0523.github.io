@@ -74,6 +74,7 @@ JS:app.js
 
 {% endhighlight %}
 
+<br />
 这时你会发现__angular__居然报错了，错了，了...
 
 其实这是由于在__require__加载__angular__的时候，dom已经ready了，__angular__加载成功后会马上执行dom扫描，这时__app__模块，以及__app__模块里的__helloController__还没来得及注册，所以就只能悲催的报错了。
@@ -95,6 +96,7 @@ JS:app.js
 {% endhighlight %}
 
 这样，__angular__就会正常的执行dom扫描，一切妥妥的。
+
 
 然后问题这样就解决了吗，其实还没有，在调用
 
@@ -161,6 +163,6 @@ JS:helloController.js
 
 这样，所有问题就已经解决啦，我们就可以愉快的玩耍__angular__与__require__了。
 
-最后给个彩蛋，上面写的解决方案虽然不错，但每次都要写一个长长的resolve毕竟还是比较麻烦的。所以，我把这些都封装好丢到github上了，有兴趣的小伙伴，可以去看看，也十分欢迎大家fork我的repo（[1](https://github.com/lizzz0523/angular-amd-seed/tree/master)）。
+最后给个彩蛋，上面写的解决方案虽然不错，但每次都要写一个长长的resolve毕竟还是比较麻烦的。所以，我把这些都封装好丢到github上了，有兴趣的小伙伴，可以去看看，也十分欢迎大家fork我的repo（[https://github.com/lizzz0523/angular-amd-seed/tree/master][1]）。
 
-[1] https://github.com/lizzz0523/angular-amd-seed/tree/master
+[1]: https://github.com/lizzz0523/angular-amd-seed/tree/master
