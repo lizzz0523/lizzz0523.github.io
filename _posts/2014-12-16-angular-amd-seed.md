@@ -1,3 +1,10 @@
+---
+layout: post
+title: Angular的AMD使用方式
+categories: [javascript]
+tags: [angular]
+---
+
 在使用__angular__的时候，有个比较蛋疼的情况，就是__angular__采用的是先注册，后使用的策略。
 例如下面这个例子：
 
