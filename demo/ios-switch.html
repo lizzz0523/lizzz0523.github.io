@@ -43,7 +43,9 @@ layout: demo
             vertical-align: top;
 
             -webkit-user-select: none;
+                    user-select: none;
             -webkit-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
         }
 
         .ui-check label::before {
@@ -54,7 +56,9 @@ layout: demo
             background-color: white;
 
             -webkit-transform: scale(1, 1);
+                    transform: scale(1, 1);
             -webkit-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
         }
 
         .ui-check label::after {
@@ -72,7 +76,9 @@ layout: demo
             box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.08);
 
             -webkit-transform: translateX(-9px);
+                    transform: translateX(-9px);
             -webkit-transition: all 0.3s ease;
+                    transition: all 0.3s ease;
         }
 
         .ui-check input[type=checkbox] {
@@ -85,10 +91,12 @@ layout: demo
 
         .ui-check input[type=checkbox]:checked~label::before {
             -webkit-transform: scale(0, 0);
+                    transform: scale(0, 0);
         }
 
         .ui-check input[type=checkbox]:checked~label::after {
             -webkit-transform: translateX(9px);
+                    transform: translateX(9px);
         }
 
         .ui-list {
