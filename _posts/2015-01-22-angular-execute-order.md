@@ -14,7 +14,11 @@ PS: [Angular UI Bootstrap][1] 是一个基于bootstrap的__directive__库，感�
  * __directive__各方法（`controller`，`compile`，`pre-link`，`post-link`）执行的顺序
  * 所谓的__directive__独立scope到底是个啥
 
-带着问题，马上开工。先来看看实验用代码，
+带着问题，马上开工。
+
+#### 第一个问题（directive各方法执行顺序）：
+
+先来看看实验用代码，
 
 HTML部分：
 
@@ -93,10 +97,8 @@ __Angular__的整个执行周期是采取，先编译（`compile`），再链接
 <title>Angular</title>
 </head>
 <body>
-
     <hello></hello>
     <hello></hello>
-
 </body>
 </html>
 
@@ -116,10 +118,134 @@ __Angular__的整个执行周期是采取，先编译（`compile`），再链接
 
 所以从实验结果我们可以看出，`compile`函数是首先执行的，比任意一个`controller`都早，然后是`controller`，接着才是`pre-link`，最后再回朔调用`post-link`。
 
-未完待续
 
+#### 第二个问题（directive中独立scope是什么）
+
+同样先来看看实验用代码，
+
+HTML部分：
+
+{% highlight html %}
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Angular</title>
+</head>
+<body>
+<div ng-controller="ACtrl">
+    <hello>
+        <div ng-controller="BCtrl"></div>
+    </hello>
+</div>
+</body>
+</html>
+
+{% endhighlight %}
+
+JS部分：
+
+{% highlight javascript %}
+
+!angular.module('app', [])
+.directive('hello', [function() {
+    return {
+        restrict: 'E',
+        scope: {},
+        controller: 'HelloCtrl'
+    }
+}])
+.controller('HelloCtrl', ['$scope', function($scope) {
+    $scope.name = 'Hello';
+    console.log('scope:' + $scope.name);
+    console.log($scope);
+}])
+.controller('ACtrl', ['$scope', '$rootScope', function($scope, $rootScope) {
+    console.log('rootScope');
+    console.log($rootScope);
+
+    $scope.name = 'A';
+    console.log('scope:' + $scope.name);
+    console.log($scope);
+}])
+.controller('BCtrl', ['$scope', function($scope) {
+    $scope.name = 'B';
+    console.log('scope:' + $scope.name);
+    console.log($scope);
+}]);
+
+{% endhighlight %}
+
+实验结果：
+
+这里，要分开一部分一部分看。首先来看看rootScope是什么：
+
+![rootScope][4]
+
+简单来说，rootScope就是直接new出来的Scope对象，它拥有一个`$root`属性指着自己：
+
+{% highlight javascript %}
+
+var rootScope = new Scope();
+rootScope.$root = rootScope;
+
+{% endhighlight %}
+
+再看看`controller:A`上的scope：
+
+![aScope][5]
+
+可以看出，`controller:A`上的scope实际上是一个直接派生自rootScope的对象，并且这个派生的scope带有一个`$parent`属性指着自己的上层scope（在这里即rootScope），即：
+
+{% highlight javascript %}
+
+function AScope() { /*...*/ };
+AScope.prototype = rootScope;
+var aScope = new AScope();
+aScope.$parent = rootScope;
+
+{% endhighlight %}
+
+接下来，高潮到了，我要解开__directive__中独立scope的真面目了，雅蠛蝶~~~
+
+![helloScope][6]
+
+我惊讶的发现，这个所谓独立的scope，就是一个rootScope和普通scope的混合体，首先它和rootScope一样，是一个直接new出来的Scope对象，它拥有一个`$root`属性指着rootScope，但同时，它也拥有一个`$parent`属性指着自己的上层scope（在这里即aScope）：
+
+{% highlight javascript %}
+
+var helloScope = new Scope();
+helloScope.$root = rootScope;
+helloScope.$parent = aScope;
+
+{% endhighlight %}
+
+更让我惊讶的，是当我看到`controller:B`上的scope：
+
+![aScope][7]
+
+居然，居然，`controller:B`上的scope跳过了__directive__上的scope，直接继承自`controller:A`上的scope：
+
+{% highlight javascript %}
+
+function BScope() { /*...*/ };
+BScope.prototype = aScope;
+var bScope = new BScope();
+bScope.$parent = aScope;
+
+{% endhighlight %}
+
+就这样，__directive__上的scope就被独立出来了
+
+![aScope][8]
 
 
 [1]: http://angular-ui.github.io/bootstrap/
 [2]: {{ site.url }}/images/post/angular-execute-order-20150122-001.png
 [3]: {{ site.url }}/images/post/angular-execute-order-20150122-002.png
+[4]: {{ site.url }}/images/post/angular-execute-order-20150122-003.png
+[5]: {{ site.url }}/images/post/angular-execute-order-20150122-004.png
+[6]: {{ site.url }}/images/post/angular-execute-order-20150122-005.png
+[7]: {{ site.url }}/images/post/angular-execute-order-20150122-006.png
+[8]: {{ site.url }}/images/post/angular-execute-order-20150122-009.png
