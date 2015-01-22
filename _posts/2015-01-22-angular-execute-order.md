@@ -42,8 +42,7 @@ JS部分：
 
 {% highlight javascript %}
 
-angular.module('app', [])
-
+!angular.module('app', [])
 .directive('hello', [function() {
     return {
         restrict: 'E',
@@ -62,19 +61,15 @@ angular.module('app', [])
         }
     }
 }])
-
 .controller('HelloCtrl', ['$scope', function($scope) {
     console.log('controller: Hello');
 }])
-
 .controller('ACtrl', ['$scope', function($scope) {
     console.log('controller: A');
 }])
-
 .controller('BCtrl', ['$scope', function($scope) {
     console.log('controller: B');
 }])
-
 .controller('CCtrl', ['$scope', function($scope) {
     console.log('controller: C');
 }]);
