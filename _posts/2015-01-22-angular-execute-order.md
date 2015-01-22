@@ -248,4 +248,4 @@ bScope.$parent = aScope;
 [5]: {{ site.url }}/images/post/angular-execute-order-20150122-004.png
 [6]: {{ site.url }}/images/post/angular-execute-order-20150122-005.png
 [7]: {{ site.url }}/images/post/angular-execute-order-20150122-006.png
-[8]: {{ site.url }}/images/post/angular-execute-order-20150122-009.png
+[8]: {{ site.url }}/images/post/angular-execute-order-20150122-007.png
