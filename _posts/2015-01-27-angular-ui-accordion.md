@@ -48,13 +48,13 @@ angular.isDefined($attrs.closeOthers) ? $scope.$eval($attrs.closeOthers) : accor
 
 {% highlight javascript %}
 
-scope： {
+scope: {
     closeOthers: '@'
 }
 
 {% endhighlight %}
 
-但不用新开一个独立`scope`。如果没有包含`closeOthers`属性，则找到`config`中的`closeOthers`（`config`在`contant`中定义）。
+但不用新开一个独立`scope`。如果没有包含`closeOthers`属性，则找到`accordionConfig`中的`closeOthers`（`accordionConfig`在`contant`中定义）。
 
 __accordionGroup__才是整个module的主directive，在`scope`中提供了`isOpen`状态，用于保存自身的开合状态，和`toggleOpen`方法，用于改变自身的开合状态（其中`isOpen`状态会传递给collapse）。
 
@@ -64,7 +64,7 @@ __accordionHeading__算是一个语法糖类的directive，因为heading，本�
 {% highlight javascript %}
 
 {
-    template: ’’,
+    template: '',
     replace: true,
     transclude: true,
     link: function(scope, element, attr, accordionGroupCtrl, transclude) {
