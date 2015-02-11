@@ -7,14 +7,14 @@ define([
 ], function (rivets, $, _, B, IScroll) {
 
     var TodoList = B.View.extend({
-        initialize: function() {
+        initialize: function () {
             var self = this,
                 todos = self.collection;
 
             self.scroller = new IScroll(self.$('.module_body').get(0));
 
-            self.listenTo(todos, 'add remove reset sort', function() {
-                _.defer(function() {
+            self.listenTo(todos, 'add remove reset sort', function () {
+                _.defer(function () {
                     self.scroller.refresh();
                 });
             });
@@ -30,17 +30,17 @@ define([
                     todos: todos
                 },
 
-                add: function(event, data) {
+                add: function (event, data) {
                     event.preventDefault();
                     self._add(data);
                 },
 
-                edit: function(event, data) {
+                edit: function (event, data) {
                     event.preventDefault();
                     self._toggle(data, true);
                 },
 
-                close: function(event, data) {
+                close: function (event, data) {
                     var code;
 
                     if (event.type === 'keyup') {
@@ -55,7 +55,7 @@ define([
                     self._toggle(data, false);
                 },
 
-                done: function(event, data) {
+                done: function (event, data) {
                     event.preventDefault();
                     self._done(data);
                 }
@@ -64,7 +64,7 @@ define([
             return self;
         },
 
-        remove: function() {
+        remove: function () {
             var self = this,
                 binding = self.binding;
 
@@ -75,22 +75,23 @@ define([
             return self;
         },
 
-        _add: function() {
+        _add: function () {
             var self = this,
                 todos = self.collection;
 
             todos.create({
+                editing: true,
                 description: '新任务',
-                editing: true
+                timestamp: Date.now()
             });
         },
 
-        _toggle: function(data, editing) {
+        _toggle: function (data, editing) {
             var todo = data.todo;
             todo.set('editing', editing);
         },
 
-        _done: function(data) {
+        _done: function (data) {
             var todo = data.todo,
                 done = todo.get('done');
 

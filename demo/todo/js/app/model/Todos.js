@@ -11,7 +11,13 @@ define([
         }),
 
         Todos = B.Collection.extend({
-            model: Todo
+            model: Todo,
+            comparator: function(a, b) {
+                a = a.get('timestamp');
+                b = b.get('timestamp');
+
+                return a > b ? -1 : a < b ? 1 : 0;
+            }
         });
 
     return Todos;

@@ -17,10 +17,12 @@ define([
 
         todos.reset([{
             done: true,
-            description: '在backbone中加入rivet'
+            description: '在backbone中加入rivet',
+            timestamp: Date.now()
         }, {
             done: false,
-            description: '编写自己的adapter'
+            description: '编写自己的adapter',
+            timestamp: Date.now() + 1
         }]);
     };
 
