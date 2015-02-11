@@ -1,0 +1,37 @@
+<div id="todo" class="module todo">
+    <header class="module_header">
+        <h1>Todo List</h1>
+        <span class="module_header-right">
+            <a class="module_header-btn todo_btn todo_btn__add" href="#" rv-on-click="add"><i class="fa fa-plus"></i></a>
+        </span>
+        <span class="module_header-left">
+            <a class="module_header-btn module_header-btn__back" href="#" rv-on-click="back"><i class="fa fa-arrow-left"></i></a>
+        </span>
+    </header>
+    <div class="module_body">
+        <div class="row">
+            <div class="todo_list">
+                <ul>
+                    <li rv-each-todo="data:todos">
+                        <div rv-class-todo_editing="todo:editing">
+                            <span class="todo_check ui-check" rv-on-click="done">
+                                <input type="checkbox" rv-checked="todo:done" />
+                                <i>&nbsp;</i>
+                            </span>
+
+                            <a class="todo_save" href="#" rv-on-click="close">保存</a>
+
+                            <p class="todo_item" rv-unless="todo:editing" rv-on-click="edit">
+                                <span rv-class-todo_done="todo:done">{ todo:description }</span>
+                            </p>
+                        
+                            <p class="todo_edit" rv-if="todo:editing">
+                                <input type="text" rv-value="todo:description" rv-on-keyup="close" />
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

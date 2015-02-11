@@ -1,0 +1,91 @@
+.cfx {
+    +zoom: 1;
+}
+
+.cfx:after {
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    clear: both;
+    font-size: 0;
+    visibility: hidden;
+}
+
+.db {
+    display: block;
+}
+
+.dib {
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
+}
+
+.di {
+    display: inline;
+}
+
+.dn {
+    display: none;
+}
+
+.ac {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.w-960 {
+    width: 960px;
+}
+
+.w-990 {
+    width: 990px;
+}
+
+.w-1000 {
+    width: 1000px;
+}
+
+.row {
+    +zoom: 1;
+}
+
+.row:after {
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+    clear: both;
+    font-size: 0;
+    visibility: hidden;
+}
+
+.ui-check {
+    display: inline-block;
+    +display: inline;
+    +zoom: 1;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    vertical-align: top;
+}
+
+.ui-check input {
+    display: none;
+}
+
+.ui-check i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #52a0e2;
+    -webkit-transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease;
+}
+
+.ui-check input:checked~i {
+    background-color: #eee;
+}

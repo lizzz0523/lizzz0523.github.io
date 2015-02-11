@@ -76,13 +76,13 @@ __accordionHeading__算是一个语法糖类的directive，因为heading，本�
 
 也就是把自身替换成空字符串。但由于它启用了transclude，在link函数就可以通过第五个参数来获取到他的子标签。
 
-__accordionTransclude__是和accordionHeading组合使用的directive，accordionHeading获得`heading`并传递给accordionGroup后，并没有通知accordionGroup的`scope`（即所谓这次更新不在域内），那么accordionTransclude就是用于检测这个`heading`的变化的，一旦发生变化，就去更新自己的内容。
+__accordionTransclude__是和accordionHeading组合使用的directive，accordionHeading获得heading并传递给accordionGroup后，并没有通知accordionGroup的`scope`（即所谓这次更新不在域内），那么accordionTransclude就是用于检测这个heading的变化的，一旦发生变化，就去更新自己的内容。
 
 好了，accordion就这样完了，擦，怎么就完了？？，它是怎么动的？？哈哈，不留心啊，文章开头就说了，accordion的单体开合效果是由collapse这个module来负责的。
 
 #### collapse：
 
-这个directive就简单直接很多了，总的一句就是通过监听`collapse`属性（通过字符串形式绑定到`scope`中的一个变量）的变化，分别调用`collapse`方法和`expand`方法。
+这个module就只提供了collapse一个directive，简单直接很多，总的一句就是通过监听`collapse`属性（通过字符串形式绑定到`scope`中的一个变量）的变化，分别调用`collapse`方法和`expand`方法。
 
 其他的，就是组织参数传给transition来完成动画，Angular UI的动画，都是采用css3来完成，所以就没有什么好分析的了。
 
