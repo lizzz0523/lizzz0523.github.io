@@ -88,7 +88,7 @@
                             <th colspan="4"><h4>项目经验</h4></th>
                         </tr>
                         <tr>
-                            <td colspan="4"><a href="https://github.com/lizzz0523/Zoe">Zoe组件库</a><span>（1.0版本基于Backbone，2.0版本基于Angular）</span></td>
+                            <td colspan="4"><a href="https://github.com/lizzz0523/Zoe">Zoe组件库</a><span>(1.0版本基于Backbone，2.0版本基于Angular)</span></td>
                         </tr>
                         <tr>    
                             <td colspan="4">网易OA系统<span>（主要负责非流程模块的前端开发）</span></td>

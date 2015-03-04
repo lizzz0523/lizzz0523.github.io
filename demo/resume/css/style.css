@@ -1,6 +1,7 @@
 body {
     background: url(../images/bg.png) repeat left top;
     background-attachment: fixed;
+    -webkit-font-size-adjust: none;
 }
 
 .body {
