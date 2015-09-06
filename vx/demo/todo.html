@@ -174,7 +174,7 @@
                             ];
                         } else {
                             return [
-                                vx.create('input', {'data-action':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
+                                vx.create('input', {'data-focus':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
                             ];
                         }
                 }, this))
@@ -229,13 +229,13 @@
                 var target = event.target,
                     action;
 
-                if (!target.hasAttribute('data-action')) {
+                if (!target.hasAttribute('data-focus')) {
                     return;
                 }
 
                 event.preventDefault();
 
-                action = target.getAttribute('data-action');
+                action = target.getAttribute('data-focus');
 
                 switch (action) {
                     case 'save':
@@ -248,13 +248,13 @@
                 var target = event.target,
                     action;
 
-                if (!target.hasAttribute('data-action')) {
+                if (!target.hasAttribute('data-focus')) {
                     return;
                 }
 
                 event.preventDefault();
 
-                action = target.getAttribute('data-action');
+                action = target.getAttribute('data-focus');
 
                 switch (action) {
                     case 'save':
