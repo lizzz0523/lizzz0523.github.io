@@ -91,6 +91,7 @@
         }
 
         .todo .todo-item input {
+            position: relative;
             display: block;
             margin: 0;
             padding: 0;
@@ -140,7 +141,7 @@
 <body>
     <div id="todo" class="todo">
         <form class="todo-form">
-            <div><input class="needsclick" type="text" name="todo" /></div>
+            <div><input type="text" name="todo" /></div>
             <button data-action="add">添加</button>
         </form>
         <div class="todo-body"></div>
@@ -173,7 +174,7 @@
                             ];
                         } else {
                             return [
-                                vx.create('input', {'class': 'needsclick', 'data-action':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
+                                vx.create('input', {'data-action':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
                             ];
                         }
                 }, this))
