@@ -278,7 +278,7 @@
 
                 todo.value = '';
 
-                this.tmpl.set(this.state);
+                this.set(this.state);
             },
 
             done: function (target) {
@@ -287,7 +287,7 @@
 
                 todo.done = !todo.done;
 
-                this.tmpl.set(this.state);
+                this.set(this.state);
             },
 
             edit: function (target) {
@@ -296,7 +296,7 @@
 
                 todo.editing = true;
 
-                this.tmpl.set(this.state);
+                this.set(this.state);
             },
 
             save: function (target) {
@@ -307,7 +307,7 @@
                 todo.editing = false;
                 todo.text = text;
 
-                this.tmpl.set(this.state);
+                this.set(this.state);
             },
 
             remove: function (target) {
@@ -316,7 +316,7 @@
 
                 todos.splice(index, 1);
 
-                this.tmpl.set(this.state);
+                this.set(this.state);
             },
 
             check: function (target) {
@@ -328,16 +328,16 @@
                 } 
 
                 target.addEventListener('keydown', inputCheck);
-            }
-        }
+            },
 
-        var todo = new Todo(document.querySelector('#todo'), {
-            todos: [{
-                'text': '需求需求',
-                'done': false,
-                'editing': false
-            }]
-        });
+            set: function (state) {
+                window.localStorage.setItem('vx-todo-demo', JSON.stringify(state));
+
+                this.tmpl.set(state);
+            }
+        };
+
+        var todo = new Todo(document.querySelector('#todo'), JSON.parse(window.localStorage.getItem('vx-todo-demo')) || {todos: []});
     </script>
 </body>
 </html>
