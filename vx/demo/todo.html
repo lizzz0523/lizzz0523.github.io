@@ -23,8 +23,8 @@
             font: inherit;
         }
 
-        .todo {/*
-            margin: 0 auto;
+        .todo {
+            /*margin: 0 auto;
             width: 500px;*/
         }
 
@@ -145,6 +145,7 @@
         </form>
         <div class="todo-body"></div>
     </div>
+    <script type="text/javascript" src="js/fastclick.js"></script>
     <script type="text/javascript" src="dist/vx.js"></script>
     <script type="text/javascript">
         vx.view('TodoList', function () {
@@ -183,6 +184,9 @@
             var self = this;
 
             this.el = el;
+
+            FastClick.attach(this.el);
+
             this.list = this.el.querySelector('.todo-body');
             this.form = this.el.querySelector('.todo-form');
             this.state = {};
