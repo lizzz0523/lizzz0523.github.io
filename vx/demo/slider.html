@@ -87,7 +87,7 @@
             return vx.create('div', {'class': 'slider'}, [
                 vx.create('a', {'class': 'slider-nav slider-nav_prev', 'data-action': 'prev'}, ['&lt']),
                 vx.create('a', {'class': 'slider-nav slider-nav_next', 'data-action': 'next'}, ['&gt']),
-                vx.create('ul', {'class': 'slider-wrap', 'style': '-webkit-transform:translateX(' + (this.cur * -this.width) + 'px' }, vx.map(this.imgs, function (img, index) {
+                vx.create('ul', {'class': 'slider-wrap', 'style': '-webkit-transform:translateX(' + (this.cur * -this.width) + 'px)' }, vx.map(this.imgs, function (img, index) {
                     return vx.create('Slidee', {img: img, index: index}, []);
                 }))
             ]);

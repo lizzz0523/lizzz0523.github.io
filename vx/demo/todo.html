@@ -154,7 +154,7 @@
 
             return vx.create('div', {}, [
                 vx.create('ul', {'class': 'todo-list'}, vx.map(this.todos, function (todo, index) {
-                    return vx.create('TodoItem', vx.extend(todo, {index, index}), []);
+                    return vx.create('TodoItem', vx.extend({}, todo, {index: index}), []);
                 })),
                 vx.create('p', {'class': 'todo-foot'}, [done + '', '/', total + ''])
             ]);
