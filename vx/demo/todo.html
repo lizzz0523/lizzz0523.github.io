@@ -317,14 +317,17 @@
             },
 
             check: function (target) {
-                function inputCheck (event) {
-                    if (event.keyCode === 13) {
-                        target.removeEventListener('keydown', inputCheck);
-                        target.blur();
-                    }
-                } 
+                target.removeEventListener('keydown', this.inputCheck);
+                target.addEventListener('keydown', this.inputCheck);
+            },
 
-                target.addEventListener('keydown', inputCheck);
+            inputCheck: function (event) {
+                var target = event.target;
+
+                if (event.keyCode === 13) {
+                    target.removeEventListener('keydown', this.inputCheck);
+                    target.blur();
+                }
             },
 
             set: function (state) {
