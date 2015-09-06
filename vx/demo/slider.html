@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VX, a template engine inspired by react virtual dom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft Yahei";
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        #slider {
+            margin: 0 auto;
+            width: 560px;
+            height: 320px;
+            overflow: hidden;
+        }
+
+        #slider .slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #slider .slider-nav {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            width: 60px;
+            height: 50px;
+            line-height: 50px;
+            color: white;
+            background-color: rgba(0,0,0,0.3);
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            -webkit-transform: translateY(-50%);
+            -webkit-user-select: none;
+        }
+
+        #slider .slider-nav_prev {
+            left: 0;
+        }
+
+        #slider .slider-nav_next {
+            right: 0;
+        }
+
+        #slider .slider-wrap {
+            display: -webkit-box;
+            width: 100%;
+            height: 100%;
+            -webkit-transition: all 0.3s ease;
+        }
+
+        #slider .slider-item {
+            position: relative;
+            -box-flex: 1;
+            width: 100%;
+            height: 100%;
+            font-size: 100px;
+            color: white;
+        }
+
+        #slider .slider-item span {
+            position: absolute;
+            display: block;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="slider"></div>
+    <script type="text/javascript" src="dist/vx.js"></script>
+    <script type="text/javascript">
+        vx.view('Slider', function () {
+            return vx.create('div', {'class': 'slider'}, [
+                vx.create('a', {'class': 'slider-nav slider-nav_prev', 'data-action': 'prev'}, ['&lt']),
+                vx.create('a', {'class': 'slider-nav slider-nav_next', 'data-action': 'next'}, ['&gt']),
+                vx.create('ul', {'class': 'slider-wrap', 'style': '-webkit-transform:translateX(' + (this.cur * -this.width) + 'px' }, vx.map(this.imgs, function (img, index) {
+                    return vx.create('Slidee', {img: img, index: index}, []);
+                }))
+            ]);
+        });
+
+        vx.view('Slidee', function () {
+            return vx.create('li', {'class': 'slider-item', 'style': 'background-color:' + this.img}, [
+                vx.create('span', {}, [this.index + ''])
+            ]);
+        });
+
+        function Slider(el, options) {
+            var self = this;
+
+            this.el = el;
+            this.state = {};
+
+            this.state.imgs = options.imgs || [];
+            this.state.cur = options.cur || 0;
+            this.state.min = 0;
+            this.state.max = options.imgs.length - 1 || 0;
+            this.state.width = options.width || el.offsetWidth;
+
+            this.el.addEventListener('click', function (event) {
+                var target = event.target,
+                    action;
+
+                event.preventDefault();
+
+                if (target.hasAttribute('data-action')) {
+                    action = target.getAttribute('data-action');
+
+                    switch (action) {
+                        case 'prev':
+                            self.prev();
+                            break;
+
+                        case 'next':
+                            self.next();
+                            break;
+                    }
+                }
+            });
+
+            this.tmpl = vx(this.el, options.tmpl, this.state);
+        }
+
+        Slider.prototype = {
+            next: function () {
+                this.state.cur++;
+
+                if (this.state.cur > this.state.max) {
+                    this.state.cur = this.state.max;
+                }
+
+                this.tmpl.set(this.state);
+            },
+
+            prev: function () {
+                this.state.cur--;
+
+                if (this.state.cur < this.state.min) {
+                    this.state.cur = this.state.min;
+                }
+
+                this.tmpl.set(this.state);
+            }
+        }
+
+        var slider = new Slider(document.querySelector('#slider'), {
+            imgs: ['#cc0000', '#cccccc', '#00cc00', '#0000cc'],
+            tmpl: 'Slider'
+        });
+    </script>
+</body>
+</html>

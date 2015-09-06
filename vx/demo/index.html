@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VX, a template engine inspired by react virtual dom</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script type="text/template" data-vx="App">
+        <div class="app">
+            <input type="text" />
+            <Timer time="{ this.time }" />
+            <List items="{ this.items }" />
+        </div>
+    </script>
+    <script type="text/template" data-vx="Timer">
+        <div class="timer">
+            <p>{ timeFormat(this.time) }</p>
+        </div>
+    </script>
+    <script type="text/template" data-vx="List">
+        <ul>
+            {
+                vx.map(this.items, function (item) {
+                    return (
+                        <Item key="{ item === '0' ? void 0 : item }" value="{ item }" />
+                    )
+                })
+            }
+        </div>
+    </script>
+    <script type="text/template" data-vx="Item">
+        <li>item-{ this.value }</li>
+    </script>
+    <script type="text/javascript" src="dist/vx.min.js"></script>
+    <script type="text/javascript" src="dist/vx-compiler.js"></script>
+    <script type="text/javascript">
+        function timeFormat(time) {
+            var hour = time.getHours(),
+                minute = time.getMinutes(),
+                second = time.getSeconds();
+
+            hour = (hour < 10 ? '0' : '') + hour;
+            minute = (minute < 10 ? '0' : '') + minute;
+            second = (second < 10 ? '0' : '') + second;
+
+            return [hour, minute, second].join(':');
+        }
+
+        vx.domReady(function () {
+            var app = vx(document.querySelector('#app'), 'App', {time: new Date(), items: ['1','2','3']});
+
+            setInterval(function () {
+                app.set({time: new Date(), items: ['0','2','3','4']});
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

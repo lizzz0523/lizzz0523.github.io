@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VX, a template engine inspired by react virtual dom</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Microsoft YaHei";
+            background-color: #363d45;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        input, button {
+            font: inherit;
+        }
+
+        .todo {
+            margin: 0 auto;
+            width: 500px;
+        }
+
+        .todo .todo-form {
+            display: -webkit-box;
+            padding: 10px 0;
+        }
+
+        .todo .todo-form div {
+            -webkit-box-flex: 1;
+            padding: 0 10px;
+            background: white;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .todo .todo-form input {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .todo .todo-form button {
+            position: relative;
+            display: block;
+            margin: 0;
+            margin-left: 10px;
+            padding: 0;
+            border: none;
+            outline: none;
+            width: 80px;
+            height: 40px;
+            color: #333;
+            background: none;
+            background-color: #ccc;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+            font-size: 14px;
+            cursor: pointer;
+            -webkit-transition: all 0.1s ease;
+        }
+        
+        .todo .todo-form button:hover {
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+            -webkit-transform: translate(-1px, -1px);
+        }
+
+        .todo .todo-body {
+            padding: 10px;
+            background-color: white;
+            box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+        
+        .todo .todo-item p {
+            display: -webkit-box;
+            border-bottom: 1px dashed #ccc;
+            line-height: 40px;
+            -webkit-user-select: none;
+        }
+
+        .todo .todo-item input {
+            display: block;
+            margin: 0;
+            padding: 0;
+            border: none;
+            outline: none;
+            width: 100%;
+            height: 40px;
+        }
+
+        .todo .todo-item span {
+            position: relative;
+            display: block;
+            text-indent: 10px;
+            cursor: pointer;
+            -webkit-box-flex: 1;
+        }
+
+        .todo .todo-item p.todo-done span:after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #666;
+        }
+
+        .todo .todo-item a {
+            display: block;
+            width: 50px;
+            text-align: center;
+            color: #cc0000;
+            cursor: pointer;
+        }
+
+        .todo .todo-item a:hover {
+            text-decoration: underline;
+        }
+
+        .todo .todo-foot {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="todo" class="todo">
+        <form class="todo-form">
+            <div><input type="text" name="todo" /></div>
+            <button data-action="add">添加</button>
+        </form>
+        <div class="todo-body"></div>
+    </div>
+    <script type="text/javascript" src="dist/vx.js"></script>
+    <script type="text/javascript">
+        vx.view('TodoList', function () {
+            var total = this.todos.length,
+                done = vx.reduce(this.todos, function (done, todo) {
+                    return done + (todo.done ? 1 : 0);
+                }, 0);
+
+            return vx.create('div', {}, [
+                vx.create('ul', {'class': 'todo-list'}, vx.map(this.todos, function (todo, index) {
+                    return vx.create('TodoItem', vx.extend(todo, {index, index}), []);
+                })),
+                vx.create('p', {'class': 'todo-foot'}, [done + '', '/', total + ''])
+            ]);
+        });
+
+        vx.view('TodoItem', function () {
+            return vx.create('li', {'class': 'todo-item'}, [
+                vx.create('p', {'class': this.done ? 'todo-done' : ''}, vx.bind(function () {
+                        if (!this.editing) {
+                            return [
+                                vx.create('span', {'data-action':'done', 'data-index': this.index}, [this.text]),
+                                vx.create('a', {'data-action':'edit', 'data-index': this.index}, ['编辑']),
+                                vx.create('a', {'data-action':'remove', 'data-index': this.index}, ['删除'])
+                            ];
+                        } else {
+                            return [
+                                vx.create('input', {'data-action':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
+                            ];
+                        }
+                }, this))
+            ])
+        });
+
+        function Todo(el, options) {
+            var self = this;
+
+            this.el = el;
+            this.list = this.el.querySelector('.todo-body');
+            this.form = this.el.querySelector('.todo-form');
+            this.state = {};
+
+            this.state.todos = options.todos || [];
+
+            this.el.addEventListener('click', function (event) {
+                var target = event.target,
+                    action;
+
+                if (!target.hasAttribute('data-action')) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                action = target.getAttribute('data-action');
+
+                switch (action) {
+                    case 'add':
+                        self.add(target);
+                        break;
+
+                    case 'done':
+                        self.done(target);
+                        break;
+
+                    case 'edit':
+                        self.edit(target);
+                        break;
+
+                    case 'remove':
+                        self.remove(target);
+                        break;
+                }
+            });
+
+            this.el.addEventListener('focusout', function (event) {
+                var target = event.target,
+                    action;
+
+                if (!target.hasAttribute('data-action')) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                action = target.getAttribute('data-action');
+
+                switch (action) {
+                    case 'save':
+                        self.save(target);
+                        break;
+                }
+            });
+
+            this.el.addEventListener('focusin', function (event) {
+                var target = event.target,
+                    action;
+
+                if (!target.hasAttribute('data-action')) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                action = target.getAttribute('data-action');
+
+                switch (action) {
+                    case 'save':
+                        self.check(target);
+                        break;
+                }
+            });
+
+            this.tmpl = vx(this.list, 'TodoList', this.state);
+        }
+
+        Todo.prototype = {
+            add: function () {
+                var form = this.form,
+                    todo = form.querySelector('input[name=todo]');
+
+                this.state.todos.push({
+                    text: todo.value,
+                    done: false,
+                    editing: false
+                });
+
+                todo.value = '';
+
+                this.tmpl.set(this.state);
+            },
+
+            done: function (target) {
+                var index = target.getAttribute('data-index'),
+                    todo = this.state.todos[index];
+
+                todo.done = !todo.done;
+
+                this.tmpl.set(this.state);
+            },
+
+            edit: function (target) {
+                var index = target.getAttribute('data-index'),
+                    todo = this.state.todos[index];
+
+                todo.editing = true;
+
+                this.tmpl.set(this.state);
+            },
+
+            save: function (target) {
+                var index = target.getAttribute('data-index'),
+                    text = target.value,
+                    todo = this.state.todos[index];
+
+                todo.editing = false;
+                todo.text = text;
+
+                this.tmpl.set(this.state);
+            },
+
+            remove: function (target) {
+                var index = target.getAttribute('data-index'),
+                    todos = this.state.todos;
+
+                todos.splice(index, 1);
+
+                this.tmpl.set(this.state);
+            },
+
+            check: function (target) {
+                function inputCheck (event) {
+                    if (event.keyCode === 13) {
+                        target.removeEventListener('keydown', inputCheck);
+                        target.blur();
+                    }
+                } 
+
+                target.addEventListener('keydown', inputCheck);
+            }
+        }
+
+        var todo = new Todo(document.querySelector('#todo'), {
+            todos: [{
+                'text': '需求需求',
+                'done': false,
+                'editing': false
+            }]
+        });
+    </script>
+</body>
+</html>
