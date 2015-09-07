@@ -1140,39 +1140,33 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	exports.cache = {};
 
-	exports.render = function (id, vnode) {
+	exports.render = function (vxid, vnode) {
 	    var view;
 
 	    if (vnode.type !== Type.NODE_VIEW) {
 	        return null;
 	    }
 	    
-	    if (exports.cache[id]) {
-	        view = exports.cache[id];
+	    if (exports.cache[vxid]) {
+	        view = exports.cache[vxid];
 	        view.set(vnode.props, vnode.children);
 	    } else {
-	        view = new vnode.name(id, vnode.props, vnode.children);
-	        exports.cache[id] = view;
+	        view = new vnode.name(vxid, vnode.props, vnode.children);
+	        exports.cache[vxid] = view;
 	    }
 	        
 	    return view.node;
 	};
 
-	exports.destory = function (id, vnode) {
-	    var view;
-
-	    if (vnode.type !== Type.NODE_VIEW) {
-	        return null;
-	    }
-
-	    if (!exports.cache[id]) {
-	        return null;
-	    }
-
-	    view = exports.cache[id];
-	    view.destory();
-
-	    exports.cache[id] = null;
+	exports.destory = function (vxid, vnode) {
+	    var rvxId = new RegExp('^' + vxid.replace('.', '\\\.') + '(?:\\\.|$)');
+	    
+	    _.each(exports.cache, function (view, vxid) {
+	        if (rvxId.test(vxid)) {
+	            view.destory();
+	            exports.cache[vxid] = null;
+	        }
+	    });
 
 	    return null;
 	};
