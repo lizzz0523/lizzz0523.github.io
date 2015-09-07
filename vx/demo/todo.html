@@ -159,7 +159,7 @@
                 vx.create('ul', {'class': 'todo-list'}, vx.map(this.todos, function (todo, index) {
                     return vx.create('TodoItem', vx.extend({}, todo, {index: index}), []);
                 })),
-                vx.create('p', {'class': 'todo-foot'}, total ? [done + '', '/', total + ''] : ['写下你想完成的事情吧'])
+                vx.create('p', {'class': 'todo-foot'}, total ? total != done ? [done + '', '/', total + ''] : ['已经完成所有的任务，棒棒哒！'] : ['写下你想完成的事情吧'])
             ]);
         });
 
