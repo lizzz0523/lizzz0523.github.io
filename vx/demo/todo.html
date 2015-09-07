@@ -11,7 +11,7 @@
         }
 
         body {
-            font-family: "Microsoft YaHei";
+            font-family: 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', sans-serif;
             background-color: #363d45;
         }
 
@@ -26,6 +26,28 @@
         .todo {
             margin: 0 auto;
             max-width: 500px;
+        }
+
+        .todo h1 {
+            padding: 20px 0 10px;
+            color: white;
+            text-transform: uppercase;
+            /*text-align: center; */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .todo h1 i {
+            font-size: 80%;
+            font-style: normal;
+        }
+
+        .todo h1 span {
+            display: block;
+            padding-top: 4px;
+            padding-left: 2px;
+            font-weight: normal;
+            font-size: 12px;
         }
 
         .todo .todo-form {
@@ -186,6 +208,7 @@
 </head>
 <body>
     <div id="todo" class="todo">
+        <h1>T<i>o</i>d<i>oo</i><span>don't waste your time</span></h1>
         <form class="todo-form">
             <div><input type="text" name="todo" /></div>
             <button data-action="add">添加</button>
@@ -206,7 +229,7 @@
                     return todo.archive ? null : vx.create('TodoItem', vx.extend({}, todo, {index: index}), []);
                 })),
 
-                vx.create('p', {'class': 'todo-foot'}, total ? total != done ? [done + '', '/', total + ''] : ['已经完成所有的任务，棒棒哒！'] : ['写下你想完成的事情吧']),
+                vx.create('p', {'class': 'todo-foot'}, total ? total != done ? [done + '', ' / ', total + ''] : ['已经完成所有的任务，棒棒哒！'] : ['写下你想完成的事情吧']),
                 
                 vx.create('ul', {'class': 'todo-list todo-list__archive'}, vx.map(this.todos, function (todo, index) {
                     return todo.archive ? vx.create('TodoItem', vx.extend({}, todo, {index: index}), []) : null;
