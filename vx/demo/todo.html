@@ -85,7 +85,7 @@
             box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
         }
         
-        .todo .todo-item p {
+        .todo .todo-list .todo-item p {
             display: -webkit-box;
             display: flex;
             border-bottom: 1px dashed #ccc;
@@ -93,7 +93,11 @@
             -webkit-user-select: none;
         }
 
-        .todo .todo-item input {
+        .todo .todo-list .todo-item:last-child p {
+            border-bottom: none;
+        }
+
+        .todo .todo-list .todo-item input {
             position: relative;
             display: block;
             margin: 0;
@@ -104,7 +108,7 @@
             height: 40px;
         }
 
-        .todo .todo-item span {
+        .todo .todo-list .todo-item span {
             position: relative;
             display: block;
             text-indent: 10px;
@@ -113,7 +117,7 @@
             flex-grow: 1;
         }
 
-        .todo .todo-item p.todo-done span:after {
+        .todo .todo-list .todo-item p.todo-done span:after {
             content: '';
             position: absolute;
             z-index: 1;
@@ -124,7 +128,7 @@
             background-color: #666;
         }
 
-        .todo .todo-item a {
+        .todo .todo-list .todo-item a {
             display: block;
             width: 50px;
             text-align: center;
@@ -132,12 +136,23 @@
             cursor: pointer;
         }
 
-        .todo .todo-item a:hover {
+        .todo .todo-list .todo-item a:hover {
             text-decoration: underline;
+        }
+
+        .todo .todo-list__archive .todo-item span {
+            color: #ccc;
+            cursor: default;
+        }
+
+        .todo .todo-list__archive .todo-item p.todo-done span:after {
+            background-color: #ccc;
         }
 
         .todo .todo-foot {
             padding: 10px;
+            background-color: #ccc;
+            color: #666;
             text-align: center;
         }
     </style>
@@ -161,26 +176,49 @@
 
             return vx.create('div', {}, [
                 vx.create('ul', {'class': 'todo-list'}, vx.map(this.todos, function (todo, index) {
-                    return vx.create('TodoItem', vx.extend({}, todo, {index: index}), []);
+                    return todo.archive ? null : vx.create('TodoItem', vx.extend({}, todo, {index: index}), []);
                 })),
-                vx.create('p', {'class': 'todo-foot'}, total ? total != done ? [done + '', '/', total + ''] : ['已经完成所有的任务，棒棒哒！'] : ['写下你想完成的事情吧'])
+
+                vx.create('p', {'class': 'todo-foot'}, total ? total != done ? [done + '', '/', total + ''] : ['已经完成所有的任务，棒棒哒！'] : ['写下你想完成的事情吧']),
+                
+                vx.create('ul', {'class': 'todo-list todo-list__archive'}, vx.map(this.todos, function (todo, index) {
+                    return todo.archive ? vx.create('TodoItem', vx.extend({}, todo, {index: index}), []) : null;
+                }))
             ]);
         });
 
         vx.view('TodoItem', function () {
             return vx.create('li', {'class': 'todo-item'}, [
                 vx.create('p', {'class': this.done ? 'todo-done' : ''}, vx.bind(function () {
-                        if (!this.editing) {
-                            return [
+                    var ret = [];
+
+                    if (!this.editing) {
+
+                        if (this.archive) {
+                            ret = [
+                                vx.create('span', {'data-action':'done', 'data-index': this.index}, [this.text]),
+                                vx.create('a', {'data-action':'remove', 'data-index': this.index}, ['删除'])
+                            ];
+                        } else if (this.done) {
+                            ret = [
+                                vx.create('span', {'data-action':'done', 'data-index': this.index}, [this.text]),
+                                vx.create('a', {'data-action':'edit', 'data-index': this.index}, ['编辑']),
+                                vx.create('a', {'data-action':'archive', 'data-index': this.index}, ['归档'])
+                            ];
+                        } else {
+                            ret = [
                                 vx.create('span', {'data-action':'done', 'data-index': this.index}, [this.text]),
                                 vx.create('a', {'data-action':'edit', 'data-index': this.index}, ['编辑']),
                                 vx.create('a', {'data-action':'remove', 'data-index': this.index}, ['删除'])
                             ];
-                        } else {
-                            return [
-                                vx.create('input', {'data-focus':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
-                            ];
                         }
+                    } else {
+                        ret = [
+                            vx.create('input', {'data-focus':'save', 'data-index': this.index, 'value': this.text, 'autofocus': true}, [])
+                        ];
+                    }
+
+                    return ret;
                 }, this))
             ])
         });
@@ -225,6 +263,10 @@
 
                     case 'remove':
                         self.remove(target);
+                        break;
+
+                    case 'archive':
+                        self.archive(target);
                         break;
                 }
             });
@@ -274,7 +316,8 @@
                 this.state.todos.push({
                     text: todo.value,
                     done: false,
-                    editing: false
+                    editing: false,
+                    archive: false
                 });
 
                 todo.value = '';
@@ -287,6 +330,10 @@
                     todo = this.state.todos[index];
 
                 todo.done = !todo.done;
+
+                if (!todo.done) {
+                    todo.archive = false;
+                }
 
                 this.set(this.state);
             },
@@ -316,6 +363,15 @@
                     todos = this.state.todos;
 
                 todos.splice(index, 1);
+
+                this.set(this.state);
+            },
+
+            archive: function (target) {
+                var index = target.getAttribute('data-index'),
+                    todo = this.state.todos[index];
+
+                todo.archive = true;
 
                 this.set(this.state);
             },
