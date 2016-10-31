@@ -185,6 +185,49 @@
                 nums.splice(index, 1);
             }
 
+            function checkMatrix() {
+                if (nums.length < 16) {
+                    return false;
+                }
+
+                var mat = [[], [], [], []];
+
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        var num = nums[i];
+                        mat[num.row][num.col] = num.newKey;
+                    }
+                }
+
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 3; j++) {
+                        if (mat[i][j] === mat[i][j + 1]) {
+                            return false;
+                        } 
+                    }
+                }
+
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 3; j++) {
+                        if (mat[j][i] === mat[j + 1][i]) {
+                            return false;
+                        } 
+                    }
+                }
+
+                return true;
+            }
+
+            function checkOver() {
+                if (checkSame()) {
+                    hammer.stop(true);
+                    
+                    alert('game over');
+
+                    location.reload();
+                }
+            }
+
             function calcPos(kr, kc, to) {
                 var edge = [to, to, to, to],
                     keys = [[], [], [], []],
@@ -246,30 +289,6 @@
                 return move;
             }
 
-            function goLeft() {
-                if (calcPos('col', 'row', 0)) {
-                    syncPos();
-                }
-            }
-
-            function goRight() {
-                if (calcPos('col', 'row', 3)) {
-                    syncPos();
-                }
-            }
-
-            function goDown() {
-                if (calcPos('row', 'col', 0)) {
-                    syncPos();
-                }
-            }
-
-            function goUp() {
-                if (calcPos('row', 'col', 3)) {
-                    syncPos();
-                }
-            }
-
             function syncPos() {
                 for (var i = 0; i < 4; i++) {
                     for (var j = 0; j < 4; j++) {
@@ -305,7 +324,32 @@
 
                 setTimeout(function () {
                     addNumber();
+                    checkOver();
                 }, 100)
+            }
+
+            function goLeft() {
+                if (calcPos('col', 'row', 0)) {
+                    syncPos();
+                }
+            }
+
+            function goRight() {
+                if (calcPos('col', 'row', 3)) {
+                    syncPos();
+                }
+            }
+
+            function goDown() {
+                if (calcPos('row', 'col', 0)) {
+                    syncPos();
+                }
+            }
+
+            function goUp() {
+                if (calcPos('row', 'col', 3)) {
+                    syncPos();
+                }
             }
 
             function update() {
