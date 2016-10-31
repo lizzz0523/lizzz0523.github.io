@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>2048</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        html {
+            overflow: visible;
+        }
+        body {
+            overflow: hidden;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body ontouchstart="return false">
+    <canvas id="stage"></canvas>
+    <script>
+        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, error) {
+            alert(errorMessage)
+        }
+    </script>
+    <script src="lib/hammer.min.js"></script>
+    <script src="lib/preloadjs-0.6.2.min.js"></script>
+    <script src="lib/tweenjs-0.6.2.min.js"></script>
+    <script src="vitajs.js"></script>
+    <script>
+        var LoadQueue = createjs.LoadQueue,
+            Ticker = createjs.Ticker,
+            Tween = createjs.Tween,
+            Ease = createjs.Ease;
+
+        var Stage = vitajs.Stage,
+            Shape = vitajs.Shape,
+            Sprite = vitajs.Sprite;
+
+        var queue = new LoadQueue(false);
+
+        queue.loadFile({ id: 'num2', src: 'assets/2.png'});
+        queue.loadFile({ id: 'num4', src: 'assets/4.png'});
+        queue.loadFile({ id: 'num8', src: 'assets/8.png'});
+        queue.loadFile({ id: 'num16', src: 'assets/16.png'});
+        queue.loadFile({ id: 'num32', src: 'assets/32.png'});
+        queue.loadFile({ id: 'num64', src: 'assets/64.png'});
+        queue.loadFile({ id: 'num128', src: 'assets/128.png'});
+        queue.loadFile({ id: 'num256', src: 'assets/256.png'});
+        queue.loadFile({ id: 'num512', src: 'assets/512.png'});
+        queue.loadFile({ id: 'num1024', src: 'assets/1024.png'});
+        queue.loadFile({ id: 'num2048', src: 'assets/2048.png'});
+
+        queue.on('complete', function (event) {
+            var canvas = document.querySelector('#stage');
+            canvas.width = window.innerWidth * window.devicePixelRatio;
+            canvas.height = window.innerHeight * window.devicePixelRatio;
+            canvas.style.width = window.innerWidth + 'px';
+            canvas.style.height = window.innerHeight + 'px';
+
+            var stage = new Stage(canvas);
+            
+            var w2 = canvas.width / 2,
+                h2 = canvas.height / 2;
+
+            stage.orthogonal(-w2, w2, -h2, h2, -1000, 1000);
+
+            var pos = [];
+            var nums = [];
+
+            for (var i = 0; i < 4; i++) {
+                var row = [];
+
+                for (var j = 0; j < 4; j++) {
+                    row[j] = { x: (j - 2) * 150 + 75, y: (i - 2) * 150 + 75, e: false };
+                }
+
+                pos[i] = row;
+            }
+
+            function createShape(width, height, color) {
+                var shape = new Shape();
+
+                shape.graphics.setStyle({ color: color });
+                shape.graphics.drawRect(width, height);
+
+                stage.addChild(shape);
+
+                return shape;
+            }
+
+            function createSprite(width, height, image) {
+                var sprite = new Sprite(image, { width: width, height: height });
+
+                stage.addChildAt(sprite, 0);
+
+                return sprite;
+            }
+
+            function buildGrid() {
+                var rect;
+
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        rect = createShape(140, 140, 0xd6cdc4);
+                        rect.x = pos[i][j].x;
+                        rect.y = pos[i][j].y;
+                    }
+                }
+
+                rect = createShape(610, 610, 0xbbada0);
+                rect.x = 0;
+                rect.y = 0;
+            }
+
+
+            function pickRandom() {
+                var index = Math.floor(Math.random() * 16),
+                    row = index / 4 >> 0,
+                    col = index % 4 >> 0;
+
+                while (pos[row][col].e) {
+                    index++;
+                    index %= 16;
+                    row = index / 4 >> 0;
+                    col = index % 4 >> 0;
+                }
+
+                pos[row][col].e = true;
+
+                return { row: row, col: col, x: pos[row][col].x, y: pos[row][col].y };
+            }
+
+            function pickNumber() {
+                return Math.random() >= 0.5 ? 2 : 4;
+            }
+
+            function addNumber(orig) {
+                if (!orig) {
+                    var rand = pickRandom(),
+                        row = rand.row,
+                        col = rand.col,
+                        x = rand.x,
+                        y = rand.y,
+                        
+                        key = pickNumber(),
+                        image = queue.getResult('num' + key);
+                } else {
+                    var row = orig.row,
+                        col = orig.col,
+                        x = orig.x,
+                        y = orig.y,
+
+                        key = orig.newKey,
+                        image = queue.getResult('num' + key);
+                }
+
+                var num = createSprite(140, 140, image);
+
+                num.key = key;
+                num.newKey = key;
+                num.row = row;
+                num.col = col;
+                num.x = x;
+                num.y = y;
+                num.scaleX = 0.2;
+                num.scaleY = 0.2;
+
+                Tween
+                .get(num)
+                .to({ scaleX: 1.0, scaleY: 1.0 }, 400, Ease.backOut)
+
+                nums.push(num);
+            }
+
+            function removeNumber(orig) {
+                var index = nums.indexOf(orig);
+
+                stage.removeChild(orig);
+                nums.splice(index, 1);
+            }
+
+            function calcPos(kr, kc, to) {
+                var edge = [to, to, to, to],
+                    keys = [[], [], [], []],
+                    diff = to === 0 ? 1 : -1,
+                    move = false;
+
+                while (true) {
+                    var flag = [0, 0, 0, 0],
+                        loop = false;
+
+                    for (var i = 0; i < nums.length; i++) {
+                        var num = nums[i];
+
+                        if (!flag[num[kc]] && (num[kr] === edge[num[kc]])) {
+                            flag[num[kc]] += 1;
+                            edge[num[kc]] += diff;
+                            keys[num[kc]].push(num);
+                            loop = true;
+                        }
+                    }
+
+                    for (var i = 0; i < nums.length; i++) {
+                        var num = nums[i];
+
+                        if (!flag[num[kc]] && (diff * num[kr] > diff * edge[num[kc]])) {
+                            num[kr] -= diff;
+                            loop = true;
+                            move = true;
+                        }
+                    }
+
+                    if (!loop) {
+                        break;
+                    }
+                }
+                
+                for (var i = 0; i < keys.length; i++) {
+                    var step = 0;
+
+                    for (var j = 0; j < keys[i].length; j++) {
+                        keys[i][j][kr] -= step;
+                        keys[i][j].newKey = keys[i][j].key;
+
+                        if (keys[i].length - 1 <= j) {
+                            continue;
+                        }
+
+                        if (keys[i][j + 0].key === keys[i][j + 1].key) {
+                            keys[i][j + 0].newKey = 2 * keys[i][j].key;
+                            keys[i][j + 1].newKey = 0;
+                            keys[i][j + 1][kr] -= diff;
+                            move = true;
+                            step += diff;
+                            j++;
+                        }
+                    }
+                }
+
+                return move;
+            }
+
+            function goLeft() {
+                if (calcPos('col', 'row', 0)) {
+                    syncPos();
+                }
+            }
+
+            function goRight() {
+                if (calcPos('col', 'row', 3)) {
+                    syncPos();
+                }
+            }
+
+            function goDown() {
+                if (calcPos('row', 'col', 0)) {
+                    syncPos();
+                }
+            }
+
+            function goUp() {
+                if (calcPos('row', 'col', 3)) {
+                    syncPos();
+                }
+            }
+
+            function syncPos() {
+                for (var i = 0; i < 4; i++) {
+                    for (var j = 0; j < 4; j++) {
+                        pos[i][j].e = false;
+                    }
+                }
+
+                for (var i = 0; i < nums.length; i++) {
+                    var num = nums[i];
+
+                    pos[num.row][num.col].e = true;
+
+                    var tween = Tween.get(num);
+
+                    tween.to({
+                        x: pos[num.row][num.col].x,
+                        y: pos[num.row][num.col].y
+                    }, 100, Ease.quadOut);
+
+                    if (num.key !== num.newKey) {
+                        if (num.newKey !== 0) {
+                            tween.call(function (event) {
+                                addNumber(event.target);
+                                removeNumber(event.target);
+                            });
+                        } else {
+                            tween.call(function (event) {
+                                removeNumber(event.target);
+                            });
+                        }
+                    }
+                }
+
+                setTimeout(function () {
+                    addNumber();
+                }, 100)
+            }
+
+            function update() {
+                stage.update();
+            }
+
+            buildGrid();
+            addNumber();
+            addNumber();
+
+            var hammer = new Hammer(canvas);
+
+            hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+            hammer.on('swipeleft', goLeft);
+            hammer.on('swiperight', goRight);
+            hammer.on('swipeup', goUp);
+            hammer.on('swipedown', goDown);
+
+            Ticker.setFPS(60);
+            Ticker.addEventListener('tick', update);
+        });
+    </script>
+</body>
+</html>
