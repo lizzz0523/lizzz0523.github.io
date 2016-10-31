@@ -124,11 +124,15 @@
                     row = index / 4 >> 0,
                     col = index % 4 >> 0;
 
-                while (pos[row][col].e) {
+                max = 15;
+
+                while (pos[row][col].e && max) {
                     index++;
                     index %= 16;
                     row = index / 4 >> 0;
                     col = index % 4 >> 0;
+                    
+                    max--;
                 }
 
                 pos[row][col].e = true;
@@ -322,8 +326,11 @@
 
                 setTimeout(function () {
                     addNumber();
+                }, 100);
+
+                setTimeout(function () {
                     checkOver();
-                }, 100)
+                }, 500);
             }
 
             function goLeft() {
