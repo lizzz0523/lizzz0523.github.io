@@ -131,7 +131,7 @@
                     index %= 16;
                     row = index / 4 >> 0;
                     col = index % 4 >> 0;
-                    
+
                     max--;
                 }
 
@@ -220,14 +220,34 @@
                 return true;
             }
 
+            function checkWinner() {
+                for (var i = 0; i < nums.length; i++) {
+                    var num = nums[i];
+
+                    if (num.newKey === 2048) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
             function checkOver() {
-                if (checkMatrix()) {
+                if (checkWinner()) {
+                    hammer.stop(true);
+
+                    alert('get 2048');
+
+                    location.reload();
+                } else if (checkMatrix()) {
                     hammer.stop(true);
 
                     alert('game over');
 
                     location.reload();
-                }
+                } 
+
+                
             }
 
             function calcPos(kr, kc, to) {
