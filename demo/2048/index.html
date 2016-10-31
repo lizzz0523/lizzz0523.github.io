@@ -192,11 +192,9 @@
 
                 var mat = [[], [], [], []];
 
-                for (var i = 0; i < 4; i++) {
-                    for (var j = 0; j < 4; j++) {
-                        var num = nums[i];
-                        mat[num.row][num.col] = num.newKey;
-                    }
+                for (var i = 0; i < nums.length; i++) {
+                    var num = nums[i];
+                    mat[num.row][num.col] = num.newKey;
                 }
 
                 for (var i = 0; i < 4; i++) {
