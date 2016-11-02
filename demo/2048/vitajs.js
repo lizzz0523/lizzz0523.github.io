@@ -46,7 +46,11 @@
 
 	'use strict';
 
-	var _Container = __webpack_require__(1);
+	var _DisplayObject = __webpack_require__(1);
+
+	var _DisplayObject2 = _interopRequireDefault(_DisplayObject);
+
+	var _Container = __webpack_require__(12);
 
 	var _Container2 = _interopRequireDefault(_Container);
 
@@ -74,6 +78,7 @@
 
 	var vitajs = window.vitajs = {};
 
+	vitajs.DisplayObject = _DisplayObject2.default;
 	vitajs.Container = _Container2.default;
 	vitajs.Stage = _Stage2.default;
 	vitajs.Sprite = _Sprite2.default;
@@ -93,172 +98,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _DisplayObject2 = __webpack_require__(2);
-
-	var _DisplayObject3 = _interopRequireDefault(_DisplayObject2);
-
-	var _lang = __webpack_require__(13);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Container = function (_DisplayObject) {
-	    _inherits(Container, _DisplayObject);
-
-	    function Container() {
-	        _classCallCheck(this, Container);
-
-	        var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this));
-
-	        _this._root = false;
-	        _this._children = [];
-	        return _this;
-	    }
-
-	    _createClass(Container, [{
-	        key: 'init',
-	        value: function init(root) {
-	            this._children.forEach(function (child) {
-	                child.init(root);
-	            });
-	        }
-	    }, {
-	        key: 'drop',
-	        value: function drop(root) {
-	            this._children.forEach(function (child) {
-	                child.drop(root);
-	            });
-	        }
-	    }, {
-	        key: 'draw',
-	        value: function draw(root) {
-	            this._children.forEach(function (child) {
-	                root.pushMatrix();
-
-	                root.updateProgram(child);
-	                root.updateMatrix(child);
-
-	                child.draw(root);
-
-	                root.popMatrix();
-	            });
-	        }
-	    }, {
-	        key: '_getRoot',
-	        value: function _getRoot() {
-	            var node = this;
-
-	            while (node) {
-	                if (node._root) {
-	                    return node;
-	                }
-
-	                node = node._parent;
-	            }
-
-	            return null;
-	        }
-	    }, {
-	        key: '_initChild',
-	        value: function _initChild(child) {
-	            var root = this._getRoot();
-
-	            if (root) {
-	                child.init(root);
-	            }
-	        }
-	    }, {
-	        key: '_dropChild',
-	        value: function _dropChild(child) {
-	            var root = this._getRoot();
-
-	            if (root) {
-	                child.drop(root);
-	            }
-	        }
-	    }, {
-	        key: 'addChild',
-	        value: function addChild(child) {
-	            return this.addChildAt(child, this._children.length);
-	        }
-	    }, {
-	        key: 'addChildAt',
-	        value: function addChildAt(child, index) {
-	            if (child == null) {
-	                return child;
-	            }
-
-	            if (child._parent) {
-	                child._parent.removeChild(child);
-	            }
-
-	            this._children.splice(index, 0, child);
-
-	            child._parent = this;
-	            child._parent._initChild(child);
-
-	            return child;
-	        }
-	    }, {
-	        key: 'removeChild',
-	        value: function removeChild(child) {
-	            return this.removeChildAt((0, _lang.indexOf)(this._children, child));
-	        }
-	    }, {
-	        key: 'removeChildAt',
-	        value: function removeChildAt(index) {
-	            if (index < 0 && index > this._children.length - 1) {
-	                return null;
-	            }
-
-	            var child = this._children[index];
-
-	            this._children.splice(index, 1);
-
-	            child._parent._dropChild(child);
-	            child._parent = null;
-
-	            return child;
-	        }
-	    }, {
-	        key: 'getChildAt',
-	        value: function getChildAt(index) {
-	            return this._children[index] || null;
-	        }
-	    }, {
-	        key: 'getChildByName',
-	        value: function getChildByName(name) {
-	            var index = (0, _lang.indexOf)(this._children, function (child) {
-	                return child.name === name;
-	            });
-
-	            return this.getChildAt(index);
-	        }
-	    }]);
-
-	    return Container;
-	}(_DisplayObject3.default);
-
-	exports.default = Container;
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _glMatrix = __webpack_require__(3);
+	var _glMatrix = __webpack_require__(2);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -296,7 +136,7 @@
 	exports.default = DisplayObject;
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -327,18 +167,18 @@
 	THE SOFTWARE. */
 	// END HEADER
 
-	exports.glMatrix = __webpack_require__(4);
-	exports.mat2 = __webpack_require__(5);
-	exports.mat2d = __webpack_require__(6);
-	exports.mat3 = __webpack_require__(7);
-	exports.mat4 = __webpack_require__(8);
-	exports.quat = __webpack_require__(9);
-	exports.vec2 = __webpack_require__(12);
-	exports.vec3 = __webpack_require__(10);
-	exports.vec4 = __webpack_require__(11);
+	exports.glMatrix = __webpack_require__(3);
+	exports.mat2 = __webpack_require__(4);
+	exports.mat2d = __webpack_require__(5);
+	exports.mat3 = __webpack_require__(6);
+	exports.mat4 = __webpack_require__(7);
+	exports.quat = __webpack_require__(8);
+	exports.vec2 = __webpack_require__(11);
+	exports.vec3 = __webpack_require__(9);
+	exports.vec4 = __webpack_require__(10);
 
 /***/ },
-/* 4 */
+/* 3 */
 /***/ function(module, exports) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -414,7 +254,7 @@
 
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -437,7 +277,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 2x2 Matrix
@@ -856,7 +696,7 @@
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -879,7 +719,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 2x3 Matrix
@@ -1331,7 +1171,7 @@
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -1354,7 +1194,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 3x3 Matrix
@@ -2083,7 +1923,7 @@
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -2106,7 +1946,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 4x4 Matrix
@@ -4225,7 +4065,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -4248,10 +4088,10 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
-	var mat3 = __webpack_require__(7);
-	var vec3 = __webpack_require__(10);
-	var vec4 = __webpack_require__(11);
+	var glMatrix = __webpack_require__(3);
+	var mat3 = __webpack_require__(6);
+	var vec3 = __webpack_require__(9);
+	var vec4 = __webpack_require__(10);
 
 	/**
 	 * @class Quaternion
@@ -4831,7 +4671,7 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -4854,7 +4694,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 3 Dimensional Vector
@@ -5614,7 +5454,7 @@
 
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -5637,7 +5477,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 4 Dimensional Vector
@@ -6229,7 +6069,7 @@
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
@@ -6252,7 +6092,7 @@
 	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 	THE SOFTWARE. */
 
-	var glMatrix = __webpack_require__(4);
+	var glMatrix = __webpack_require__(3);
 
 	/**
 	 * @class 2 Dimensional Vector
@@ -6822,6 +6662,171 @@
 
 
 /***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _DisplayObject2 = __webpack_require__(1);
+
+	var _DisplayObject3 = _interopRequireDefault(_DisplayObject2);
+
+	var _lang = __webpack_require__(13);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Container = function (_DisplayObject) {
+	    _inherits(Container, _DisplayObject);
+
+	    function Container() {
+	        _classCallCheck(this, Container);
+
+	        var _this = _possibleConstructorReturn(this, (Container.__proto__ || Object.getPrototypeOf(Container)).call(this));
+
+	        _this._root = false;
+	        _this._children = [];
+	        return _this;
+	    }
+
+	    _createClass(Container, [{
+	        key: 'init',
+	        value: function init(root) {
+	            this._children.forEach(function (child) {
+	                child.init(root);
+	            });
+	        }
+	    }, {
+	        key: 'drop',
+	        value: function drop(root) {
+	            this._children.forEach(function (child) {
+	                child.drop(root);
+	            });
+	        }
+	    }, {
+	        key: 'draw',
+	        value: function draw(root) {
+	            this._children.forEach(function (child) {
+	                root.pushMatrix();
+
+	                root.updateProgram(child);
+	                root.updateMatrix(child);
+
+	                child.draw(root);
+
+	                root.popMatrix();
+	            });
+	        }
+	    }, {
+	        key: '_getRoot',
+	        value: function _getRoot() {
+	            var node = this;
+
+	            while (node) {
+	                if (node._root) {
+	                    return node;
+	                }
+
+	                node = node._parent;
+	            }
+
+	            return null;
+	        }
+	    }, {
+	        key: '_initChild',
+	        value: function _initChild(child) {
+	            var root = this._getRoot();
+
+	            if (root) {
+	                child.init(root);
+	            }
+	        }
+	    }, {
+	        key: '_dropChild',
+	        value: function _dropChild(child) {
+	            var root = this._getRoot();
+
+	            if (root) {
+	                child.drop(root);
+	            }
+	        }
+	    }, {
+	        key: 'addChild',
+	        value: function addChild(child) {
+	            return this.addChildAt(child, this._children.length);
+	        }
+	    }, {
+	        key: 'addChildAt',
+	        value: function addChildAt(child, index) {
+	            if (child == null) {
+	                return child;
+	            }
+
+	            if (child._parent) {
+	                child._parent.removeChild(child);
+	            }
+
+	            this._children.splice(index, 0, child);
+
+	            child._parent = this;
+	            child._parent._initChild(child);
+
+	            return child;
+	        }
+	    }, {
+	        key: 'removeChild',
+	        value: function removeChild(child) {
+	            return this.removeChildAt((0, _lang.indexOf)(this._children, child));
+	        }
+	    }, {
+	        key: 'removeChildAt',
+	        value: function removeChildAt(index) {
+	            if (index < 0 && index > this._children.length - 1) {
+	                return null;
+	            }
+
+	            var child = this._children[index];
+
+	            this._children.splice(index, 1);
+
+	            child._parent._dropChild(child);
+	            child._parent = null;
+
+	            return child;
+	        }
+	    }, {
+	        key: 'getChildAt',
+	        value: function getChildAt(index) {
+	            return this._children[index] || null;
+	        }
+	    }, {
+	        key: 'getChildByName',
+	        value: function getChildByName(name) {
+	            var index = (0, _lang.indexOf)(this._children, function (child) {
+	                return child.name === name;
+	            });
+
+	            return this.getChildAt(index);
+	        }
+	    }]);
+
+	    return Container;
+	}(_DisplayObject3.default);
+
+	exports.default = Container;
+
+/***/ },
 /* 13 */
 /***/ function(module, exports) {
 
@@ -6859,11 +6864,11 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _glMatrix = __webpack_require__(3);
+	var _glMatrix = __webpack_require__(2);
 
 	var _webgl = __webpack_require__(15);
 
-	var _Container2 = __webpack_require__(1);
+	var _Container2 = __webpack_require__(12);
 
 	var _Container3 = _interopRequireDefault(_Container2);
 
@@ -6899,12 +6904,17 @@
 	    _createClass(Stage, [{
 	        key: '_initContext',
 	        value: function _initContext(canvas) {
-	            var gl = this.gl = (0, _webgl.getContext)(canvas);
+	            var gl = this.gl = (0, _webgl.getContext)(canvas, {
+	                alpha: false,
+	                antialias: false
+	            });
 
 	            gl.clearColor(1.0, 1.0, 1.0, 1.0);
-	            gl.enable(gl.DEPTH_TEST);
 	            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
-	            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+	            // gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+	            gl.enable(gl.DEPTH_TEST);
+	            // gl.enable(gl.CULL_FACE);
+	            gl.viewport(0, 0, canvas.width, canvas.height);
 	        }
 	    }, {
 	        key: '_resetContext',
@@ -7015,8 +7025,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var getContext = exports.getContext = function getContext(canvas) {
-	    return canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+	var getContext = exports.getContext = function getContext(canvas, options) {
+	    return canvas.getContext('webgl', options) || canvas.getContext('experimental-webgl', options);
 	};
 
 	var initShader = exports.initShader = function initShader(gl, shaderSource, shaderType) {
@@ -7050,12 +7060,13 @@
 	    if (!success) {
 	        var error = gl.getProgramInfoLog(program);
 
-	        gl.deleteShader(vertexShader);
-	        gl.deleteShader(fragmentShader);
 	        gl.deleteProgram(program);
 
 	        throw Error(error);
 	    }
+
+	    gl.deleteShader(vertexShader);
+	    gl.deleteShader(fragmentShader);
 
 	    return program;
 	};
@@ -7092,7 +7103,7 @@
 
 	    for (var i = 0; i < totalUniforms; i++) {
 	        var uniform = gl.getActiveUniform(program, i),
-	            name = uniform.name,
+	            name = uniform.name.replace('[0]', ''),
 	            type = uniform.type,
 	            size = uniform.size,
 	            location = gl.getUniformLocation(program, name);
@@ -7177,7 +7188,7 @@
 
 	var _webgl = __webpack_require__(15);
 
-	var _DisplayObject2 = __webpack_require__(2);
+	var _DisplayObject2 = __webpack_require__(1);
 
 	var _DisplayObject3 = _interopRequireDefault(_DisplayObject2);
 
@@ -7195,7 +7206,7 @@
 
 	var VERTEX_SHADER_SOURCE = '\n    attribute vec4 a_VertexPosition;\n    attribute vec4 a_VertexNormal;\n    attribute vec2 a_TextureCoord;\n    uniform mat4 u_ProjectMatrix;\n    uniform mat4 u_ModelViewMatrix;\n    uniform mat4 u_NormalMatrix;\n    varying vec3 v_VertexPosition;\n    varying vec3 v_VertexNormal;\n    varying highp vec2 v_TextureCoord;\n\n    void main() {\n        vec4 vertexPosition =  u_ModelViewMatrix * a_VertexPosition;\n        vec4 vertexNormal = u_NormalMatrix * a_VertexNormal;\n        \n        v_VertexPosition = vertexPosition.xyz;\n        v_VertexNormal = vertexNormal.xyz;\n        v_TextureCoord = a_TextureCoord;\n\n        gl_Position = u_ProjectMatrix * vertexPosition;\n    }\n';
 
-	var FRAGMENT_SHADER_SOURCE = '\n    precision mediump float;\n    varying vec3 v_VertexPosition;\n    varying vec3 v_VertexNormal;\n    varying highp vec2 v_TextureCoord;\n    uniform vec3 u_LightAmbientColor;\n    uniform sampler2D u_Sampler;\n    uniform float u_Alpha;\n\n    void main() {\n        gl_FragColor = vec4(u_LightAmbientColor, u_Alpha) * texture2D(u_Sampler, vec2(v_TextureCoord.s, v_TextureCoord.t));;\n    }\n';
+	var FRAGMENT_SHADER_SOURCE = '\n    precision mediump float;\n    varying vec3 v_VertexPosition;\n    varying vec3 v_VertexNormal;\n    varying highp vec2 v_TextureCoord;\n    uniform vec3 u_LightAmbientColor;\n    uniform sampler2D u_Sampler;\n    uniform float u_Alpha;\n\n    void main() {\n        gl_FragColor = vec4(u_LightAmbientColor, u_Alpha) * texture2D(u_Sampler, v_TextureCoord);\n    }\n';
 
 	var Sprite = function (_DisplayObject) {
 	    _inherits(Sprite, _DisplayObject);
@@ -7261,7 +7272,7 @@
 	        value: function _createBuffers(gl) {
 	            this.indicesBuffer = (0, _webgl.initIndexBuffer)(gl, new Uint16Array(this.geometry.indices));
 	            this.verticesBuffer = (0, _webgl.initArrayBuffer)(gl, new Float32Array(this.geometry.vertices));
-	            this.normalsBuffer = (0, _webgl.initArrayBuffer)(gl, new Float32Array(this.geometry.normals));
+	            // this.normalsBuffer = initArrayBuffer(gl, new Float32Array(this.geometry.normals));
 	            this.uvsBuffer = (0, _webgl.initArrayBuffer)(gl, new Float32Array(this.geometry.uvs));
 	        }
 	    }, {
@@ -7269,11 +7280,11 @@
 	        value: function _deleteBuffers(gl) {
 	            gl.deleteBuffer(this.indicesBuffer);
 	            gl.deleteBuffer(this.verticesBuffer);
-	            gl.deleteBuffer(this.normalsBuffer);
+	            // gl.deleteBuffer(this.normalsBuffer);
 	            gl.deleteBuffer(this.uvsBuffer);
 	            this.indicesBuffer = null;
 	            this.verticesBuffer = null;
-	            this.normalsBuffer = null;
+	            // this.normalsBuffer = null;
 	            this.uvsBuffer = null;
 	        }
 	    }, {
@@ -7292,7 +7303,7 @@
 	        value: function _activeBuffers(gl) {
 	            (0, _webgl.setActiveIndex)(gl, this.indicesBuffer);
 	            (0, _webgl.setAttribPointer)(gl, this.program.attributes.a_VertexPosition, this.verticesBuffer, 3);
-	            (0, _webgl.setAttribPointer)(gl, this.program.attributes.a_VertexNormal, this.normalsBuffer, 3);
+	            // setAttribPointer(gl, this.program.attributes.a_VertexNormal, this.normalsBuffer, 3);
 	            (0, _webgl.setAttribPointer)(gl, this.program.attributes.a_TextureCoord, this.uvsBuffer, 2);
 	        }
 	    }, {
@@ -7378,7 +7389,7 @@
 
 	var _webgl = __webpack_require__(15);
 
-	var _DisplayObject2 = __webpack_require__(2);
+	var _DisplayObject2 = __webpack_require__(1);
 
 	var _DisplayObject3 = _interopRequireDefault(_DisplayObject2);
 
@@ -7459,24 +7470,24 @@
 	        value: function _createBuffers(gl) {
 	            this.indicesBuffer = (0, _webgl.initIndexBuffer)(gl, new Uint16Array(this.graphics.geometry.indices));
 	            this.verticesBuffer = (0, _webgl.initArrayBuffer)(gl, new Float32Array(this.graphics.geometry.vertices));
-	            this.normalsBuffer = (0, _webgl.initArrayBuffer)(gl, new Float32Array(this.graphics.geometry.normals));
+	            // this.normalsBuffer = initArrayBuffer(gl, new Float32Array(this.graphics.geometry.normals));
 	        }
 	    }, {
 	        key: '_deleteBuffers',
 	        value: function _deleteBuffers(gl) {
 	            gl.deleteBuffer(this.indicesBuffer);
 	            gl.deleteBuffer(this.verticesBuffer);
-	            gl.deleteBuffer(this.normalsBuffer);
+	            // gl.deleteBuffer(this.normalsBuffer);
 	            this.indicesBuffer = null;
 	            this.verticesBuffer = null;
-	            this.normalsBuffer = null;
+	            // this.normalsBuffer = null;
 	        }
 	    }, {
 	        key: '_activeBuffers',
 	        value: function _activeBuffers(gl) {
 	            (0, _webgl.setActiveIndex)(gl, this.indicesBuffer);
 	            (0, _webgl.setAttribPointer)(gl, this.program.attributes.a_VertexPosition, this.verticesBuffer, 3);
-	            (0, _webgl.setAttribPointer)(gl, this.program.attributes.a_VertexNormal, this.normalsBuffer, 3);
+	            // setAttribPointer(gl, this.program.attributes.a_VertexNormal, this.normalsBuffer, 3);
 	        }
 	    }]);
 
@@ -7497,7 +7508,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _glMatrix = __webpack_require__(3);
+	var _glMatrix = __webpack_require__(2);
 
 	var _color = __webpack_require__(20);
 
