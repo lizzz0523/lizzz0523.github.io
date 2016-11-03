@@ -65,8 +65,11 @@
 
             var stage = new Stage(canvas);
             
-            var w2 = canvas.width / 2,
-                h2 = canvas.height / 2;
+            var w = Math.min(canvas.width, 320 * window.devicePixelRatio),
+                h = w / canvas.width * canvas.height;
+
+            var w2 = w / 2,
+                h2 = h / 2;
 
             stage.orthogonal(-w2, w2, -h2, h2, -1000, 1000);
 
