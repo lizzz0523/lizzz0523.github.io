@@ -79,7 +79,8 @@
             move = 120,
             mid = 0,
             max = 120,
-            min = -120;
+            min = -120,
+            rad = 90;
 
         function buildGrid() {
             var rounds = [
@@ -117,7 +118,7 @@
             hero = new Shape();
 
             hero.graphics.setStyle({ color: 0xffffff });
-            hero.graphics.drawCircle(100);
+            hero.graphics.drawCircle(rad);
 
             stage.addChildAt(hero, 0);
         }
@@ -150,7 +151,7 @@
             var enemy = new Shape();
 
             enemy.graphics.setStyle({ color: 0x333333 });
-            enemy.graphics.drawCircle(100);
+            enemy.graphics.drawCircle(rad);
 
             enemy.x = fromX;
             enemy.y = fromY;
@@ -222,7 +223,7 @@
 
                     dist = Math.sqrt(distX * distX + distY * distY);
 
-                if (dist < 100) {
+                if (dist < rad) {
                     clearInterval(timer);
 
                     Ticker.removeAllEventListeners('tick');
