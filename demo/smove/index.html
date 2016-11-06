@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>smove</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        html {
+            overflow: visible;
+        }
+        body {
+            overflow: hidden;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #score {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            color: white;
+            font-size: 40px;
+            font-family: "Helvetica Neue",Helvetica,STHeiTi,sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body ontouchstart="return false">
+    <canvas id="stage"></canvas>
+    <div id="score">0</div>
+    <script>
+        window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, error) {
+            alert('error:' + errorMessage + ', line:' + lineNumber)
+        }
+    </script>
+    <script src="lib/hammer.min.js"></script>
+    <script src="lib/soundjs-0.6.2.min.js"></script>
+    <script src="lib/tweenjs-0.6.2.min.js"></script>
+    <script src="vitajs.js"></script>
+    <script>
+        var Ticker = createjs.Ticker,
+            Sound = createjs.Sound,
+            Tween = createjs.Tween,
+            Ease = createjs.Ease;
+
+        var Stage = vitajs.Stage,
+            Shape = vitajs.Shape;
+
+        var score = document.querySelector('#score');
+
+        var canvas = document.querySelector('#stage');
+        canvas.width = window.innerWidth * window.devicePixelRatio;
+        canvas.height = window.innerHeight * window.devicePixelRatio;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        var stage = new Stage(canvas);
+        
+        var w = 640,
+            h = w / canvas.width * canvas.height;
+
+        var w2 = w / 2,
+            h2 = h / 2;
+
+        stage.orthogonal(-w2, w2, -h2, h2, -1000, 1000);
+        stage.background(0xffcd78);
+
+        var hero = null,
+            food = null,
+            enemys = [],
+            timer = null,
+
+            move = 120,
+            mid = 0,
+            max = 120,
+            min = -120;
+
+        function buildGrid() {
+            var rounds = [
+                    [ 380, 380, 100, 0xfff1d6 ],
+                    [ 360, 360, 90, 0xffcd78 ]
+                ];
+
+            rounds.forEach(function (arg) {
+                var round = new Shape();
+                round.graphics.setStyle({ color: arg[3] });
+                round.graphics.drawRounded(arg[0], arg[1], arg[2]); 
+                
+                stage.addChildAt(round, 0);
+            });
+
+            var rects = [
+                [ 10, 340, -60, 0 ],
+                [ 10, 340, 60, 0 ],
+                [ 340, 10, 0, -60 ],
+                [ 340, 10, 0, 60 ]
+            ];
+
+            rects.forEach(function (arg) {
+                var rect = new Shape();
+                rect.graphics.setStyle({ color: 0xfff1d6 });
+                rect.graphics.drawRectangle(arg[0], arg[1]);
+                rect.x = arg[2];
+                rect.y = arg[3];
+
+                stage.addChildAt(rect, 0);
+            });
+        }
+
+        function addHero() {
+            hero = new Shape();
+
+            hero.graphics.setStyle({ color: 0xffffff });
+            hero.graphics.drawCircle(100);
+
+            stage.addChildAt(hero, 0);
+        }
+
+        function addFood() {
+            food = new Shape();
+
+            food.graphics.setStyle({ color: 0x1e6bb4 });
+            food.graphics.drawRounded(50, 50, 10);
+            food.rotateZ = Math.PI * 45 / 180;
+            food.x = min;
+            food.y = max;
+
+            var last = Date.now();
+
+            food.update = function () {
+                var diff = Date.now() - last,
+                    angle = 45 * diff / 1000 * Math.PI / 180;
+
+                last = Date.now();
+
+                food.rotateZ += angle;
+                food.rotateZ %= 2 * Math.PI;
+            };
+
+            stage.addChildAt(food, 0);
+        }
+
+        function addEnemy(fromX, fromY, destX, destY, time) {
+            var enemy = new Shape();
+
+            enemy.graphics.setStyle({ color: 0x333333 });
+            enemy.graphics.drawCircle(100);
+
+            enemy.x = fromX;
+            enemy.y = fromY;
+
+            stage.addChildAt(enemy, 0)
+            enemys.push(enemy);
+
+            Tween.get(enemy).to({ x: destX, y: destY }, time, Ease.linear).call(function (event) {
+                removeEnemy(enemy);
+            });
+        }
+
+        function removeEnemy(enemy) {
+            var index = enemys.indexOf(enemy);
+
+            stage.removeChild(enemy);
+            enemys.splice(index, 1);
+        }
+
+        function moveHero(x, y) {
+            if (x > max || x < min || y > max || y < min) {
+                return;
+            }
+
+            Tween.get(hero).to({ x: x, y: y }, 60, Ease.quadOut).call(checkFood);
+        }
+
+        function pickRand(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+
+        function pickMove() {
+            var x = [min, mid, max][pickRand(0, 3)],
+                y = [min, mid, max][pickRand(0, 3)];
+
+            if (x === hero.x && y === hero.y) {
+                return pickMove();
+            } else {
+                return { x: x, y: y }
+            }
+        }
+
+        function moveFood() {
+            var move = pickMove();
+
+            food.scaleX = 0.3;
+            food.scaleY = 0.3;
+            food.x = move.x;
+            food.y = move.y;
+
+            Tween.get(food).to({ scaleX: 1, scaleY: 1 }, 300, Ease.quadOut);
+        }
+
+        function addScore() {
+            score.innerHTML = parseInt(score.innerHTML) + 10;
+        }
+
+        function checkFood() {
+            if (hero.x === food.x && hero.y === food.y) {
+                moveFood();
+                addScore();
+            }
+        }
+
+        function checkEnemy() {
+            enemys.forEach(function (enemy) {
+                var distX = enemy.x - hero.x,
+                    distY = enemy.y - hero.y,
+
+                    dist = Math.sqrt(distX * distX + distY * distY);
+
+                if (dist < 100) {
+                    clearInterval(timer);
+
+                    Ticker.removeAllEventListeners('tick');
+                    Tween.removeAllTweens();
+
+                    hammer.stop(true);
+
+                    alert('game over');
+
+                    location.reload();
+                }
+            });
+        }
+
+        function goLeft() {
+            moveHero(hero.x - move, hero.y);
+        }
+
+        function goRight() {
+            moveHero(hero.x + move, hero.y);
+        }
+
+        function goUp() {
+            moveHero(hero.x, hero.y + move);
+        }
+
+        function goDown() {
+            moveHero(hero.x, hero.y - move);
+        }
+
+        function update() {
+            checkEnemy();
+
+            food.update();
+            stage.update();
+        }
+
+        var scene1 = (function () {
+            var count = 10;
+
+            function create() {
+                var type = pickRand(0, 2),
+                    side = pickRand(0, 2),
+                    move = [min, mid, max][pickRand(0, 3)],
+                    time = pickRand(1000, 3000);
+
+                var fromX,
+                    fromY,
+                    destX,
+                    destY;
+
+                if (type) {
+                    fromX = destX = move;
+                    fromY = side ? h2 + 50 : -h2 - 50;
+                    destY = -fromY;
+                } else {
+                    fromY = destY = move;
+                    fromX = side ? h2 + 50 : -h2 - 50;
+                    destX = -fromX;
+                }
+
+                addEnemy(fromX, fromY, destX, destY, time);
+            }
+
+            function update() {
+                create();
+                create();
+            }
+
+            return function () {
+                timer = setInterval(update, 3000);
+            };
+        })();
+
+        buildGrid();
+        addFood();
+        addHero();
+        scene1();
+
+        var hammer = new Hammer(canvas);
+
+        hammer.get('swipe').set({ direction: Hammer.DIRECTION_ALL });
+        hammer.on('swipeleft', goLeft);
+        hammer.on('swiperight', goRight);
+        hammer.on('swipeup', goUp);
+        hammer.on('swipedown', goDown);
+
+        Ticker.setFPS(60);
+        Ticker.addEventListener('tick', update);
+
+        Sound.registerSound('./assets/smove.mp3', 'sound');
+        Sound.on('fileload', function () {
+            Sound.play('sound');
+        });
+    </script>
+</body>
+</html>
