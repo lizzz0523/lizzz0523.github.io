@@ -83,18 +83,18 @@
             rad = 90;
 
         function buildGrid() {
-            var rounds = [
-                    [ 380, 380, 100, 0xfff1d6 ],
-                    [ 360, 360, 90, 0xffcd78 ]
-                ];
+            // var rounds = [
+            //         [ 380, 380, 100, 0xfff1d6 ],
+            //         [ 360, 360, 90, 0xffcd78 ]
+            //     ];
 
-            rounds.forEach(function (arg) {
-                var round = new Shape();
-                round.graphics.setStyle({ color: arg[3] });
-                round.graphics.drawRounded(arg[0], arg[1], arg[2]); 
+            // rounds.forEach(function (arg) {
+            //     var round = new Shape();
+            //     round.graphics.setStyle({ color: arg[3] });
+            //     round.graphics.drawRounded(arg[0], arg[1], arg[2]); 
                 
-                stage.addChildAt(round, 0);
-            });
+            //     stage.addChildAt(round, 0);
+            // });
 
             var rects = [
                 [ 10, 340, -60, 0 ],
@@ -118,7 +118,7 @@
             hero = new Shape();
 
             hero.graphics.setStyle({ color: 0xffffff });
-            hero.graphics.drawRectangle(rad, rad);
+            hero.graphics.drawCircle(rad);
 
             stage.addChildAt(hero, 0);
         }
@@ -127,7 +127,7 @@
             food = new Shape();
 
             food.graphics.setStyle({ color: 0x1e6bb4 });
-            food.graphics.drawRounded(50, 50, 10);
+            food.graphics.drawRectangle(50, 50, 10);
             food.rotateZ = Math.PI * 45 / 180;
             food.x = min;
             food.y = max;
@@ -151,7 +151,7 @@
             var enemy = new Shape();
 
             enemy.graphics.setStyle({ color: 0x333333 });
-            enemy.graphics.drawRectangle(rad, rad);
+            enemy.graphics.drawCircle(rad);
 
             enemy.x = fromX;
             enemy.y = fromY;
