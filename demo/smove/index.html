@@ -118,7 +118,7 @@
             hero = new Shape();
 
             hero.graphics.setStyle({ color: 0xffffff });
-            hero.graphics.drawCircle(rad);
+            hero.graphics.drawRectangle(rad, rad);
 
             stage.addChildAt(hero, 0);
         }
@@ -151,7 +151,7 @@
             var enemy = new Shape();
 
             enemy.graphics.setStyle({ color: 0x333333 });
-            enemy.graphics.drawCircle(rad);
+            enemy.graphics.drawRectangle(rad, rad);
 
             enemy.x = fromX;
             enemy.y = fromY;
