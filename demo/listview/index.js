@@ -205,7 +205,7 @@
 	    },
 	    data: function data() {
 	        return {
-	            list: Array.from({ length: 3000 }).map(function (v, k) {
+	            list: Array.apply(null, { length: 3000 }).map(function (v, k) {
 	                return k + 1;
 	            })
 	        };
