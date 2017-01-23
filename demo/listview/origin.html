@@ -83,7 +83,20 @@
         }
     </script>
     <script src="iscroll.lite.js"></script>
+    <script src="stats.min.js"></script>
     <script src="vue.min.js"></script>
     <script src="origin.js"></script>
+    <script>
+        var stats = new Stats();
+
+        document.body.appendChild(stats.dom);
+
+        function animation() {
+            stats.update();
+            requestAnimationFrame(animation);
+        }
+
+        animation();
+    </script>
 </body>
 </html>
