@@ -1033,7 +1033,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        },
 
 	        initialPage: {
-	            itemsCount: 200
+	            itemsCount: 3000
 	        }
 
 	    }).attach(document.getElementById('main'));
