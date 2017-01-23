@@ -134,8 +134,8 @@
 	                    child._phase = top / itemHeight;
 	                    child._top = top;
 
-	                    child.style.transform = 'translate(0, ' + top + 'px) translateZ(0)';
-	                    child.style.webkitTransform = 'translate(0, ' + top + 'px) translateZ(0)';
+	                    child.style.transform = 'translate3d(0, ' + top + 'px, 0)';
+	                    child.style.webkitTransform = 'translate(0, ' + top + 'px, 0)';
 
 	                    update.push(child);
 	                }

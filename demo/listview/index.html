@@ -25,12 +25,12 @@
         }
         .scrollable {
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         .listview {
             position: relative;
-            top: 0;
-            left: 0;
-            right: 0;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .listview_item {
             position: absolute;
@@ -80,7 +80,7 @@
 <body>
     <div id="msg"></div>
     <div id="app" class="app">
-        <listview :list="list" :size="100" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
+        <listview :list="list" :size="40" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
     </div>
     <script>
         window.onerror = function (msg, file, line) {
