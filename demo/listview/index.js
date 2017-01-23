@@ -160,7 +160,7 @@
 	    },
 
 	    mounted: function mounted() {
-	        this.isIOS = true; //!!navigator.userAgent.match(/ip(hone|ad|od)/i);
+	        this.isIOS = !!navigator.userAgent.match(/ip(hone|ad|od)/i);
 
 	        if (this.isIOS) {
 	            this.scroller = new IScroll(this.$el.parentNode, {
