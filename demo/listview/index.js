@@ -106,6 +106,17 @@
 	            });
 	        },
 	        scroll: function scroll() {
+	            requestAnimationFrame(this.scroll);
+
+	            var lastTime = this.lastTime,
+	                lastFps = 1000 / (Date.now() - lastTime);
+
+	            this.lastTime = Date.now();
+
+	            if (lastFps < 50) {
+	                return;
+	            }
+
 	            var scrollTop = void 0;
 
 	            if (this.isIOS) {
@@ -161,15 +172,15 @@
 
 	    mounted: function mounted() {
 	        this.isIOS = !!navigator.userAgent.match(/ip(hone|ad|od)/i);
+	        this.lastTime = Date.now();
+	        this.needUpdate = true;
 
 	        if (this.isIOS) {
 	            this.scroller = new IScroll(this.$el.parentNode, {
 	                useTransition: false
 	            });
-	            this.scroller.on('scroll', this.scroll);
 	        } else {
 	            this.$el.parentNode.classList.add('scrollable');
-	            this.$el.parentNode.addEventListener('scroll', this.scroll, false);
 	        }
 
 	        this.initial();

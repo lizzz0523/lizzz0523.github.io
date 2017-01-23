@@ -22,6 +22,11 @@
         .app {
             position: relative;
             overflow: hidden;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         .scrollable {
             overflow-y: auto;
@@ -80,7 +85,7 @@
 <body>
     <div id="msg"></div>
     <div id="app" class="app">
-        <listview :list="list" :size="30" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
+        <listview :list="list" :size="60" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
     </div>
     <script>
         window.onerror = function (msg, file, line) {
