@@ -27,15 +27,14 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-        }
-        .scrollable {
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .listview {
             position: relative;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
+            pointer-events: none;
         }
         .listview_item {
             position: absolute;
@@ -85,7 +84,7 @@
 <body>
     <div id="msg"></div>
     <div id="app" class="app">
-        <listview :list="list" :size="60" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
+        <listview :list="list" :size="20" :height="80" :mount="createItem" :unmount="removeItem" :render="updateItem" />
     </div>
     <script>
         window.onerror = function (msg, file, line) {
