@@ -1,4 +1,4 @@
-let cacheKey = "netbar-app-1";
+let cacheKey = "netbar-app-2";
 let cacheList = [
     "install.html",
     "index.html",
