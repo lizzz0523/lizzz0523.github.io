@@ -1,11 +1,12 @@
 let cacheKey = "netbar-app-1";
 let cacheList = [
+    "install.html",
     "index.html",
     "assets/css/common.css",
     "assets/css/index.css",
-    "assets/img/index.png",
-    "assets/img/food.jpg",
     "assets/img/banner.jpg",
+    "assets/img/food.jpg",
+    "assets/img/index.png",
     "assets/img/netbar1.jpg",
     "assets/img/netbar2.jpg",
     "assets/img/netbar3.jpg",
