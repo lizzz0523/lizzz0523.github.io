@@ -48,7 +48,7 @@
     <div id="load" class="info mt10"><span class="load"></span></div>
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar" })
+            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar/" })
             .then(function () {
                 document.querySelector("#info").innerHTML = "安装成功";
                 document.querySelector("#load").style.display = "none";
