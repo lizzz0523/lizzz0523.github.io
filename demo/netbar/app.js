@@ -57,7 +57,7 @@ self.addEventListener("fetch", function (event) {
 
     if (cacheList.indexOf(path) > -1) {
         event.respondWith(
-            respondWithCache(request);
+            respondWithCache(request)
         );
     }
 });
