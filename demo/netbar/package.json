@@ -1,0 +1,30 @@
+{
+  "name": "netbar",
+  "version": "1.0.0",
+  "description": "netbar demo",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p",
+    "build:dev": "webpack -w",
+    "flow": "flow",
+    "flow:init": "flow init",
+    "flow:stop": "flow stop",
+    "lint": "eslint",
+    "lint:init": "eslint --init"
+  },
+  "author": "lizmlzhou",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-flowtype": "^2.33.0",
+    "eslint-plugin-import": "^2.3.0",
+    "flow-bin": "^0.47.0",
+    "webpack": "^2.6.1"
+  }
+}

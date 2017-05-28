@@ -1,0 +1,113 @@
+.topnav {
+    display: -webkit-box;
+    display: flex;
+    height: 46px;
+    background-color: white;
+}
+.topnav_city {
+    padding: 0 10px 0 12px;
+    line-height: 46px;
+    color: #18b4ed;
+}
+.topnav_city:after {
+    content: "";
+    display: inline-block;
+    margin: 0 0 0 5px;
+    width: 15px;
+    height: 9px;
+    background-position: 0 -59px;
+    background-repeat: no-repeat;
+    background-image: url(../img/index.png);
+    -moz-background-size: 38px auto;
+    -o-background-size: 38px auto;
+    -webkit-background-size: 38px auto;
+    background-size: 38px auto;
+}
+.topnav_search {
+    -webkit-box-flex: 1;
+    flex: 1;
+    padding: 8px;
+    font-size: 14px;
+}
+.banner img {
+    display: block;
+    width: 100%;
+}
+.subnav_list {
+    display: -webkit-box;
+    display: flex;
+}
+.subnav_item {
+    -webkit-box-flex: 1;
+    flex: 1;
+    padding: 17px 0 13px;
+    text-align: center;
+}
+.subnav_text {
+    line-height: 18px;
+    color: #777;
+    font-size: 12px;
+}
+.subnav_icon {
+    position: relative;
+    display: block;
+    margin-bottom: 12px;
+    height: 42px;
+}
+.tips {
+    line-height: 34px;
+    background-color: #f8f8f8;
+    color: #777;
+    font-size: 12px;
+    text-align: center;
+}
+.shop {
+
+}
+.shop_list {
+
+}
+.shop_item {
+    display: -webkit-box;
+    display: flex;
+}
+.shop_info {
+    -webkit-box-flex: 1;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-pack: center;
+    padding: 8px 0;
+}
+.shop_cover {
+    padding: 8px 12px;
+    width: 80px;
+    height: 80px;
+}
+.shop_img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+}
+.shop_name {
+    margin-bottom: 4px;
+    line-height: 26px;
+}
+.shop_text {
+    line-height: 24px;
+    color: #777;
+    font-size: 14px;
+}
+.shop_text strong {
+    color: #12b7f5;
+}
+.shop_text em {
+    color: black;
+}
+.shop_text_right {
+    padding-right: 12px;
+    float: right;
+}

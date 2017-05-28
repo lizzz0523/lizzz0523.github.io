@@ -1,0 +1,43 @@
+{
+    "env": {
+        "node": true,
+        "browser": true,
+        "commonjs": true,
+        "es6": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:flowtype/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "plugins": [
+        "import",
+        "flowtype"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            "tab",
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "double"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
+    }
+}
