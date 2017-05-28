@@ -1,4 +1,4 @@
-let cacheKey = "netbar-app-4";
+let cacheKey = "netbar-app-5";
 let cacheList = [
     "install.html",
     "index.html",
@@ -14,7 +14,7 @@ let cacheList = [
     "assets/img/netbar5.jpg",
     "assets/img/netbar6.jpg",
     "assets/img/netbar7.jpg",
-    "assets/img/netbar8.jpg",
+    "assets/img/netbar8.png",
     "assets/img/netbar9.jpg",
     "assets/img/netbar10.jpg"
 ];
