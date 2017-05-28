@@ -69,5 +69,10 @@
             </div>
         </div>
     </div>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar" });
+        }
+    </script>
 </body>
 </html>

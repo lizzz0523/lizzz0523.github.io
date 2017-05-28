@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+    <title>企鹅网吧</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-box-pack: center;
+        }
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotate3d(0,0,1,0deg)
+            }
+
+            100% {
+                -webkit-transform: rotate3d(0,0,1,360deg)
+            }
+        }
+        .mt10 {
+            margin-top: 10px;
+        }
+        .info {
+            text-align: center;
+        }
+        .load {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoBAMAAAB+0KVeAAAAMFBMVEUAAACGhoaxsbEnJycvLy9DQ0OBgYFJSUnw8PCKiopVVVXt7e21tbWqqqrj4+MdHR0dtY9IAAAAD3RSTlMAHvjpv4f9Qf7O+tebYJiZwLcAAAABk0lEQVQoz2XRsUsCYRQA8PdB4mLxWToVQt9s0ymNJhoHLhZWg4uTB20XHIj9BQeS0FAh5BAUwW1tLYK6BQ3hEIRLbU4t2vz13n363WVvOLjfvfe+974DHeMe/Av23OJ/4ZsrZK9cY8r9VBgTfY2b7oXCkdjWuOa2OCETocxV1+0TxoQIHTZxnwjXRXohnJq2AXFILRklr2TxVGw67mHLN2Avl4g1uc/ZpM0xY5gGNsIWhNKE1BdgbA3gQ/joSDnNE/kshBjQjhUpfxY4EqILoDSEO/NJowVTl9+SKQUdylg8HodQ4CsHp1gsmoE1O51OF8oSR+Iary3LOl1CprBiGEZ2uTzaaDRUoj53PkGAQaOK3j15hbq85rtVV+rIMFo3pMkcXqgux4nUzcssTx4S4bNpWXUfMxxqM/ph1XtgJz4mZjZEc1PbMVnJs1GpnJ3hBzmDcoZXvTxQBQW12GUFw054D6HdcnKPMOp5tsaInNqEUPIONG7g9D6ee48aV2ReYcS708iObIXsmEMoCDUE4QT3/wsVHI+E7CpGpgAAAABJRU5ErkJggg==);
+            -webkit-background-size: auto 20px;
+            -webkit-animation: rotate 1s steps(12,end) infinite
+        }
+    </style>
+</head>
+<body>
+    <div id="info" class="info">安装中</div>
+    <div id="load" class="info mt10"><span class="load"></span></div>
+    <script>
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar" })
+            .then(function () {
+                document.querySelector("#info").innerHTML = "安装成功";
+                document.querySelector("#load").style.display = "none";
+
+                setTimeout(function () {
+                    location.href = "./index.html";
+                }, 1000);
+            })
+            .catch(function () {
+                document.querySelector("#info").innerHTML = "安装失败";
+                document.querySelector("#load").style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>
