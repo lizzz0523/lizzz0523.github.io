@@ -230,7 +230,7 @@
                 worker.postMessage({ name: "hello" });
             });
 
-            document.title = "ready";
+            document.title = "ready1";
 
             navigator.serviceWorker.addEventListener("message", function (event) {
                 var name = event.data.name;
