@@ -224,7 +224,20 @@
     </div>
     <script>
         if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar/" });
+            navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar/" })
+            .then(function () {
+                var worker = navigator.serviceWorker.controller;
+                worker.postMessage({ name: "hello" });
+            });
+
+            navigator.serviceWorker.addEventListener("message", function (event) {
+                var name = event.data.name;
+                var user = event.data.user;
+
+                if (name === "hello") {
+                    alert(name + " " + user);
+                }
+            });
         }
     </script>
 </body>
