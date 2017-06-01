@@ -227,6 +227,7 @@
             navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar/" })
             .then(function () {
                 var worker = navigator.serviceWorker.controller;
+                document.title = worker ? "ready2" : "ready3";
                 worker.postMessage({ name: "hello" });
             });
 
