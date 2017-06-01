@@ -72,8 +72,8 @@ self.addEventListener("message", function (event) {
                 name: "hello",
                 user: "world"
             });
-        // });
-    }
+        });
+    // }
 });
 
 function respondWithCache(request) {
