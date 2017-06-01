@@ -230,14 +230,14 @@
                 worker.postMessage({ name: "hello" });
             });
 
-            alert(1);
+            document.title = "ready";
 
             navigator.serviceWorker.addEventListener("message", function (event) {
                 var name = event.data.name;
                 var user = event.data.user;
 
                 if (name === "hello") {
-                    alert(name + " " + user);
+                    document.title = (name + " " + user);
                 }
             });
         }
