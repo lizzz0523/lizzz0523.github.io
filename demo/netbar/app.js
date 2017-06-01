@@ -1,4 +1,4 @@
-let cacheKey = "netbar-app-10";
+let cacheKey = "netbar-app-6";
 let cacheList = [
     "install.html",
     "index.html",
@@ -55,15 +55,6 @@ self.addEventListener("fetch", function (event) {
     if (!match) return;
 
     var path = match[1];
-    
-    self.clients.matchAll().then(function (clients) {
-        clients.forEach(function (client) {
-            client.postMessage({
-                name: "hello",
-                user: "world"
-            });
-        });
-    });
 
     if (cacheList.indexOf(path) > -1) {
         event.respondWith(
@@ -75,9 +66,14 @@ self.addEventListener("fetch", function (event) {
 self.addEventListener("message", function (event) {
     var name = event.data.name;
 
-    // if (name === "hello") {
-        
-    // }
+    if (name === "hello") {
+        self.clients.get(event.source.id).then(function (client) {
+            client.postMessage({
+                name: "hello",
+                user: "world"
+            });
+        });
+    }
 });
 
 function respondWithCache(request) {

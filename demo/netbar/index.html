@@ -227,19 +227,16 @@
             navigator.serviceWorker.register("/demo/netbar/app.js", { scope: "/demo/netbar/" })
             .then(function () {
                 var worker = navigator.serviceWorker.controller;
-                document.title = worker && worker.postMessage ? "ready2" : "ready3";
                 worker.postMessage({ name: "hello" });
             });
-
-            document.title = "ready1";
 
             navigator.serviceWorker.addEventListener("message", function (event) {
                 var name = event.data.name;
                 var user = event.data.user;
 
-                // if (name === "hello") {
+                if (name === "hello") {
                     document.title = (name + " " + user);
-                // }
+                }
             });
         }
     </script>
