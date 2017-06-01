@@ -1,4 +1,4 @@
-let cacheKey = "netbar-app-9";
+let cacheKey = "netbar-app-10";
 let cacheList = [
     "install.html",
     "index.html",
@@ -67,10 +67,12 @@ self.addEventListener("message", function (event) {
     var name = event.data.name;
 
     // if (name === "hello") {
-        self.clients.get(event.source.id).then(function (client) {
-            client.postMessage({
-                name: "hello",
-                user: "world"
+        self.clients.matchAll().then(function (clients) {
+            clients.forEach(function (client) {
+                client.postMessage({
+                    name: "hello",
+                    user: "world"
+                });
             });
         });
     // }
